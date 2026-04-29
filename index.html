@@ -2,103 +2,156 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0b0d12">
-<title>NeuroStudy Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroStudy &mdash; Hub</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--bg:#0b0d12;--surface:#141820;--surface2:#1c2130;--border:#272d40;--text:#dfe2ed;--text-dim:#838aa4;--accent:#4e8ef7;--accent-light:#7cb0ff;--green:#2dd4a0;--orange:#f0a040;--purple:#a070e0;--teal:#30d0c8;--red:#f06070;--yellow:#ffd43b}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom)}
-.wrap{max-width:680px;margin:0 auto;padding:36px 0 60px}
-.hero{text-align:center;padding:24px 12px 32px}
-.hero h1{font-size:30px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
-.hero h1 span{color:var(--accent-light)}
-.hero p{color:var(--text-dim);font-size:14.5px;line-height:1.55}
-.section-label{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);font-weight:700;margin:18px 6px 10px}
-.grid{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:560px){.grid{grid-template-columns:1fr 1fr}}
-.card{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 18px 16px;transition:transform .15s,border-color .2s,background .2s;position:relative;overflow:hidden}
-.card:active{transform:scale(.98)}
-.card:hover{border-color:var(--accent);background:var(--surface2)}
-.card .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:middle}
-.card h3{font-size:16px;font-weight:700;margin-bottom:6px;letter-spacing:-.2px;display:flex;align-items:center}
-.card .arrow{margin-left:auto;color:var(--text-dim);font-size:18px;transition:transform .2s,color .2s}
-.card:hover .arrow{color:var(--accent-light);transform:translateX(2px)}
-.card p{color:var(--text-dim);font-size:13px;line-height:1.55}
-.card .tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-top:8px;background:#4e8ef718;color:var(--accent-light)}
-.tip{background:var(--surface);border:1px dashed var(--border);border-radius:12px;padding:14px 16px;margin-top:24px;font-size:13px;color:var(--text-dim)}
-.tip b{color:var(--text)}
-footer{text-align:center;color:var(--text-dim);font-size:12px;margin-top:28px;line-height:1.6}
-footer a{color:var(--accent-light);text-decoration:none}
-.dot-blue{background:var(--accent)}
-.dot-green{background:var(--green)}
-.dot-orange{background:var(--orange)}
-.dot-purple{background:var(--purple)}
-.dot-teal{background:var(--teal)}
-.dot-red{background:var(--red)}
-.dot-yellow{background:var(--yellow)}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #232733; --border: #2e3344;
+    --text: #e2e4ed; --text-dim: #8b8fa3; --accent: #6c5ce7; --accent-light: #a29bfe;
+    --green: #00cec9; --red: #fd7272; --orange: #ffa94d; --blue: #74b9ff;
+    --yellow: #ffd43b; --purple: #b794f4; --teal: #4fd1c5;
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .container { max-width: 560px; width: 100%; }
+  .hero { text-align: center; margin-bottom: 28px; }
+  .hero h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 6px; background: linear-gradient(135deg, var(--accent-light), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 15px; }
+  .hero .badge { display: inline-block; margin-top: 14px; background: linear-gradient(135deg, #ffd43b, #f59f00); color: #1a1d27; font-size: 11px; font-weight: 800; padding: 5px 14px; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; }
+  .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim); font-weight: 700; margin: 18px 6px 10px; }
+  .chapter-card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px 26px; margin-bottom: 14px; text-decoration: none; transition: all 0.25s; position: relative; overflow: hidden; }
+  .chapter-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .c-purple::before { background: linear-gradient(90deg, var(--purple), var(--accent-light)); }
+  .c-orange::before { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+  .c-teal::before { background: linear-gradient(90deg, var(--teal), var(--green)); }
+  .c-blue::before { background: linear-gradient(90deg, var(--accent), var(--blue)); }
+  .c-red::before { background: linear-gradient(90deg, var(--red), #ff8b94); }
+  .c-green::before { background: linear-gradient(90deg, var(--green), var(--blue)); }
+  .c-yellow::before { background: linear-gradient(90deg, var(--yellow), var(--orange)); }
+  .chapter-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 30px #6c5ce718; }
+  .chapter-card:active { transform: translateY(0); }
+  .ch-num { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .c-purple .ch-num { color: var(--purple); }
+  .c-orange .ch-num { color: var(--orange); }
+  .c-teal .ch-num { color: var(--teal); }
+  .c-blue .ch-num { color: var(--accent-light); }
+  .c-red .ch-num { color: var(--red); }
+  .c-green .ch-num { color: var(--green); }
+  .c-yellow .ch-num { color: var(--yellow); }
+  .ch-title { font-size: 19px; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.3px; padding-right: 28px; }
+  .ch-desc { font-size: 13.5px; color: var(--text-dim); line-height: 1.5; margin-bottom: 14px; }
+  .ch-stats { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ch-stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 5px 11px; font-size: 11.5px; color: var(--text-dim); font-weight: 600; }
+  .ch-stat span { color: var(--accent-light); font-weight: 800; }
+  .ch-arrow { position: absolute; right: 22px; top: 28px; font-size: 20px; color: var(--text-dim); transition: all 0.2s; }
+  .chapter-card:hover .ch-arrow { color: var(--accent-light); transform: translateX(4px); }
+  .footer { text-align: center; margin-top: 24px; font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+  @media (max-width: 600px) { .hero h1 { font-size: 26px; } .ch-title { font-size: 17px; } .chapter-card { padding: 20px 22px; } }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="container">
 
-<div class="hero">
-<h1>Neuro<span>Study</span></h1>
-<p>Your study hub &mdash; tap any topic to open the full study guide with notes, flashcards, MCQ, matching, and hard-quiz sections.</p>
-</div>
+  <div class="hero">
+    <h1>NeuroStudy</h1>
+    <p>Neuroscience study hub</p>
+    <div class="badge">7 Topics &middot; 240+ Flashcards &middot; 200+ MCQs</div>
+  </div>
 
-<div class="section-label">Neurotransmitter Systems</div>
-<div class="grid">
+  <div class="section-label">Neurotransmitter Systems</div>
 
-<a class="card" href="cholinergic/">
-<h3><span class="dot dot-purple"></span>Cholinergic System<span class="arrow">&rsaquo;</span></h3>
-<p>Acetylcholine, muscarinic &amp; nicotinic receptors, cholinesterase inhibitors, Alzheimer's disease.</p>
-</a>
+  <a class="chapter-card c-purple" href="cholinergic.html">
+    <div class="ch-num">Cholinergic</div>
+    <div class="ch-title">Cholinergic System &amp; Alzheimer's</div>
+    <div class="ch-desc">Acetylcholine, muscarinic &amp; nicotinic receptors, AChE inhibitors, Alzheimer's disease pharmacology</div>
+    <div class="ch-stats">
+      <div class="ch-stat"><span>40</span> Cards</div>
+      <div class="ch-stat"><span>30+</span> MCQ</div>
+      <div class="ch-stat"><span>6</span> Topics</div>
+    </div>
+    <div class="ch-arrow">&rarr;</div>
+  </a>
 
-<a class="card" href="adrenergic/">
-<h3><span class="dot dot-orange"></span>Adrenergic System<span class="arrow">&rsaquo;</span></h3>
-<p>Norepinephrine &amp; epinephrine, &alpha;/&beta; receptors, agonists &amp; antagonists, autonomic pharmacology.</p>
-</a>
+  <a class="chapter-card c-orange" href="adrenergic.html">
+    <div class="ch-num">Adrenergic</div>
+    <div class="ch-title">Adrenergic System</div>
+    <div class="ch-desc">Norepinephrine &amp; epinephrine, &alpha;/&beta; receptors, agonists &amp; antagonists, autonomic pharmacology</div>
+    <div class="ch-stats">
+      <div class="ch-stat"><span>40</span> Cards</div>
+      <div class="ch-stat"><span>30+</span> MCQ</div>
+      <div class="ch-stat"><span>7</span> Topics</div>
+    </div>
+    <div class="ch-arrow">&rarr;</div>
+  </a>
 
-<a class="card" href="atypical/">
-<h3><span class="dot dot-teal"></span>Atypical Neurotransmitters<span class="arrow">&rsaquo;</span></h3>
-<p>Endocannabinoids (CB1/CB2), purinergic signaling (ATP/adenosine), and nitric oxide (NO).</p>
-</a>
+  <a class="chapter-card c-teal" href="atypical.html">
+    <div class="ch-num">Atypical NTs</div>
+    <div class="ch-title">Atypical Neurotransmitters</div>
+    <div class="ch-desc">Endocannabinoids (CB1/CB2), purinergic signaling (ATP, adenosine), nitric oxide (NO), retrograde messaging</div>
+    <div class="ch-stats">
+      <div class="ch-stat"><span>31</span> Cards</div>
+      <div class="ch-stat"><span>26</span> MCQ</div>
+      <div class="ch-stat"><span>10</span> Hard</div>
+      <div class="ch-stat"><span>12</span> Match</div>
+    </div>
+    <div class="ch-arrow">&rarr;</div>
+  </a>
 
-</div>
+  <div class="section-label">Clinical / Drug Topics</div>
 
-<div class="section-label">Clinical / Drug Topics</div>
-<div class="grid">
+  <a class="chapter-card c-blue" href="anxiety.html">
+    <div class="ch-num">Anxiolytics</div>
+    <div class="ch-title">Fear, Anxiety &amp; Anxiolytics</div>
+    <div class="ch-desc">GAD, panic, PTSD, OCD; benzodiazepines, SSRIs/SNRIs, buspirone, flumazenil &mdash; mechanisms &amp; clinical use</div>
+    <div class="ch-stats">
+      <div class="ch-stat"><span>30</span> Cards</div>
+      <div class="ch-stat"><span>26</span> MCQ</div>
+      <div class="ch-stat"><span>10</span> Hard</div>
+      <div class="ch-stat"><span>12</span> Match</div>
+    </div>
+    <div class="ch-arrow">&rarr;</div>
+  </a>
 
-<a class="card" href="anxiety/">
-<h3><span class="dot dot-blue"></span>Fear, Anxiety &amp; Anxiolytics<span class="arrow">&rsaquo;</span></h3>
-<p>GAD, panic, PTSD; benzodiazepines, SSRIs/SNRIs, buspirone, flumazenil.</p>
-</a>
+  <a class="chapter-card c-red" href="pain.html">
+    <div class="ch-num">Pain &amp; Analgesics</div>
+    <div class="ch-title">Pain, Opioids &amp; NSAIDs</div>
+    <div class="ch-desc">Nociception, A&delta;/C fibers, TRP channels, sensitization; opioid receptors, NSAIDs/COX, local anesthetics</div>
+    <div class="ch-stats">
+      <div class="ch-stat"><span>30</span> Cards</div>
+      <div class="ch-stat"><span>28</span> MCQ</div>
+      <div class="ch-stat"><span>10</span> Hard</div>
+      <div class="ch-stat"><span>12</span> Match</div>
+    </div>
+    <div class="ch-arrow">&rarr;</div>
+  </a>
 
-<a class="card" href="pain/">
-<h3><span class="dot dot-red"></span>Pain, Opioids &amp; NSAIDs<span class="arrow">&rsaquo;</span></h3>
-<p>Nociception, fibers &amp; TRP channels, opioid receptors, NSAIDs, local anesthetics.</p>
-</a>
+  <a class="chapter-card c-green" href="stim-dep.html">
+    <div class="ch-num">CNS Stim &amp; Dep</div>
+    <div class="ch-title">CNS Stimulants &amp; Depressants</div>
+    <div class="ch-desc">Caffeine &amp; adenosine receptors, cocaine, ethanol &mdash; mechanisms, BAC, liver, fetal effects, withdrawal</div>
+    <div class="ch-stats">
+      <div class="ch-stat"><span>30</span> Cards</div>
+      <div class="ch-stat"><span>26</span> MCQ</div>
+      <div class="ch-stat"><span>10</span> Hard</div>
+      <div class="ch-stat"><span>12</span> Match</div>
+    </div>
+    <div class="ch-arrow">&rarr;</div>
+  </a>
 
-<a class="card" href="stim-dep/">
-<h3><span class="dot dot-green"></span>CNS Stimulants &amp; Depressants<span class="arrow">&rsaquo;</span></h3>
-<p>Caffeine &amp; adenosine, cocaine, ethanol &mdash; mechanisms, BAC, liver, withdrawal.</p>
-</a>
+  <a class="chapter-card c-yellow" href="drug.html">
+    <div class="ch-num">Dependence</div>
+    <div class="ch-title">Drug Dependence, Abuse &amp; Tolerance</div>
+    <div class="ch-desc">Reward pathway, dependence liability, CSA schedules, treatment approaches, cannabinoids</div>
+    <div class="ch-stats">
+      <div class="ch-stat"><span>30</span> Cards</div>
+      <div class="ch-stat"><span>28</span> MCQ</div>
+      <div class="ch-stat"><span>10</span> Hard</div>
+      <div class="ch-stat"><span>12</span> Match</div>
+    </div>
+    <div class="ch-arrow">&rarr;</div>
+  </a>
 
-<a class="card" href="drug/">
-<h3><span class="dot dot-yellow"></span>Drug Dependence, Abuse &amp; Tolerance<span class="arrow">&rsaquo;</span></h3>
-<p>Reward pathway, dependence liability, CSA schedules, treatment, cannabinoids.</p>
-</a>
-
-</div>
-
-<div class="tip">
-<b>Tip:</b> Add this page to your phone's home screen for one-tap access. On iPhone Safari: Share &rarr; Add to Home Screen.
-</div>
-
-<footer>
-NeuroStudy &middot; <a href="https://github.com/annadang0810/neurostudy" target="_blank" rel="noreferrer">github</a>
-</footer>
+  <div class="footer">All 7 study guides &middot; tap a card to open</div>
 
 </div>
 </body>
