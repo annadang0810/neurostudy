@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fear, Anxiety &amp; Anxiolytics - Study Guide</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0d12;--surface:#141820;--surface2:#1c2130;--border:#272d40;--text:#dfe2ed;--text-dim:#838aa4;--accent:#4e8ef7;--accent-light:#7cb0ff;--green:#2dd4a0;--green-dim:#2dd4a018;--red:#f06070;--red-dim:#f0607018;--orange:#f0a040;--purple:#a070e0;--teal:#30d0c8;--yellow:#ffd43b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:58px;gap:6px;overflow-x:auto}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-brand{font-weight:700;font-size:15px;color:var(--accent-light);white-space:nowrap;margin-right:14px}
+.nav-btn{background:none;border:1px solid transparent;color:var(--text-dim);padding:6px 13px;border-radius:8px;cursor:pointer;font-size:13px;white-space:nowrap;transition:all .2s;font-weight:500}
+.nav-btn:hover{color:var(--text);background:var(--surface2)}
+.nav-btn.active{color:var(--accent-light);background:#4e8ef715;border-color:#4e8ef740}
+main{max-width:820px;margin:0 auto;padding:80px 24px 60px}
+.section{display:none}.section.active{display:block}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:20px}
+.card h2{font-size:20px;font-weight:700;margin-bottom:14px}
+.card h3{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--accent-light)}
+.card p,.card li{font-size:14.5px;color:var(--text-dim);line-height:1.7}
+.card ul{padding-left:20px}.card li{margin-bottom:5px}
+.card li::marker{color:var(--accent)}
+.hl{color:var(--green);font-weight:600}
+.drug{color:var(--orange);font-weight:600}
+.warn{color:var(--red);font-weight:600}
+.receptor{color:var(--purple);font-weight:600}
+.mol{color:var(--teal);font-weight:600}
+.key{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-right:4px;letter-spacing:.5px}
+.hero-card{background:linear-gradient(135deg,#4e8ef720,#2dd4a010);border-color:#4e8ef730;text-align:center;padding:44px 28px}
+.hero-card h1{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.hero-card p{color:var(--text-dim);font-size:15px}
+.hero-stats{display:flex;gap:14px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-align:center;min-width:110px}
+.stat-num{font-size:24px;font-weight:800;color:var(--accent-light)}
+.stat-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.tab-row{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:8px 15px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
+.tab-btn:hover{color:var(--text)}.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab-content{display:none}.tab-content.active{display:block}
+.cmp-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+.cmp-table th{background:var(--surface2);color:var(--accent-light);padding:10px 12px;text-align:left;border:1px solid var(--border);font-weight:600}
+.cmp-table td{padding:9px 12px;border:1px solid var(--border);color:var(--text-dim)}
+.quiz-q{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px}
+.quiz-q>p{font-size:15px;font-weight:600;margin-bottom:14px;color:var(--text)}
+.q-num{display:inline-block;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:6px;text-align:center;line-height:24px;font-size:12px;font-weight:700;margin-right:8px}
+.quiz-option{display:block;width:100%;text-align:left;background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:12px 16px;border-radius:10px;cursor:pointer;font-size:14px;margin-bottom:8px;transition:all .2s;font-family:inherit}
+.quiz-option:hover{border-color:var(--accent);color:var(--text);background:#4e8ef710}
+.quiz-option.correct{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.quiz-option.wrong{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.quiz-option.disabled{pointer-events:none}
+.explanation{display:none;margin-top:12px;padding:12px 16px;background:var(--surface2);border-radius:10px;font-size:13px;color:var(--text-dim);border-left:3px solid var(--accent)}
+.explanation.show{display:block}
+.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 28px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.score-text{font-size:15px;font-weight:600}
+.score-pct{font-size:28px;font-weight:800;color:var(--accent-light)}
+.reset-btn{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;transition:all .2s}
+.reset-btn:hover{background:var(--accent-light);color:var(--bg)}
+.fc-container{perspective:1000px;margin-bottom:16px}
+.flashcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px;cursor:pointer;transition:transform .5s;transform-style:preserve-3d;position:relative}
+.flashcard:hover{box-shadow:0 4px 24px #4e8ef718}
+.flashcard.flipped{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:32px;backface-visibility:hidden;border-radius:14px}
+.fc-front{font-size:16px;font-weight:600}
+.fc-back{transform:rotateY(180deg);font-size:15px;color:var(--green);background:var(--surface);line-height:1.6}
+.fc-nav{display:flex;gap:10px;justify-content:center;align-items:center}
+.fc-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.fc-btn:hover{background:var(--accent);border-color:var(--accent)}
+.fc-counter{font-size:13px;color:var(--text-dim);font-weight:600;min-width:60px;text-align:center}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.match-col-header{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:700;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.match-item{padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;font-size:13px;cursor:pointer;transition:all .2s;color:var(--text-dim);margin-bottom:8px}
+.match-item:hover{border-color:var(--accent);color:var(--text)}
+.match-item.selected{border-color:var(--accent);background:#4e8ef715;color:var(--accent-light)}
+.match-item.matched{border-color:var(--green);background:var(--green-dim);color:var(--green);pointer-events:none;opacity:.7}
+.match-item.wrong-match{border-color:var(--red);background:var(--red-dim);color:var(--red)}
+@media(max-width:600px){.nav-brand{display:none}main{padding:74px 14px 40px}.card{padding:20px}.hero-card{padding:30px 20px}.hero-card h1{font-size:22px}.match-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+<span class="nav-brand">NeuroStudy</span>
+<button class="nav-btn active" onclick="showSection('home',event)">Home</button>
+<button class="nav-btn" onclick="showSection('learn',event)">Learn</button>
+<button class="nav-btn" onclick="showSection('flashcards',event)">Flashcards</button>
+<button class="nav-btn" onclick="showSection('quiz',event)">Quiz</button>
+<button class="nav-btn" onclick="showSection('matching',event)">Matching</button>
+<button class="nav-btn" onclick="showSection('hard',event)">Hard Quiz</button>
+</div></nav>
+<main>
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+<div class="card hero-card">
+<h1>Fear, Anxiety &amp; Anxiolytics</h1>
+<p>Anxiety disorders &middot; Benzodiazepines &middot; SSRIs/SNRIs &middot; Buspirone &middot; Flumazenil &mdash; mechanism, uses, side effects, dependence</p>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">5</div><div class="stat-label">Disorders</div></div>
+<div class="stat"><div class="stat-num">30</div><div class="stat-label">Flashcards</div></div>
+<div class="stat"><div class="stat-num">26</div><div class="stat-label">Quiz Qs</div></div>
+<div class="stat"><div class="stat-num">10</div><div class="stat-label">Hard Qs</div></div>
+</div>
+</div>
+<div class="card"><h2>How to Use</h2><ul>
+<li><span class="hl">Learn</span> &mdash; All material organized by topic with tables</li>
+<li><span class="hl">Flashcards</span> &mdash; Click a card to flip; arrows to navigate</li>
+<li><span class="hl">Quiz</span> &mdash; 26 multiple-choice questions with instant feedback</li>
+<li><span class="hl">Matching</span> &mdash; Match each drug to its mechanism / brand name</li>
+<li><span class="hl">Hard Quiz</span> &mdash; 10 clinical-application MCQs</li>
+</ul></div>
+<div class="card"><h2>Big Picture</h2>
+<p>Anxiety = an unpleasant state of <span class="hl">tension, apprehension, or uneasiness</span> &mdash; a fear without a real or logical cause. Treat by class:</p>
+<ul>
+<li><span class="drug">Benzodiazepines</span> &mdash; acute anxiety; potentiate GABA-A; <span class="warn">tolerance + dependence</span></li>
+<li><span class="drug">SSRIs / SNRIs</span> &mdash; first-line for panic, OCD, GAD long-term</li>
+<li><span class="drug">Buspirone</span> &mdash; 5-HT1A agonist; chronic anxiety, no sedation, slow onset</li>
+<li><span class="drug">β-blockers</span> &mdash; only the somatic symptoms (tremor, palpitations)</li>
+<li><span class="drug">Flumazenil</span> &mdash; competitive BZD antagonist (rescue)</li>
+</ul>
+</div>
+</div>
+
+<!-- LEARN -->
+<div class="section" id="sec-learn">
+<div class="tab-row">
+<button class="tab-btn active" onclick="showTab('learn',0,event)">Anxiety basics</button>
+<button class="tab-btn" onclick="showTab('learn',1,event)">Disorders &amp; Tx</button>
+<button class="tab-btn" onclick="showTab('learn',2,event)">Drug classes</button>
+<button class="tab-btn" onclick="showTab('learn',3,event)">BZDs: Mechanism</button>
+<button class="tab-btn" onclick="showTab('learn',4,event)">BZDs: Effects &amp; Risks</button>
+<button class="tab-btn" onclick="showTab('learn',5,event)">Specific BZDs</button>
+<button class="tab-btn" onclick="showTab('learn',6,event)">Other agents</button>
+</div>
+
+<div class="tab-content active" id="learn-0">
+<div class="card"><h2>The Nature of Anxiety</h2>
+<p>Persistent memories of intense fear can establish maladaptive associative emotional memories &rarr; <span class="warn">pathological anxiety</span>. Unlike fear, in anxiety <span class="hl">there is no immediately threatening stimulus</span>.</p>
+<h3>Definition</h3>
+<p>Anxiety = an unpleasant state of <span class="hl">tension</span>, <span class="hl">apprehension</span>, or <span class="hl">uneasiness</span> &mdash; a fear that seems to arise without a real or logical cause.</p>
+<h3>Chief manifestations</h3>
+<ul>
+<li><span class="warn">Somatic / autonomic effects</span>: restlessness, agitation, tachycardia, sweating, weeping, GI disorders, sleep disturbances</li>
+<li>Interference with normal productive activities</li>
+</ul>
+<h3>Epidemiology &amp; clinical context</h3>
+<ul>
+<li>Episodes of mild anxiety are common life experiences and don't warrant treatment</li>
+<li>Anxiolytic drugs were used regularly by <span class="warn">>10%</span> of the population in many developed countries</li>
+<li>They've fallen out of favor as <span class="warn">uncertain benefit + definite risks</span> have become evident</li>
+<li>Same drugs treat <span class="hl">insomnia</span> &mdash; sedation/drowsiness is a main drawback</li>
+<li><span class="warn">In high doses</span>, all anxiolytics cause unconsciousness and eventually <span class="warn">death from respiratory and cardiovascular depression</span></li>
+</ul></div>
+</div>
+
+<div class="tab-content" id="learn-1">
+<div class="card"><h2>Anxiety Disorders</h2>
+<table class="cmp-table">
+<tr><th>Disorder</th><th>Hallmark</th></tr>
+<tr><td><span class="hl">Generalized Anxiety Disorder (GAD)</span></td><td>Unrealistic, excessive worry &gt; 6 months; motor tension, sympathetic hyperactivity, excessive vigilance</td></tr>
+<tr><td><span class="hl">Panic disorder</span></td><td>Discrete intense episodes; tachycardia, tachypnea, dizziness</td></tr>
+<tr><td><span class="hl">PTSD</span></td><td>After serious trauma; cue-elicited reliving, increased startle, nightmares</td></tr>
+<tr><td><span class="hl">Simple phobia</span></td><td>Intense fear/avoidance of specific stimuli (snakes, heights, planes)</td></tr>
+<tr><td><span class="hl">Social phobia (SAD)</span></td><td>Fear of social situations or interactions</td></tr>
+</table>
+<h3>First-line treatment by disorder</h3>
+<table class="cmp-table">
+<tr><th>Indication</th><th>Treatment</th></tr>
+<tr><td>Acute anxiety</td><td><span class="drug">Benzodiazepines</span></td></tr>
+<tr><td>Panic disorder</td><td>Long-term <span class="drug">SSRI / SNRI</span> + behavioral therapy</td></tr>
+<tr><td>OCD</td><td>Long-term <span class="drug">antidepressants</span> + behavioral therapy</td></tr>
+<tr><td>PTSD</td><td>Behavioral therapy, <span class="drug">ketamine</span>, <span class="drug">prazosin</span> (α1 antagonist), <span class="drug">propranolol</span></td></tr>
+</table></div>
+</div>
+
+<div class="tab-content" id="learn-2">
+<div class="card"><h2>Classification of Anxiolytic / Hypnotic Drugs</h2>
+<ul>
+<li><span class="drug">Benzodiazepines</span> &mdash; the most important class; treat both anxiety and insomnia</li>
+<li><span class="drug">5-HT<sub>1A</sub> receptor agonists</span> (e.g., <span class="drug">buspirone</span>) &mdash; anxiolytic with little sedation</li>
+<li><span class="drug">Barbiturates</span> &mdash; <span class="warn">largely obsolete</span> as anxiolytics; dangerous overdose, dependence</li>
+<li><span class="drug">β-adrenoceptor antagonists</span> &mdash; reduce <span class="hl">physical symptoms</span> (tremor, palpitations); <span class="warn">no effect on the affective component</span></li>
+</ul></div>
+</div>
+
+<div class="tab-content" id="learn-3">
+<div class="card"><h2>Benzodiazepines: Mechanism of Action</h2>
+<ul>
+<li>First BZD: <span class="drug">chlordiazepoxide</span> (Librium), synthesized by accident in <span class="hl">1961</span> at Hoffman-La Roche</li>
+<li>~20 BZDs in clinical use; pharmacologically similar but with selectivity differences (e.g., <span class="drug">clonazepam</span> &mdash; anti-convulsant, less sedation)</li>
+</ul>
+<h3>Where they act</h3>
+<ul>
+<li>Selective for the <span class="receptor">GABA-A receptor</span> (a Cl⁻-permeable pentameric ligand-gated channel: 2α + 2β + γ)</li>
+<li>BZDs <span class="warn">do NOT affect</span> glycine or glutamate receptors</li>
+</ul>
+<h3>How they work</h3>
+<p>BZDs bind a <span class="hl">distinct allosteric site</span> (BZD site, on the α/γ interface) and <span class="hl">enhance GABA's effect</span> &mdash; they increase the channel's affinity for GABA and the <span class="hl">frequency</span> of Cl⁻ channel opening (vs. barbiturates, which prolong opening duration).</p>
+<h3>GABA-A binding sites (review)</h3>
+<table class="cmp-table">
+<tr><th>Site</th><th>Ligand / drug</th></tr>
+<tr><td>GABA</td><td>GABA (orthosteric)</td></tr>
+<tr><td>BZD site (ω)</td><td>Benzodiazepines, flumazenil</td></tr>
+<tr><td>Barbiturate site</td><td>Barbiturates (prolong open time)</td></tr>
+<tr><td>Ethanol site</td><td>Ethanol (positive modulator)</td></tr>
+</table></div>
+</div>
+
+<div class="tab-content" id="learn-4">
+<div class="card"><h2>Benzodiazepines: Effects, Risks, &amp; Dependence</h2>
+<h3>Five main pharmacological effects</h3>
+<ul>
+<li><span class="hl">Reduction of anxiety + aggression</span> ("taming" effect in animals)</li>
+<li><span class="hl">Sedation and induction of sleep</span></li>
+<li><span class="hl">Reduction of muscle tone</span> + impaired coordination</li>
+<li><span class="hl">Anticonvulsant activity</span></li>
+<li><span class="hl">Anterograde amnesia</span></li>
+</ul>
+<p><span class="warn">No antidepressant action</span> &mdash; with the possible exception of alprazolam.</p>
+<h3>Acute toxicity</h3>
+<p>BZDs in acute overdose are <span class="hl">considerably less dangerous</span> than other anxiolytic/hypnotic drugs &mdash; cause prolonged sleep <em>without</em> serious respiratory or cardiovascular depression (unlike barbiturates).</p>
+<h3>Side effects in therapeutic use</h3>
+<ul>
+<li><span class="warn">Drowsiness, confusion, amnesia, impaired coordination</span> &rarr; affects manual skills (e.g., driving)</li>
+</ul>
+<h3>Tolerance &amp; dependence (the main drawback)</h3>
+<ul>
+<li>All BZDs produce <span class="warn">tolerance</span> (appears to be a receptor-level change &mdash; mechanism unclear) and <span class="warn">dependence</span></li>
+<li>Stopping after weeks/months: ↑ anxiety, tremor, dizziness</li>
+<li>Withdrawal after chronic use resembles <span class="warn">opioid withdrawal</span>: nervousness, tremor, loss of appetite, sometimes <span class="warn">convulsions</span></li>
+</ul></div>
+</div>
+
+<div class="tab-content" id="learn-5">
+<div class="card"><h2>Specific Benzodiazepines (generic / brand)</h2>
+<table class="cmp-table">
+<tr><th>Generic</th><th>Brand</th><th>Note</th></tr>
+<tr><td><span class="drug">Diazepam</span></td><td>Valium</td><td>Long half-life, active metabolites; status epilepticus</td></tr>
+<tr><td><span class="drug">Alprazolam</span></td><td>Xanax</td><td>Possible antidepressant action; panic disorder</td></tr>
+<tr><td><span class="drug">Chlordiazepoxide</span></td><td>Librium</td><td>First BZD; alcohol withdrawal</td></tr>
+<tr><td><span class="drug">Clonazepam</span></td><td>Klonopin</td><td>Anti-convulsant w/ less sedation</td></tr>
+<tr><td><span class="drug">Flurazepam</span></td><td>Dalmane</td><td>Hypnotic</td></tr>
+<tr><td><span class="drug">Oxazepam</span></td><td>Serax</td><td>No active metabolites &mdash; useful in liver disease/elderly</td></tr>
+<tr><td><span class="drug">Temazepam</span></td><td>Restoril</td><td>Hypnotic</td></tr>
+<tr><td><span class="drug">Triazolam</span></td><td>Halcion</td><td>Short-acting hypnotic</td></tr>
+</table>
+<h3>Shared profile</h3>
+<ul>
+<li><span class="key">MOA</span> Bind BZD (ω) site on GABA-A &rarr; ↑ affinity for GABA, ↑ frequency of Cl⁻ channel opening &rarr; potentiate inhibition</li>
+<li><span class="key">USE</span> Anxiety, status epilepticus, muscle spasm, alcohol withdrawal, preoperative sedation, light anesthesia, anterograde amnesia for procedures</li>
+<li><span class="key">PK</span> Oral / IV / IM; hepatic metabolism, urinary excretion; many have <span class="hl">active metabolites</span> (long-acting)</li>
+<li><span class="key">AE</span> Dizziness, drowsiness, lethargy, physical + psychological dependence, tolerance</li>
+<li><span class="key">DDI</span> Additive CNS depression with <span class="warn">alcohol</span> and other CNS depressants</li>
+</ul></div>
+</div>
+
+<div class="tab-content" id="learn-6">
+<div class="card"><h2>SSRIs / SNRIs</h2>
+<ul>
+<li>Selectively block <span class="hl">5-HT</span> (and NE for SNRIs) <span class="hl">reuptake transporter</span></li>
+<li>Greater efficacy and lower side-effect burden vs benzos/barbiturates for chronic use</li>
+<li><span class="warn">Can transiently worsen anxiety</span> before anxiolytic effect appears (~weeks)</li>
+<li>Side effects: agitation, nausea, diarrhea, ↓ libido, anorgasmia, weight gain; SNRIs add HTN &amp; tachycardia</li>
+<li><span class="warn">SSRI-Discontinuation Syndrome</span> on stopping/decreasing dose</li>
+</ul></div>
+<div class="card"><h2>Buspirone (BuSpar)</h2>
+<ul>
+<li>Agonist at the <span class="receptor">5-HT<sub>1A</sub></span> receptor</li>
+<li><span class="hl">Relieves anxiety without sedation</span></li>
+<li>Slow onset (~<span class="hl">1 week</span>); for <span class="hl">chronic anxiety</span> (GAD)</li>
+<li><span class="hl">Low addiction potential</span> (like SSRIs)</li>
+<li>No muscle relaxation, no anticonvulsant activity</li>
+<li>Not as effective as benzos or SSRIs</li>
+<li><span class="drug">Vilazodone (Viibryd)</span> = SSRI + 5-HT1A agonist for depression</li>
+</ul></div>
+<div class="card"><h2>Flumazenil (Romazicon) &mdash; the BZD antagonist</h2>
+<table class="cmp-table">
+<tr><th>Aspect</th><th>Detail</th></tr>
+<tr><td>Mechanism</td><td>Competitively blocks the BZD binding site on GABA-A</td></tr>
+<tr><td>Use</td><td>Reverse BZD adverse effects (e.g., respiratory depression from IV admin or overdose)</td></tr>
+<tr><td>Pharmacokinetics</td><td><span class="warn">IV only</span>; action lasts only ~1–2 hours; repeated doses may be needed</td></tr>
+<tr><td>Adverse effects</td><td>Seizures, dizziness, emotional lability</td></tr>
+<tr><td>Special considerations</td><td><span class="warn">Contraindicated in status epilepticus</span>; cautious use in seizure history or head injury</td></tr>
+<tr><td>Drug interactions</td><td>None significant</td></tr>
+</table></div>
+</div>
+
+</div>
+
+<!-- FLASHCARDS -->
+<div class="section" id="sec-flashcards">
+<div class="fc-container"><div class="flashcard" id="flashcard" onclick="flipCard()">
+<div class="fc-front" id="fc-front"></div>
+<div class="fc-back" id="fc-back"></div>
+</div></div>
+<div class="fc-nav">
+<button class="fc-btn" onclick="prevCard()">‹</button>
+<div class="fc-counter" id="fc-counter">1 / 30</div>
+<button class="fc-btn" onclick="nextCard()">›</button>
+<button class="fc-btn" onclick="shuffleCards()" style="width:auto;padding:0 14px;font-size:13px">Shuffle</button>
+</div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="sec-quiz">
+<div class="score-bar"><div><div class="score-text">Score</div><div class="score-pct" id="quiz-score">0 / 0</div></div><button class="reset-btn" onclick="resetQuiz('quiz')">Reset Quiz</button></div>
+<div id="quiz-container"></div>
+</div>
+
+<!-- MATCHING -->
+<div class="section" id="sec-matching">
+<div class="card" style="padding:14px 28px"><p style="font-size:14px;font-weight:600">Match the drug on the left with its brand name or mechanism on the right.</p></div>
+<div class="score-bar"><div><div class="score-text">Matched</div><div class="score-pct" id="match-score">0 / 12</div></div><button class="reset-btn" onclick="resetMatching()">Reset</button></div>
+<div class="match-grid"><div><div class="match-col-header">Drug</div><div id="match-left"></div></div><div><div class="match-col-header">Brand / Mechanism</div><div id="match-right"></div></div></div>
+</div>
+
+<!-- HARD QUIZ -->
+<div class="section" id="sec-hard">
+<div class="score-bar"><div><div class="score-text">Score</div><div class="score-pct" id="hard-score">0 / 0</div></div><button class="reset-btn" onclick="resetQuiz('hard')">Reset Quiz</button></div>
+<div id="hard-container"></div>
+</div>
+
+</main>
+<script>
+function showSection(id,e){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');e.target.classList.add('active');window.scrollTo(0,0)}
+function showTab(s,i,e){const p=document.getElementById('sec-'+s);p.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById(s+'-'+i).classList.add('active');e.target.classList.add('active')}
+
+const flashcards=[
+["What is anxiety?","An unpleasant state of tension, apprehension, or uneasiness — fear without a real or logical cause."],
+["Chief manifestations of anxiety?","Somatic/autonomic (restlessness, agitation, tachycardia, sweating, weeping, GI upset, sleep disturbances) + interference with normal activities."],
+["Why have anxiolytic drugs fallen out of favor?","Uncertain benefit and definite risks (dependence, sedation, accident risk). They were once used regularly by >10% of adults in developed countries."],
+["What happens with very high doses of any anxiolytic/hypnotic?","Unconsciousness and ultimately death from respiratory and cardiovascular depression."],
+["Define generalized anxiety disorder (GAD).","Unrealistic, excessive worry > 6 months with motor tension, sympathetic hyperactivity, and excessive vigilance."],
+["Define panic disorder.","Discrete episodes of intense anxiety with somatic symptoms (tachycardia, tachypnea, dizziness)."],
+["Define PTSD.","Develops after serious trauma; cue-elicited reliving, increased startle, nightmares."],
+["Simple vs social phobia?","Simple phobia: intense fear/avoidance of specific stimuli (snakes, heights, planes). Social phobia (SAD): fear of social situations or interactions."],
+["First-line for acute anxiety?","Benzodiazepines."],
+["First-line for panic disorder?","Long-term SSRI or SNRI, often combined with behavioral therapy."],
+["First-line for OCD?","Long-term antidepressants + behavioral therapy."],
+["PTSD pharmacotherapy?","Behavioral therapy is core; pharmacology may include ketamine, prazosin (α1 antagonist), propranolol."],
+["Four main classes of anxiolytic/hypnotic drugs?","Benzodiazepines, 5-HT1A agonists (buspirone), barbiturates (largely obsolete), β-adrenoceptor antagonists."],
+["What do β-blockers treat in anxiety, and what don't they treat?","They treat physical symptoms (tremor, palpitations) but have no effect on the affective component."],
+["What was the first benzodiazepine and how was it discovered?","Chlordiazepoxide — synthesized accidentally in 1961 at Hoffman–La Roche."],
+["Where do benzodiazepines bind?","An allosteric site on the GABA-A receptor (the BZD site, distinct from GABA's binding site)."],
+["How do BZDs enhance GABA signaling?","They increase the channel's affinity for GABA and the frequency of Cl⁻ channel opening — potentiating inhibition."],
+["Do benzodiazepines act on glycine or glutamate receptors?","No — they are selective for GABA-A."],
+["Five main effects of benzodiazepines?","Anxiolysis (+ taming), sedation/sleep, ↓ muscle tone & coordination, anticonvulsant activity, anterograde amnesia."],
+["Which benzodiazepine has anticonvulsant use with less sedation?","Clonazepam (Klonopin)."],
+["Which benzodiazepine may have antidepressant effects?","Alprazolam (Xanax) — the possible exception."],
+["Why is acute BZD overdose less dangerous than other anxiolytics?","BZDs cause prolonged sleep but typically without serious respiratory or cardiovascular depression, unlike barbiturates."],
+["Main side effects during therapeutic BZD use?","Drowsiness, confusion, amnesia, impaired coordination — affects driving and other manual skills."],
+["What withdrawal symptoms follow chronic BZD use?","Increased anxiety, tremor, dizziness; chronic-use withdrawal resembles opioid withdrawal — nervousness, tremor, loss of appetite, sometimes convulsions."],
+["What is flumazenil (Romazicon)?","A competitive antagonist at the BZD site on GABA-A. Used IV to reverse BZD effects (e.g., overdose). Lasts only 1–2 hours."],
+["When is flumazenil contraindicated?","In status epilepticus; cautious use in patients with seizure history or head injury."],
+["How do SSRIs/SNRIs treat anxiety?","Block 5-HT (± NE) reuptake transporters. May transiently worsen anxiety before becoming anxiolytic over weeks."],
+["What is SSRI-Discontinuation Syndrome?","Symptoms (flu-like, dizziness, mood changes) that occur after stopping or decreasing an SSRI dose."],
+["What is buspirone (BuSpar)?","A 5-HT1A receptor agonist. Anxiolytic without sedation. Takes ~1 week. For chronic anxiety. Low addiction potential. No muscle relaxation or anticonvulsant action. Less effective than benzos/SSRIs."],
+["Match brand names: Valium, Xanax, Librium, Klonopin, Halcion","Diazepam = Valium; Alprazolam = Xanax; Chlordiazepoxide = Librium; Clonazepam = Klonopin; Triazolam = Halcion."],
+];
+
+let fcIndex=0;
+function renderCard(){document.getElementById('fc-front').textContent=flashcards[fcIndex][0];document.getElementById('fc-back').textContent=flashcards[fcIndex][1];document.getElementById('flashcard').classList.remove('flipped');document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+flashcards.length}
+function flipCard(){document.getElementById('flashcard').classList.toggle('flipped')}
+function nextCard(){fcIndex=(fcIndex+1)%flashcards.length;renderCard()}
+function prevCard(){fcIndex=(fcIndex-1+flashcards.length)%flashcards.length;renderCard()}
+function shuffleCards(){for(let i=flashcards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[flashcards[i],flashcards[j]]=[flashcards[j],flashcards[i]]}fcIndex=0;renderCard()}
+renderCard();
+
+const quizQuestions=[
+{q:"How does anxiety differ from fear?",opts:["Anxiety has a clear immediate threat","In anxiety there is no immediately threatening stimulus","Anxiety lasts only seconds","Anxiety is purely physical"],ans:1,exp:"Anxiety arises without a real or logical cause — no immediately threatening stimulus, unlike fear."},
+{q:"The chief manifestations of anxiety include:",opts:["Auditory hallucinations","Somatic/autonomic symptoms (tachycardia, sweating, GI upset) + interference with activities","Hypoactive reflexes","Bradycardia and hypothermia"],ans:1,exp:"Anxiety presents with somatic/autonomic effects — restlessness, tachycardia, sweating, GI upset, sleep disturbance — plus disruption of normal productive activities."},
+{q:"Diagnosis of GAD requires excessive worry lasting more than:",opts:["1 week","1 month","3 months","6 months"],ans:3,exp:"GAD = unrealistic and excessive worry lasting > 6 months."},
+{q:"Discrete intense episodes with tachycardia, tachypnea, and dizziness define:",opts:["GAD","Panic disorder","OCD","Simple phobia"],ans:1,exp:"Panic disorder = discrete bouts of intense anxiety with prominent somatic symptoms."},
+{q:"Hallmark features of PTSD include:",opts:["Cue-elicited reliving, increased startle, nightmares","Auditory hallucinations","Cyclical mania","Negative symptoms like flat affect"],ans:0,exp:"PTSD develops after serious trauma — cue-elicited reliving of the experience, increased startle, and nightmares."},
+{q:"First-line treatment for acute anxiety:",opts:["SSRI","Benzodiazepine","β-blocker","Buspirone"],ans:1,exp:"Benzodiazepines act fast and are first-line for acute anxiety."},
+{q:"First-line for panic disorder is typically:",opts:["Long-term benzodiazepines","Long-term SSRI/SNRI ± behavioral therapy","Barbiturates","Ketamine"],ans:1,exp:"Long-term SSRI/SNRI plus behavioral therapy is first-line for panic disorder."},
+{q:"PTSD pharmacotherapy may include:",opts:["Disulfiram","Prazosin (α1 antagonist), propranolol, ketamine","Pure D2 antagonists","Buprenorphine"],ans:1,exp:"PTSD: behavioral therapy is central; meds include prazosin (especially nightmares), propranolol, and ketamine."},
+{q:"β-blockers in anxiety treat:",opts:["The affective/cognitive component","Physical symptoms only (tremor, palpitations)","Sleep architecture","Long-term GAD"],ans:1,exp:"β-adrenoceptor antagonists reduce the somatic/autonomic symptoms of anxiety but have no effect on the affective component."},
+{q:"The first benzodiazepine was:",opts:["Diazepam (1985)","Chlordiazepoxide (1961, Hoffman–La Roche)","Alprazolam (1972)","Flumazenil (1990)"],ans:1,exp:"Chlordiazepoxide was synthesized by accident in 1961 at Hoffman–La Roche."},
+{q:"Benzodiazepines act on:",opts:["GABA-B receptors","GABA-A receptors","NMDA receptors","5-HT1A receptors"],ans:1,exp:"BZDs are selective positive allosteric modulators of the GABA-A (Cl⁻-permeable) ionotropic receptor."},
+{q:"Mechanistically, benzodiazepines:",opts:["Are direct agonists at the GABA binding site","Increase frequency of Cl⁻ channel opening in response to GABA","Block reuptake of GABA","Open Cl⁻ channels even in the absence of GABA"],ans:1,exp:"BZDs are positive allosteric modulators — they increase channel-opening frequency only when GABA is present."},
+{q:"Benzodiazepines do NOT directly affect:",opts:["GABA-A receptors","Glycine or glutamate receptors","Sleep onset","Anxiety"],ans:1,exp:"BZDs are selective for GABA-A; they do not act on glycine or glutamate receptors."},
+{q:"Which is NOT a major effect of benzodiazepines?",opts:["Anxiolysis","Anterograde amnesia","Antidepressant effect","Anticonvulsant activity"],ans:2,exp:"BZDs lack antidepressant effects — alprazolam is the possible exception. The five major effects are anxiolysis, sedation, ↓ muscle tone, anticonvulsant, and anterograde amnesia."},
+{q:"The benzodiazepine known for anti-convulsant use with less sedation is:",opts:["Triazolam","Clonazepam","Flurazepam","Diazepam"],ans:1,exp:"Clonazepam (Klonopin) is the classic example of a BZD with anti-convulsant activity and comparatively less sedation."},
+{q:"Acute benzodiazepine overdose typically causes:",opts:["Severe respiratory and cardiovascular depression","Prolonged sleep with relatively preserved respiration/CV function","Sudden cardiac arrest","Status epilepticus"],ans:1,exp:"Compared with barbiturates, BZDs cause prolonged sleep without serious respiratory or cardiovascular depression in acute overdose."},
+{q:"Common therapeutic-dose side effects of benzodiazepines:",opts:["Hallucinations","Drowsiness, confusion, amnesia, impaired coordination","Hypertensive crisis","Mania"],ans:1,exp:"Drowsiness, confusion, amnesia, and impaired coordination — the last meaningfully impacts manual skills like driving."},
+{q:"Withdrawal from chronic benzodiazepines resembles:",opts:["Cocaine withdrawal","Opioid withdrawal (nervousness, tremor, loss of appetite, possible convulsions)","Cannabis intoxication","Cholinergic crisis"],ans:1,exp:"Chronic BZD withdrawal resembles opioid withdrawal symptomatically and can include convulsions."},
+{q:"Which is a benzodiazepine receptor antagonist?",opts:["Naloxone","Flumazenil","Buspirone","Prazosin"],ans:1,exp:"Flumazenil (Romazicon) competitively blocks the BZD site on GABA-A and reverses BZD effects."},
+{q:"Flumazenil is administered:",opts:["Orally only","IV only (action ~1–2 h)","Sublingually","Topically"],ans:1,exp:"IV only; action lasts ~1–2 hours, so repeated dosing may be needed for heavily sedated patients."},
+{q:"Buspirone's mechanism:",opts:["GABA-A potentiator","5-HT1A receptor agonist","SSRI","α1 antagonist"],ans:1,exp:"Buspirone is a 5-HT1A receptor agonist — anxiolytic without sedation."},
+{q:"A clinical advantage of buspirone over benzodiazepines:",opts:["Stronger acute effect","No sedation, low addiction potential","Anticonvulsant activity","Strong muscle relaxation"],ans:1,exp:"Buspirone lacks sedation, has low addiction potential, and is suited for chronic anxiety — but it takes ~1 week and is less effective than benzos/SSRIs."},
+{q:"SSRIs/SNRIs in anxiety:",opts:["Work in minutes","Can transiently worsen anxiety before becoming anxiolytic over weeks","Cause respiratory depression at therapeutic doses","Are GABA-A agonists"],ans:1,exp:"SSRIs/SNRIs may transiently worsen anxiety; the anxiolytic effect develops over weeks."},
+{q:"SSRI-Discontinuation Syndrome:",opts:["Occurs only in PTSD patients","Occurs after stopping or decreasing the SSRI dose","Happens at the very first dose","Is unique to fluoxetine"],ans:1,exp:"Symptoms (dizziness, flu-like sensations, mood changes) appear when an SSRI is stopped or its dose is reduced."},
+{q:"The brand name for alprazolam is:",opts:["Valium","Xanax","Klonopin","Halcion"],ans:1,exp:"Alprazolam = Xanax. Diazepam = Valium, clonazepam = Klonopin, triazolam = Halcion."},
+{q:"Vilazodone (Viibryd) is:",opts:["A pure 5-HT1A agonist","An SSRI + 5-HT1A agonist used for depression","A barbiturate","A benzodiazepine"],ans:1,exp:"Vilazodone combines SSRI activity with 5-HT1A partial agonism — used for depression."},
+];
+
+const hardQuestions=[
+{q:"A patient is brought to the ED unconscious after a suspected benzodiazepine overdose. Which agent reverses the effects?",opts:["Naloxone","Flumazenil","Naltrexone","Atropine"],ans:1,exp:"Flumazenil competitively blocks the BZD site on GABA-A. Naloxone is for opioids; naltrexone is for chronic opioid/alcohol use."},
+{q:"A long-term benzodiazepine user abruptly discontinues therapy. Which complication is most concerning?",opts:["Hyperthermia","Convulsions (BZD withdrawal can precipitate seizures)","Constipation","Hypoglycemia"],ans:1,exp:"BZDs are anticonvulsant; abrupt withdrawal can unmask seizures, alongside nervousness, tremor, and loss of appetite."},
+{q:"Why is flumazenil used cautiously (or avoided) in a patient with mixed BZD/alcohol overdose and a known seizure history?",opts:["It potentiates BZDs","It can precipitate seizures and is contraindicated in status epilepticus","It crosses the BBB poorly","It has a long half-life"],ans:1,exp:"Reversing BZD effect can unmask seizures; flumazenil is contraindicated in status epilepticus and used cautiously in seizure history or head injury."},
+{q:"Why might a clinician choose buspirone over alprazolam for chronic GAD?",opts:["Faster acute onset","Lower addiction potential and minimal sedation","Greater anticonvulsant action","Stronger acute effect"],ans:1,exp:"Buspirone (5-HT1A agonist) has low addiction potential, no sedation, and suits chronic anxiety — at the cost of slower onset and lower potency than benzos/SSRIs."},
+{q:"A patient on long-term lorazepam for sleep hits a parked car while driving. The most likely contributor:",opts:["Anterograde amnesia and impaired coordination from BZD","Anticonvulsant effect","BZD-induced hypoglycemia","BZD-induced euphoria"],ans:0,exp:"Drowsiness, amnesia, and impaired coordination from BZDs significantly affect manual skills like driving."},
+{q:"A combat veteran has PTSD-related nightmares and hyperarousal. Which is most appropriate?",opts:["Diazepam monotherapy","Prazosin (α1 antagonist) + propranolol","Buspirone monotherapy","Flumazenil"],ans:1,exp:"PTSD: behavioral therapy is core; pharmacology often uses prazosin (especially for nightmares) and propranolol; ketamine is also discussed."},
+{q:"A patient with social anxiety only struggles during public speaking and wants targeted relief. Best targeted therapy:",opts:["Daily benzodiazepines","β-blocker pre-event for tremor and palpitations","Barbiturates","Long-term ketamine"],ans:1,exp:"For situational somatic symptoms, β-blockers reduce tremor and palpitations without affecting the affective component."},
+{q:"Why are barbiturates largely obsolete for anxiety today?",opts:["They lack any efficacy","Dangerous overdose (severe respiratory/CV depression) and high dependence","Cause hypertensive crisis","They lack CNS penetration"],ans:1,exp:"Barbiturates are far more dangerous in overdose than BZDs and have similar dependence — making BZDs the safer choice."},
+{q:"Which best explains how BZDs enhance GABA-A function?",opts:["They open Cl⁻ channels independently of GABA","They are positive allosteric modulators — increase channel-opening frequency in response to GABA","They block GABA's binding site","They increase GABA synthesis"],ans:1,exp:"BZDs are positive allosteric modulators: they increase the frequency of channel opening when GABA is present (vs. barbiturates, which prolong open time)."},
+{q:"An SSRI is started for a patient with panic disorder, who reports worsened anxiety in the first week. Best management:",opts:["Stop the SSRI","Continue and consider a short-term benzodiazepine bridge while the SSRI takes effect","Switch to a barbiturate","Add lithium"],ans:1,exp:"Transient worsening of anxiety with SSRIs is well-described. A short-term BZD bridge is a common practice while the SSRI's anxiolytic effect develops over weeks."},
+];
+
+function buildQuiz(qs,cid,sid){const c=document.getElementById(cid);c.innerHTML='';qs.forEach((q,i)=>{const d=document.createElement('div');d.className='quiz-q';d.innerHTML=`<p><span class="q-num">${i+1}</span>${q.q}</p>${q.opts.map((o,j)=>`<button class="quiz-option" onclick="checkAns(this,${i},${j},'${cid}','${sid}')">${o}</button>`).join('')}<div class="explanation" id="exp-${cid}-${i}">${q.exp}</div>`;c.appendChild(d)})}
+function checkAns(btn,qi,oi,cid,sid){const qs=cid==='quiz-container'?quizQuestions:hardQuestions;const btns=btn.parentElement.querySelectorAll('.quiz-option');btns.forEach(b=>b.classList.add('disabled'));if(oi===qs[qi].ans)btn.classList.add('correct');else{btn.classList.add('wrong');btns[qs[qi].ans].classList.add('correct')}document.getElementById(`exp-${cid}-${qi}`).classList.add('show');updateScore(cid,sid)}
+function updateScore(cid,sid){let a=0,c=0;document.getElementById(cid).querySelectorAll('.quiz-q').forEach(q=>{const cr=q.querySelector('.correct'),wr=q.querySelector('.wrong');if(cr||wr)a++;if(cr&&!wr)c++});document.getElementById(sid).textContent=c+' / '+a}
+function resetQuiz(t){if(t==='quiz'){buildQuiz(quizQuestions,'quiz-container','quiz-score');document.getElementById('quiz-score').textContent='0 / 0'}else{buildQuiz(hardQuestions,'hard-container','hard-score');document.getElementById('hard-score').textContent='0 / 0'}}
+buildQuiz(quizQuestions,'quiz-container','quiz-score');buildQuiz(hardQuestions,'hard-container','hard-score');
+
+const matchPairs=[
+["Diazepam","Valium — long-acting BZD with active metabolites"],
+["Alprazolam","Xanax — BZD; possible antidepressant action"],
+["Chlordiazepoxide","Librium — first BZD; alcohol withdrawal"],
+["Clonazepam","Klonopin — BZD with anticonvulsant use, less sedation"],
+["Triazolam","Halcion — short-acting BZD hypnotic"],
+["Buspirone","BuSpar — 5-HT1A receptor agonist"],
+["Flumazenil","Romazicon — competitive BZD-site antagonist (IV)"],
+["Prazosin","α1 antagonist (PTSD nightmares)"],
+["Propranolol","β-blocker — somatic anxiety symptoms"],
+["SSRI","Selective 5-HT reuptake inhibitor (chronic anxiety, panic, OCD)"],
+["SNRI","5-HT + NE reuptake inhibitor (panic, GAD)"],
+["Vilazodone","Viibryd — SSRI + 5-HT1A partial agonist (depression)"],
+];
+let matchSel={left:null,right:null},matchedN=0;
+function resetMatching(){matchSel={left:null,right:null};matchedN=0;document.getElementById('match-score').textContent='0 / '+matchPairs.length;renderMatching()}
+function renderMatching(){const l=matchPairs.map((p,i)=>({t:p[0],i})),r=matchPairs.map((p,i)=>({t:p[1],i}));for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}document.getElementById('match-left').innerHTML=l.map(x=>`<div class="match-item" data-side="left" data-idx="${x.i}" onclick="selMatch(this)">${x.t}</div>`).join('');document.getElementById('match-right').innerHTML=r.map(x=>`<div class="match-item" data-side="right" data-idx="${x.i}" onclick="selMatch(this)">${x.t}</div>`).join('')}
+function selMatch(el){const s=el.dataset.side,idx=+el.dataset.idx;document.querySelectorAll(`.match-item[data-side="${s}"]`).forEach(e=>{if(!e.classList.contains('matched'))e.classList.remove('selected')});el.classList.add('selected');matchSel[s]={el,idx};if(matchSel.left&&matchSel.right){if(matchSel.left.idx===matchSel.right.idx){matchSel.left.el.classList.remove('selected');matchSel.right.el.classList.remove('selected');matchSel.left.el.classList.add('matched');matchSel.right.el.classList.add('matched');matchedN++;document.getElementById('match-score').textContent=matchedN+' / '+matchPairs.length}else{matchSel.left.el.classList.add('wrong-match');matchSel.right.el.classList.add('wrong-match');setTimeout(()=>{matchSel.left.el.classList.remove('selected','wrong-match');matchSel.right.el.classList.remove('selected','wrong-match');matchSel={left:null,right:null}},600);return}matchSel={left:null,right:null}}}
+renderMatching();
+</script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CNS Stimulants &amp; Depressants - Study Guide</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0d12;--surface:#141820;--surface2:#1c2130;--border:#272d40;--text:#dfe2ed;--text-dim:#838aa4;--accent:#4e8ef7;--accent-light:#7cb0ff;--green:#2dd4a0;--green-dim:#2dd4a018;--red:#f06070;--red-dim:#f0607018;--orange:#f0a040;--purple:#a070e0;--teal:#30d0c8;--yellow:#ffd43b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:58px;gap:6px;overflow-x:auto}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-brand{font-weight:700;font-size:15px;color:var(--accent-light);white-space:nowrap;margin-right:14px}
+.nav-btn{background:none;border:1px solid transparent;color:var(--text-dim);padding:6px 13px;border-radius:8px;cursor:pointer;font-size:13px;white-space:nowrap;transition:all .2s;font-weight:500}
+.nav-btn:hover{color:var(--text);background:var(--surface2)}
+.nav-btn.active{color:var(--accent-light);background:#4e8ef715;border-color:#4e8ef740}
+main{max-width:820px;margin:0 auto;padding:80px 24px 60px}
+.section{display:none}.section.active{display:block}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:20px}
+.card h2{font-size:20px;font-weight:700;margin-bottom:14px}
+.card h3{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--accent-light)}
+.card p,.card li{font-size:14.5px;color:var(--text-dim);line-height:1.7}
+.card ul{padding-left:20px}.card li{margin-bottom:5px}
+.card li::marker{color:var(--accent)}
+.hl{color:var(--green);font-weight:600}
+.drug{color:var(--orange);font-weight:600}
+.warn{color:var(--red);font-weight:600}
+.receptor{color:var(--purple);font-weight:600}
+.mol{color:var(--teal);font-weight:600}
+.key{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-right:4px;letter-spacing:.5px}
+.hero-card{background:linear-gradient(135deg,#4e8ef720,#2dd4a010);border-color:#4e8ef730;text-align:center;padding:44px 28px}
+.hero-card h1{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.hero-card p{color:var(--text-dim);font-size:15px}
+.hero-stats{display:flex;gap:14px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-align:center;min-width:110px}
+.stat-num{font-size:24px;font-weight:800;color:var(--accent-light)}
+.stat-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.tab-row{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:8px 15px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
+.tab-btn:hover{color:var(--text)}.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab-content{display:none}.tab-content.active{display:block}
+.cmp-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+.cmp-table th{background:var(--surface2);color:var(--accent-light);padding:10px 12px;text-align:left;border:1px solid var(--border);font-weight:600}
+.cmp-table td{padding:9px 12px;border:1px solid var(--border);color:var(--text-dim)}
+.quiz-q{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px}
+.quiz-q>p{font-size:15px;font-weight:600;margin-bottom:14px;color:var(--text)}
+.q-num{display:inline-block;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:6px;text-align:center;line-height:24px;font-size:12px;font-weight:700;margin-right:8px}
+.quiz-option{display:block;width:100%;text-align:left;background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:12px 16px;border-radius:10px;cursor:pointer;font-size:14px;margin-bottom:8px;transition:all .2s;font-family:inherit}
+.quiz-option:hover{border-color:var(--accent);color:var(--text);background:#4e8ef710}
+.quiz-option.correct{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.quiz-option.wrong{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.quiz-option.disabled{pointer-events:none}
+.explanation{display:none;margin-top:12px;padding:12px 16px;background:var(--surface2);border-radius:10px;font-size:13px;color:var(--text-dim);border-left:3px solid var(--accent)}
+.explanation.show{display:block}
+.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 28px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.score-text{font-size:15px;font-weight:600}
+.score-pct{font-size:28px;font-weight:800;color:var(--accent-light)}
+.reset-btn{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;transition:all .2s}
+.reset-btn:hover{background:var(--accent-light);color:var(--bg)}
+.fc-container{perspective:1000px;margin-bottom:16px}
+.flashcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px;cursor:pointer;transition:transform .5s;transform-style:preserve-3d;position:relative}
+.flashcard:hover{box-shadow:0 4px 24px #4e8ef718}
+.flashcard.flipped{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:32px;backface-visibility:hidden;border-radius:14px}
+.fc-front{font-size:16px;font-weight:600}
+.fc-back{transform:rotateY(180deg);font-size:15px;color:var(--green);background:var(--surface);line-height:1.6}
+.fc-nav{display:flex;gap:10px;justify-content:center;align-items:center}
+.fc-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.fc-btn:hover{background:var(--accent);border-color:var(--accent)}
+.fc-counter{font-size:13px;color:var(--text-dim);font-weight:600;min-width:60px;text-align:center}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.match-col-header{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:700;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.match-item{padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;font-size:13px;cursor:pointer;transition:all .2s;color:var(--text-dim);margin-bottom:8px}
+.match-item:hover{border-color:var(--accent);color:var(--text)}
+.match-item.selected{border-color:var(--accent);background:#4e8ef715;color:var(--accent-light)}
+.match-item.matched{border-color:var(--green);background:var(--green-dim);color:var(--green);pointer-events:none;opacity:.7}
+.match-item.wrong-match{border-color:var(--red);background:var(--red-dim);color:var(--red)}
+@media(max-width:600px){.nav-brand{display:none}main{padding:74px 14px 40px}.card{padding:20px}.hero-card{padding:30px 20px}.hero-card h1{font-size:22px}.match-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+<span class="nav-brand">NeuroStudy</span>
+<button class="nav-btn active" onclick="showSection('home',event)">Home</button>
+<button class="nav-btn" onclick="showSection('learn',event)">Learn</button>
+<button class="nav-btn" onclick="showSection('flashcards',event)">Flashcards</button>
+<button class="nav-btn" onclick="showSection('quiz',event)">Quiz</button>
+<button class="nav-btn" onclick="showSection('matching',event)">Matching</button>
+<button class="nav-btn" onclick="showSection('hard',event)">Hard Quiz</button>
+</div></nav>
+<main>
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+<div class="card hero-card">
+<h1>CNS Stimulants &amp; Depressants</h1>
+<p>Caffeine &amp; adenosine &middot; Cocaine &middot; Ethanol &mdash; mechanisms, effects, BAC, liver, fetal effects, tolerance &amp; withdrawal</p>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">3</div><div class="stat-label">Major drugs</div></div>
+<div class="stat"><div class="stat-num">30</div><div class="stat-label">Flashcards</div></div>
+<div class="stat"><div class="stat-num">26</div><div class="stat-label">Quiz Qs</div></div>
+<div class="stat"><div class="stat-num">10</div><div class="stat-label">Hard Qs</div></div>
+</div>
+</div>
+<div class="card"><h2>How to Use</h2><ul>
+<li><span class="hl">Learn</span> &mdash; All material organized by topic with tables</li>
+<li><span class="hl">Flashcards</span> &mdash; Click a card to flip; arrows to navigate</li>
+<li><span class="hl">Quiz</span> &mdash; 26 multiple-choice questions with instant feedback</li>
+<li><span class="hl">Matching</span> &mdash; Match drugs/molecules to mechanisms</li>
+<li><span class="hl">Hard Quiz</span> &mdash; 10 clinical-application MCQs</li>
+</ul></div>
+<div class="card"><h2>Big Picture</h2>
+<p>Two opposing classes &mdash; one drives the brain up, the other shuts it down &mdash; but both work through the same kinds of neurotransmitter and channel systems.</p>
+<ul>
+<li><span class="drug">Caffeine</span> &mdash; <span class="hl">adenosine receptor antagonist</span> &rarr; disinhibition &rarr; ↑ DA, glutamate, epinephrine</li>
+<li><span class="drug">Cocaine</span> &mdash; blocks <span class="hl">monoamine reuptake</span> (NE, 5-HT, DA)</li>
+<li><span class="drug">Ethanol</span> &mdash; ↑ GABA-A, ↓ NMDA, ↓ Ca²⁺ channels, ↓ adenosine uptake; broad polypharmacology</li>
+</ul>
+</div>
+</div>
+
+<!-- LEARN -->
+<div class="section" id="sec-learn">
+<div class="tab-row">
+<button class="tab-btn active" onclick="showTab('learn',0,event)">Caffeine</button>
+<button class="tab-btn" onclick="showTab('learn',1,event)">Adenosine</button>
+<button class="tab-btn" onclick="showTab('learn',2,event)">Cocaine</button>
+<button class="tab-btn" onclick="showTab('learn',3,event)">Ethanol Mechanisms</button>
+<button class="tab-btn" onclick="showTab('learn',4,event)">Ethanol Effects &amp; BAC</button>
+<button class="tab-btn" onclick="showTab('learn',5,event)">Liver / Fetal / Metabolism</button>
+<button class="tab-btn" onclick="showTab('learn',6,event)">Tolerance &amp; Withdrawal</button>
+</div>
+
+<div class="tab-content active" id="learn-0">
+<div class="card"><h2>Caffeine — America's #1 Drug</h2>
+<ul>
+<li>~<span class="hl">90%</span> of Americans consume caffeine daily; over half consume <span class="hl">&gt;300 mg/day</span></li>
+<li>Sources: chocolate, coffee, tea, diet pills, OTC pain relievers</li>
+<li>Medical: cardiac stimulant, mild diuretic. Recreational: alertness, "boost of energy"</li>
+<li><span class="warn">Addictive</span> &mdash; uses the same dopamine reward circuits as amphetamines, cocaine, heroin (but milder)</li>
+</ul>
+<h3>Intoxication and overdose</h3>
+<ul>
+<li><span class="warn">&gt;250 mg</span> in a short time &rarr; restlessness, insomnia, muscle twitching, GI upset, cardiac arrhythmia</li>
+<li>Lethal dose: <span class="warn">5–10 g</span> (≈ 30–60 cups of coffee in one morning)</li>
+</ul>
+<h3>How caffeine produces its effects</h3>
+<ol>
+<li>Blocks adenosine A1 receptors &rarr; <span class="hl">disinhibition</span> &rarr; ↑ neuronal firing, ↑ release of dopamine and glutamate</li>
+<li>Blocks A2A in basal ganglia &rarr; <span class="hl">↑ motor activity</span> (dopamine-like)</li>
+<li>Constricts cerebral blood vessels (blocks adenosine vasodilation) &mdash; useful in vascular headache meds</li>
+<li>Increased neuronal firing prompts <span class="hl">pituitary</span> &rarr; adrenal release of <span class="mol">epinephrine</span> &rarr; "fight or flight"</li>
+</ol>
+<h3>Epinephrine ("fight or flight") effects</h3>
+<ul>
+<li>Pupils dilate; air passages open</li>
+<li>↑ HR, ↑ BP; surface vessels constrict (cold hands)</li>
+<li>↓ blood flow to stomach; liver releases sugar; muscles tense</li>
+</ul>
+<h3>Pharmacokinetics &amp; the cycle</h3>
+<ul>
+<li>Half-life ≈ <span class="hl">6 hours</span>: 200 mg at 3 pm &rarr; 100 mg still onboard at 9 pm &rarr; loss of deep sleep</li>
+<li><span class="warn">Withdrawal:</span> fatigue, depression, splitting headache (rebound cerebral vasodilation)</li>
+</ul></div>
+</div>
+
+<div class="tab-content" id="learn-1">
+<div class="card"><h2>Adenosine in the Brain</h2>
+<ul>
+<li>Adenosine is found everywhere (ATP metabolism), but in the brain it acts as an <span class="hl">inhibitory neurotransmitter</span></li>
+<li>Levels in the <span class="hl">basal forebrain</span> rise with each hour of wakefulness &rarr; drowsiness</li>
+<li>Adenosine also dilates blood vessels (likely ↑ O₂ supply during sleep)</li>
+</ul>
+<h3>Four GPCR subtypes</h3>
+<table class="cmp-table">
+<tr><th>Receptor</th><th>Where</th><th>What it does</th></tr>
+<tr><td><span class="receptor">A1</span></td><td>Cortex (cognition), hippocampus (memory), cerebellum (movement), hypothalamus (homeostasis)</td><td>Activates K⁺ channels &amp; inhibits Ca²⁺ channels &rarr; <span class="hl">hyperpolarizes</span> &rarr; inhibits firing</td></tr>
+<tr><td><span class="receptor">A2A</span></td><td><span class="hl">Basal ganglia</span> (voluntary motor)</td><td>Adenosine here antagonizes dopamine; blocking it (caffeine) acts dopamine-like &rarr; <span class="hl">↑ motor activity</span></td></tr>
+<tr><td><span class="receptor">A2B</span></td><td>Various</td><td>Less central role for caffeine</td></tr>
+<tr><td><span class="receptor">A3</span></td><td>Various</td><td>Less central role</td></tr>
+</table>
+<p>Caffeine is a non-selective adenosine receptor antagonist &mdash; mostly A1 and A2A account for its CNS effects.</p></div>
+</div>
+
+<div class="tab-content" id="learn-2">
+<div class="card"><h2>Cocaine</h2>
+<table class="cmp-table">
+<tr><th>Aspect</th><th>Detail</th></tr>
+<tr><td>Mechanism</td><td><span class="hl">Inhibits monoamine reuptake</span> &mdash; norepinephrine, serotonin, dopamine</td></tr>
+<tr><td>CNS effects</td><td>Acutely ↑ mental awareness; well-being &amp; <span class="hl">euphoria</span> (similar to amphetamine); hallucinations &amp; delusions of <span class="warn">paranoia/grandiosity</span>; ↑ motor activity; can cause tremors/convulsions then respiratory + vasomotor depression</td></tr>
+<tr><td>Sympathetic effects</td><td>Peripherally potentiates NE &rarr; "fight-or-flight": <span class="warn">tachycardia, hypertension, mydriasis, peripheral vasoconstriction</span></td></tr>
+<tr><td>Hyperthermia</td><td>Can be fatal &mdash; impairs sweating and cutaneous vasodilation, so the body cannot dump heat</td></tr>
+</table></div>
+</div>
+
+<div class="tab-content" id="learn-3">
+<div class="card"><h2>Ethanol — Mechanisms of Action</h2>
+<p>Despite long study, ethanol's mechanism is among the <span class="warn">least understood</span> of all psychoactive drugs &mdash; it affects virtually every neurochemical and endocrine system. Four major theories:</p>
+<ol>
+<li><span class="hl">Enhances GABA-A receptor signaling</span> &rarr; ↑ Cl⁻ influx &rarr; hyperpolarization (similar to BZDs but smaller and less consistent)</li>
+<li><span class="hl">Inhibits voltage-gated Ca²⁺ channels</span> &rarr; ↓ presynaptic neurotransmitter release</li>
+<li><span class="hl">Inhibits NMDA receptors</span> &rarr; blunts glutamate excitation (NMDA is more sensitive than AMPA at lower ethanol concentrations)</li>
+<li><span class="hl">Inhibits the adenosine transporter</span> &rarr; ↑ extracellular adenosine &rarr; A1-mediated CNS depression</li>
+</ol>
+<h3>Other receptor effects</h3>
+<ul>
+<li>Enhances <span class="receptor">nicotinic ACh</span> and <span class="receptor">5-HT₃</span> excitation</li>
+<li>Recruits <span class="hl">endogenous opioids</span> &mdash; <span class="drug">naltrexone</span> reduces ethanol's reward, supporting an opioid component to alcohol's pleasure</li>
+</ul>
+<h3>Ethanol vs benzodiazepines</h3>
+<table class="cmp-table">
+<tr><th></th><th>Ethanol</th><th>Benzodiazepines</th></tr>
+<tr><td>Site</td><td>GABA-A (and many others)</td><td>BZD site on GABA-A only</td></tr>
+<tr><td>Mechanism</td><td>Nonspecific potentiation</td><td>Allosteric: ↑ GABA frequency of opening</td></tr>
+<tr><td>Effect at GABA-A</td><td>Smaller, less consistent</td><td>Strong, reproducible</td></tr>
+</table>
+<p>Forms of alcohol you may encounter: <span class="mol">ethanol</span> (drinkable), <span class="warn">methanol</span> (toxic, antifreeze ingredient), <span class="warn">ethylene glycol</span> (antifreeze) — all CNS depressants but methanol &amp; ethylene glycol are systemically toxic.</p></div>
+</div>
+
+<div class="tab-content" id="learn-4">
+<div class="card"><h2>Ethanol — CNS Effects &amp; BAC</h2>
+<p>1 standard US drink = <span class="hl">14 g ethanol (0.3 mol)</span> &rarr; raises BAC ~0.02–0.05% (20–50 mg/100 mL).</p>
+<table class="cmp-table">
+<tr><th>BAC</th><th>Behavior</th><th>Impairment</th></tr>
+<tr><td>0.01–0.03%</td><td>Normal</td><td>Subtle, special tests only</td></tr>
+<tr><td>0.03–0.06%</td><td>Mild euphoria, talkative, ↓ inhibition</td><td>Alertness, judgment, coordination, concentration</td></tr>
+<tr><td>0.06–0.1%</td><td>Disinhibition, extroversion, blunted feelings</td><td>Reflexes, reasoning, depth perception, peripheral vision</td></tr>
+<tr><td>0.1–0.2%</td><td>Over-expression, mood swings, boisterous</td><td>Reaction time, gross motor, staggering, slurred speech</td></tr>
+<tr><td>0.2–0.3%</td><td>Stupor, impaired sensation</td><td>Severe motor; <span class="warn">memory blackout</span>; loss of consciousness</td></tr>
+<tr><td>0.3–0.4%</td><td>Severe depression; possible death</td><td><span class="warn">Bladder, breathing, heart rate</span></td></tr>
+<tr><td>&gt;0.4%</td><td><span class="warn">Unconsciousness, death</span></td><td>Breathing, heart rate</td></tr>
+</table>
+<h3>Driving</h3>
+<ul>
+<li>BAC <span class="hl">0.05%</span>: crash probability unaffected</li>
+<li>BAC <span class="hl">0.08%</span>: <span class="warn">4× crash risk</span> &mdash; legal limit in US/UK</li>
+<li>BAC <span class="hl">0.15%</span>: <span class="warn">25× crash risk</span></li>
+</ul>
+<p>Subjects are generally <span class="warn">unable to judge</span> their own impairment.</p></div>
+</div>
+
+<div class="tab-content" id="learn-5">
+<div class="card"><h2>Ethanol — Liver, Fetus, Metabolism</h2>
+<h3>Hepatic metabolism</h3>
+<ul>
+<li><span class="hl">~75%</span> via <span class="receptor">alcohol dehydrogenase (ADH)</span>: ethanol &rarr; <span class="mol">acetaldehyde</span></li>
+<li><span class="hl">~25%</span> via <span class="receptor">mixed-function oxidase (CYP2E1, MEOS)</span>: ethanol &rarr; acetaldehyde</li>
+<li>Acetaldehyde &rarr; <span class="mol">acetate</span> via <span class="receptor">aldehyde dehydrogenase (ALDH)</span> (~75%) or aldehyde oxidase (~25%)</li>
+<li><span class="drug">Disulfiram</span> blocks ALDH &rarr; acetaldehyde accumulates &rarr; <span class="warn">flushing, nausea, vomiting</span> &rarr; aversion therapy for alcoholism</li>
+</ul>
+<h3>Liver damage progression</h3>
+<p><span class="hl">Fatty liver</span> &rarr; <span class="hl">alcoholic hepatitis</span> &rarr; <span class="warn">irreversible necrosis &amp; fibrosis (cirrhosis)</span>.</p>
+<p>Chronic alcoholics may meet caloric needs from ethanol alone (300 g ≈ 2000 kcal) but with <span class="warn">no vitamins, amino acids, or fatty acids</span> &mdash; malnutrition contributes, but <span class="warn">cellular toxicity of ethanol itself is the main driver</span>.</p>
+<h3>Fetal effects</h3>
+<table class="cmp-table">
+<tr><th>Condition</th><th>Features</th></tr>
+<tr><td><span class="warn">Fetal Alcohol Syndrome (FAS)</span></td><td>Wide-set eyes, short palpebral fissures, small cheekbones; reduced cranial circumference; growth retardation; mental retardation, hyperactivity, social-integration issues; other anatomical abnormalities</td></tr>
+<tr><td><span class="warn">Alcohol-Related Neurodevelopmental Disorder (ARND)</span></td><td>Lesser form &mdash; behavioral, cognitive, motor deficits; often reduced brain size</td></tr>
+</table></div>
+</div>
+
+<div class="tab-content" id="learn-6">
+<div class="card"><h2>Tolerance &amp; Withdrawal (Ethanol)</h2>
+<h3>Tolerance</h3>
+<ul>
+<li>Develops over <span class="hl">1–3 weeks</span>; ~<span class="hl">2–3-fold</span> reduction in potency</li>
+<li>Small contribution from faster elimination; <span class="hl">main mechanism is tissue tolerance</span> (not fully understood)</li>
+<li>Cross-tolerance to many anesthetics &mdash; alcoholics are <span class="warn">harder to anesthetize</span> with agents like halothane</li>
+</ul>
+<h3>Withdrawal syndrome</h3>
+<p>A well-defined physical abstinence syndrome can develop in severe form within <span class="hl">~8 hours</span> of last drink. Subsides over a few days, but <span class="warn">craving and relapse risk last much longer</span>.</p>
+<table class="cmp-table">
+<tr><th>Stage</th><th>Onset</th><th>Symptoms</th></tr>
+<tr><td><span class="hl">1st stage</span></td><td>~24 h</td><td>Tremor, nausea, sweating, fever, hallucinations, possible <span class="warn">seizures ('rum fits')</span></td></tr>
+<tr><td><span class="hl">2nd stage — delirium tremens</span></td><td>Days 2–4</td><td>Confusion, agitation, aggression, severe hallucinations &mdash; potentially life-threatening</td></tr>
+</table>
+<h3>Why benzodiazepines treat alcohol withdrawal</h3>
+<p>BZDs and ethanol both potentiate GABA-A. Substituting a longer-acting BZD (chlordiazepoxide, diazepam) prevents GABA collapse and the rebound glutamatergic excitation responsible for seizures and DTs &mdash; allowing controlled tapering.</p></div>
+</div>
+
+</div>
+
+<!-- FLASHCARDS -->
+<div class="section" id="sec-flashcards">
+<div class="fc-container"><div class="flashcard" id="flashcard" onclick="flipCard()">
+<div class="fc-front" id="fc-front"></div>
+<div class="fc-back" id="fc-back"></div>
+</div></div>
+<div class="fc-nav">
+<button class="fc-btn" onclick="prevCard()">‹</button>
+<div class="fc-counter" id="fc-counter">1 / 30</div>
+<button class="fc-btn" onclick="nextCard()">›</button>
+<button class="fc-btn" onclick="shuffleCards()" style="width:auto;padding:0 14px;font-size:13px">Shuffle</button>
+</div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="sec-quiz">
+<div class="score-bar"><div><div class="score-text">Score</div><div class="score-pct" id="quiz-score">0 / 0</div></div><button class="reset-btn" onclick="resetQuiz('quiz')">Reset Quiz</button></div>
+<div id="quiz-container"></div>
+</div>
+
+<!-- MATCHING -->
+<div class="section" id="sec-matching">
+<div class="card" style="padding:14px 28px"><p style="font-size:14px;font-weight:600">Match each drug or molecule on the left with its mechanism / role on the right.</p></div>
+<div class="score-bar"><div><div class="score-text">Matched</div><div class="score-pct" id="match-score">0 / 12</div></div><button class="reset-btn" onclick="resetMatching()">Reset</button></div>
+<div class="match-grid"><div><div class="match-col-header">Term</div><div id="match-left"></div></div><div><div class="match-col-header">Mechanism / Role</div><div id="match-right"></div></div></div>
+</div>
+
+<!-- HARD QUIZ -->
+<div class="section" id="sec-hard">
+<div class="score-bar"><div><div class="score-text">Score</div><div class="score-pct" id="hard-score">0 / 0</div></div><button class="reset-btn" onclick="resetQuiz('hard')">Reset Quiz</button></div>
+<div id="hard-container"></div>
+</div>
+
+</main>
+<script>
+function showSection(id,e){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');e.target.classList.add('active');window.scrollTo(0,0)}
+function showTab(s,i,e){const p=document.getElementById('sec-'+s);p.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById(s+'-'+i).classList.add('active');e.target.classList.add('active')}
+
+const flashcards=[
+["What is caffeine's main pharmacological target?","Adenosine receptor antagonist (especially A1 and A2A) — non-selective."],
+["Why does adenosine make you sleepy?","Adenosine is an inhibitory neurotransmitter; its levels in the basal forebrain rise with each hour of wakefulness, promoting drowsiness."],
+["Name the four adenosine receptor subtypes.","A1, A2A, A2B, A3 — all G-protein–coupled receptors."],
+["Where is the A1 receptor abundant, and what does it do molecularly?","Cortex, hippocampus, cerebellum, hypothalamus. Activates K⁺ channels and inhibits Ca²⁺ channels → hyperpolarizes the membrane → inhibits firing."],
+["Where is A2A most abundant, and how does caffeine act there?","Basal ganglia. Adenosine at A2A normally antagonizes DA-driven motor activity; caffeine blocks A2A → DA-like effect → ↑ motor activity."],
+["How does caffeine boost dopamine and glutamate release?","By antagonizing inhibitory adenosine receptors, it disinhibits neuronal firing → ↑ release of DA and glutamate (and downstream epinephrine via the pituitary–adrenal axis)."],
+["What does caffeine do to cerebral blood vessels?","Constricts them — by blocking adenosine's vasodilatory effect. This is why some headache medicines include caffeine for vascular headaches."],
+["Half-life of caffeine?","About 6 hours. So 200 mg at 3 pm leaves ~100 mg in your system by 9 pm — disrupting deep sleep."],
+["Caffeine intoxication symptoms appear above what dose?","Above ~250 mg in a short period — restlessness, insomnia, muscle twitching, GI upset, cardiac arrhythmia."],
+["Lethal caffeine dose?","About 5–10 g (≈ 30–60 cups of coffee in one morning)."],
+["Caffeine withdrawal symptoms?","Fatigue, depression, and a splitting headache (rebound cerebral vasodilation)."],
+["What is cocaine's mechanism of action?","It inhibits reuptake of all three monoamines: norepinephrine, serotonin, and dopamine."],
+["Cocaine's CNS effects?","Acute mental awareness, euphoria (amphetamine-like), hallucinations + paranoid/grandiose delusions, ↑ motor activity, tremors → convulsions → respiratory and vasomotor depression."],
+["Cocaine's sympathetic effects?","Potentiates NE peripherally → tachycardia, hypertension, pupillary dilation (mydriasis), peripheral vasoconstriction. Hyperthermia: can cause death — impairs sweating and cutaneous vasodilation."],
+["Three forms of 'alcohol' you should distinguish?","Ethanol (drinkable), methanol (toxic — antifreeze, blindness, acidosis), ethylene glycol (antifreeze — renal damage)."],
+["Standard US drink contains how much ethanol?","14 g (0.3 mol) — raises BAC by ~20–50 mg/100 mL (0.02–0.05%)."],
+["Four main mechanisms of ethanol's CNS action?","(1) Enhances GABA-A signaling, (2) inhibits voltage-gated Ca²⁺ channels, (3) inhibits NMDA receptors, (4) inhibits the adenosine transporter (raising extracellular adenosine)."],
+["How does ethanol resemble benzodiazepines?","Both potentiate GABA-A receptors. Ethanol's effect is smaller and less consistent than BZDs; its overall action is also nonspecific (many systems)."],
+["Why does naltrexone reduce alcohol reward?","Endogenous opioids contribute to ethanol's rewarding effect; naltrexone (a μ-opioid antagonist) blunts that pleasure, helping abstinence."],
+["What other receptors does ethanol enhance besides GABA-A?","Nicotinic acetylcholine (nAChR) and 5-HT₃ excitatory receptors (yes — ethanol enhances these despite being a CNS depressant overall)."],
+["Legal driving BAC limit (US/UK)?","0.08% (80 mg/100 mL) — at this level crash risk is ~4× normal."],
+["BAC at which crash risk is ~25× baseline?","0.15% (150 mg/100 mL)."],
+["Which BAC range can cause death?","Above 0.3–0.4% — bladder, breathing, and heart-rate impairment; >0.4% generally produces unconsciousness and death."],
+["Two main pathways of hepatic ethanol metabolism?","Alcohol dehydrogenase (ADH) (~75%) and the mixed-function oxidase / CYP2E1 / MEOS (~25%) — both yield acetaldehyde, which is then converted to acetate by aldehyde dehydrogenase (ALDH)."],
+["What does disulfiram do?","Inhibits aldehyde dehydrogenase → acetaldehyde accumulates → flushing, nausea, vomiting → aversion therapy for alcohol dependence."],
+["Progression of alcoholic liver disease?","Fatty liver → alcoholic hepatitis → irreversible necrosis and fibrosis (cirrhosis)."],
+["What primarily drives alcoholic liver damage — malnutrition or ethanol toxicity?","Mainly the cellular toxicity of ethanol itself; chronic malnutrition contributes."],
+["Features of fetal alcohol syndrome (FAS)?","Wide-set eyes, short palpebral fissures, small cheekbones, reduced cranial circumference, growth retardation, mental retardation/behavioral abnormalities, other anatomical abnormalities. ARND is a milder form."],
+["How fast does tolerance to ethanol develop, and how strong is it?","About a 2–3-fold reduction in potency over 1–3 weeks. Mostly tissue tolerance (mechanism unclear); a small component is faster elimination."],
+["Two stages of alcohol withdrawal?","1st stage (~24 h): tremor, nausea, sweating, fever, hallucinations — possible seizures ('rum fits'). 2nd stage (next few days): delirium tremens — confusion, agitation, severe hallucinations."],
+];
+
+let fcIndex=0;
+function renderCard(){document.getElementById('fc-front').textContent=flashcards[fcIndex][0];document.getElementById('fc-back').textContent=flashcards[fcIndex][1];document.getElementById('flashcard').classList.remove('flipped');document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+flashcards.length}
+function flipCard(){document.getElementById('flashcard').classList.toggle('flipped')}
+function nextCard(){fcIndex=(fcIndex+1)%flashcards.length;renderCard()}
+function prevCard(){fcIndex=(fcIndex-1+flashcards.length)%flashcards.length;renderCard()}
+function shuffleCards(){for(let i=flashcards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[flashcards[i],flashcards[j]]=[flashcards[j],flashcards[i]]}fcIndex=0;renderCard()}
+renderCard();
+
+const quizQuestions=[
+{q:"Caffeine's main pharmacological target is:",opts:["Dopamine D2 receptors","Adenosine receptors (antagonist)","GABA-A receptors","NMDA receptors"],ans:1,exp:"Caffeine is a non-selective adenosine receptor antagonist — blocking A1 and A2A produces most of its CNS effects."},
+{q:"In the CNS, adenosine acts mainly as a(n):",opts:["Excitatory neurotransmitter","Inhibitory neurotransmitter promoting drowsiness","Trophic factor","Direct dopamine releaser"],ans:1,exp:"Adenosine is inhibitory; basal forebrain levels rise with sustained wakefulness, promoting drowsiness."},
+{q:"The A1 adenosine receptor is most abundant in:",opts:["Basal ganglia","Cortex, hippocampus, cerebellum, hypothalamus","Nucleus accumbens","Spinal cord motor neurons"],ans:1,exp:"A1 dominates higher cognitive and homeostatic regions: cortex, hippocampus, cerebellum, hypothalamus."},
+{q:"Activation of A1 inhibits neuronal firing by:",opts:["Closing K⁺ channels","Opening K⁺ channels and inhibiting Ca²⁺ channels (hyperpolarization)","Releasing glutamate","Activating Gs and ↑ cAMP"],ans:1,exp:"A1 (Gi/o) opens K⁺ channels and inhibits Ca²⁺ channels → membrane hyperpolarization → less firing."},
+{q:"The adenosine receptor most relevant to caffeine's motor-activating effect (basal ganglia) is:",opts:["A1","A2A","A2B","A3"],ans:1,exp:"A2A in the basal ganglia normally antagonizes DA-driven motor activity. Caffeine blocks A2A → DA-like motor effect."},
+{q:"Caffeine causes cerebral blood vessels to:",opts:["Dilate","Constrict","First dilate, then immediately rupture","Have no effect"],ans:1,exp:"By blocking adenosine's vasodilation, caffeine constricts cerebral vessels — useful in vascular headache meds."},
+{q:"Caffeine's elimination half-life is approximately:",opts:["30 minutes","2 hours","6 hours","24 hours"],ans:2,exp:"~6 hours — which is why a 3 pm coffee still has half its caffeine onboard at 9 pm."},
+{q:"Which symptom is associated with caffeine intoxication (>250 mg)?",opts:["Hypothermia","Restlessness, insomnia, muscle twitching, GI upset, cardiac arrhythmia","Bradycardia","Sedation"],ans:1,exp:"High caffeine causes a constellation of stimulant/autonomic symptoms — and rarely fatality at 5–10 g."},
+{q:"Cocaine's mechanism of action:",opts:["μ-opioid agonist","Inhibits monoamine reuptake (NE, 5-HT, DA)","GABA-A potentiator","Adenosine receptor antagonist"],ans:1,exp:"Cocaine blocks the reuptake transporters for all three monoamines, raising synaptic levels."},
+{q:"A characteristic SNS effect of cocaine is:",opts:["Bradycardia and hypotension","Tachycardia, hypertension, mydriasis, peripheral vasoconstriction","Bronchoconstriction","Pinpoint pupils"],ans:1,exp:"Cocaine peripherally potentiates NE — classical fight-or-flight findings."},
+{q:"Cocaine-induced hyperthermia is dangerous because cocaine:",opts:["Increases sweating beyond normal","Impairs sweating and cutaneous vasodilation, blocking heat loss","Lowers metabolic rate","Causes paradoxical bronchodilation"],ans:1,exp:"Cocaine impairs sweating and skin vasodilation, so the body cannot dissipate heat → potentially fatal hyperthermia."},
+{q:"One standard US alcoholic drink contains:",opts:["1 g of ethanol","14 g of ethanol (0.3 mol)","100 g of ethanol","1 mole of ethanol"],ans:1,exp:"14 g (0.3 mol) — raises BAC by ~0.02–0.05% per drink."},
+{q:"Ethanol enhances inhibition primarily through:",opts:["NMDA receptor activation","GABA-A receptor potentiation","α2 adrenergic receptors only","TRPV1 antagonism"],ans:1,exp:"Ethanol potentiates GABA-A (similar to BZDs but smaller and less consistent), among other effects."},
+{q:"Ethanol's effect on glutamate signaling is:",opts:["Pure activation","Inhibition — NMDA receptors more sensitive than AMPA","Activation of AMPA only","No effect on glutamate"],ans:1,exp:"Ethanol inhibits glutamate excitation; NMDA is suppressed at lower ethanol concentrations than AMPA."},
+{q:"Ethanol affects adenosine signaling by:",opts:["Activating A2A directly","Inhibiting the adenosine transporter — raising extracellular adenosine → A1-mediated CNS depression","Cleaving ATP","Increasing adenosine deaminase"],ans:1,exp:"Ethanol blocks adenosine reuptake; the resulting rise in extracellular adenosine activates inhibitory A1 receptors."},
+{q:"Naltrexone reduces alcohol reward because:",opts:["It is a GABA-A potentiator","It antagonizes opioid receptors involved in ethanol's reward","It directly blocks NMDA","It inhibits ALDH"],ans:1,exp:"Endogenous opioids contribute to ethanol's pleasurable effects; naltrexone (μ-opioid antagonist) blunts them."},
+{q:"The legal BAC limit for driving in the US/UK is:",opts:["0.02%","0.05%","0.08%","0.15%"],ans:2,exp:"0.08% (80 mg/100 mL) — crash risk ~4× baseline."},
+{q:"At a BAC of ~0.15%, crash risk relative to sober is approximately:",opts:["Unaffected","2× higher","4× higher","25× higher"],ans:3,exp:"At 0.15%, crash risk is ~25× — the steeper end of the BAC–risk curve."},
+{q:"Progression of alcoholic liver disease is typically:",opts:["Cirrhosis → fatty liver → hepatitis","Fatty liver → hepatitis → irreversible necrosis & fibrosis","Hepatitis only","No reproducible progression"],ans:1,exp:"Fatty liver (steatosis) → alcoholic hepatitis → cirrhosis (necrosis & fibrosis)."},
+{q:"In alcoholic liver disease, the major driver of damage is:",opts:["Malnutrition alone","Direct cellular toxicity of ethanol itself (with malnutrition contributing)","Acetate accumulation","Loss of bile acids"],ans:1,exp:"Cellular toxicity of ethanol itself is the main driver; malnutrition is contributory in chronic alcoholics."},
+{q:"Which is a feature of fetal alcohol syndrome (FAS)?",opts:["Macrocephaly with normal facial features","Wide-set eyes, short palpebral fissures, small cheekbones, microcephaly, growth retardation","Single transverse palmar crease only","Polycythemia"],ans:1,exp:"FAS includes characteristic facial features, microcephaly, growth retardation, and intellectual/behavioral deficits."},
+{q:"Disulfiram works by:",opts:["Activating GABA-A","Inhibiting alcohol dehydrogenase","Inhibiting aldehyde dehydrogenase — acetaldehyde accumulates → flushing/nausea","Blocking μ opioid receptors"],ans:2,exp:"Disulfiram blocks ALDH; acetaldehyde buildup causes an aversive reaction with even small alcohol intake."},
+{q:"Ethanol withdrawal in its 1st stage (~24 h) typically includes:",opts:["Tremor, nausea, sweating, hallucinations, possible seizures ('rum fits')","Hallucinations only","Severe respiratory depression","Mania with euphoria"],ans:0,exp:"1st-stage withdrawal: autonomic and tremor-predominant; 'rum fits' (seizures) can occur."},
+{q:"'Delirium tremens' is best described as:",opts:["The 1st-stage symptoms only","2nd-stage withdrawal — confusion, agitation, severe hallucinations, days 2–4","A toxic effect of methanol","An effect of buspirone"],ans:1,exp:"DTs develops over the next few days after withdrawal — severe confusion/agitation/hallucinations, potentially life-threatening."},
+{q:"Ethanol tolerance over weeks is mostly:",opts:["Pharmacokinetic (faster elimination only)","Tissue tolerance (mostly), with a small pharmacokinetic component","Behavioral only","Genetic only"],ans:1,exp:"~2–3-fold reduction over 1–3 weeks; mostly tissue tolerance (mechanism unclear), small contribution from elimination."},
+{q:"Why are alcoholics often resistant to general anesthetics like halothane?",opts:["They lack GABA-A receptors","Cross-tolerance to anesthetics develops with chronic ethanol exposure","Halothane is metabolized faster in alcoholics","They are immune to all anesthetics"],ans:1,exp:"Cross-tolerance: many anesthetics share GABA-A potentiation/related mechanisms with ethanol → harder to anesthetize alcoholics."},
+];
+
+const hardQuestions=[
+{q:"A patient has a 200 mg coffee at 3 PM. Approximately how much caffeine is still in their system at 9 PM?",opts:["~25 mg","~100 mg","~200 mg","Essentially zero"],ans:1,exp:"Caffeine half-life is ~6 hours, so by 9 PM about half (~100 mg) remains — disrupting deep sleep."},
+{q:"A patient with a vascular headache benefits from caffeine because:",opts:["It dilates cerebral vessels","It blocks adenosine's vasodilatory effect, constricting cerebral vessels","It activates μ-opioid receptors","It inhibits NMDA"],ans:1,exp:"Caffeine vasoconstricts cerebral vessels by blocking adenosine receptors — relieving vascular headaches."},
+{q:"A cocaine-overdose patient becomes severely hyperthermic. The mechanism most likely is:",opts:["Cocaine activates UCP1 in brown fat","Cocaine impairs sweating and cutaneous vasodilation, blocking heat dissipation","Massive seizure activity raises CO₂ alone","Cocaine resets the hypothalamic set-point downward"],ans:1,exp:"Sympathetic potentiation by cocaine impairs sweating and cutaneous vasodilation — heat cannot escape — and can be fatal."},
+{q:"3 days after stopping heavy alcohol, a patient becomes confused, severely agitated, and is hallucinating wildly. Diagnosis:",opts:["Acute intoxication","Delirium tremens (DTs) — 2nd-stage alcohol withdrawal","Schizophrenia","Cocaine intoxication"],ans:1,exp:"DTs is the 2nd-stage withdrawal syndrome appearing days after stopping — severe confusion, agitation, hallucinations; life-threatening."},
+{q:"Why are benzodiazepines first-line for treating alcohol withdrawal?",opts:["They block μ-opioid receptors","They are GABA-A potentiators (same target as ethanol) and prevent rebound glutamatergic excitation/seizures with controlled tapering","They reverse cocaine effects","They inhibit ALDH"],ans:1,exp:"BZDs cross-substitute for ethanol at GABA-A; this prevents the disinhibition / glutamatergic surge that causes seizures and DTs."},
+{q:"A patient on disulfiram drinks alcohol. The expected reaction is:",opts:["Pure euphoria","Flushing, nausea, vomiting from accumulated acetaldehyde","Hyperthermia and seizures only","No reaction — disulfiram only blocks absorption"],ans:1,exp:"Disulfiram blocks ALDH → acetaldehyde accumulates → unpleasant flushing/nausea → aversion therapy."},
+{q:"Heavy maternal alcohol use is most concerning for the fetus because of:",opts:["Hyperglycemia","Fetal alcohol syndrome — characteristic facies, microcephaly, growth & cognitive deficits","Polycythemia","Hyperviscosity"],ans:1,exp:"FAS is the prototypical fetal injury from heavy maternal drinking; ARND is a milder spectrum."},
+{q:"An alcoholic patient is hard to anesthetize with halothane. The mechanism is:",opts:["Faster halothane metabolism in alcoholics only","Cross-tolerance — chronic ethanol exposure causes tolerance to many GABA-A potentiators including volatile anesthetics","They have no GABA-A receptors","Halothane is competitively displaced by ethanol"],ans:1,exp:"Tissue tolerance from chronic ethanol cross-applies to many anesthetics — alcoholics need higher doses."},
+{q:"A patient arrives with BAC 0.42%. The most life-threatening concern is:",opts:["Liver failure","Respiratory depression and cardiovascular collapse — death likely","Hypoglycemia alone","Memory blackout only"],ans:1,exp:">0.4% BAC: unconsciousness, respiratory & cardiac suppression, death."},
+{q:"Why does caffeine produce both alertness AND increased movement?",opts:["It activates DA receptors directly","It blocks A1 (cortex/hippocampus → ↑ firing → alertness) AND A2A (basal ganglia → DA-like effect → ↑ motor activity)","It is converted to amphetamine","It directly opens VG-Ca channels"],ans:1,exp:"Caffeine antagonizes both receptors: A1 blockade boosts cortical firing (alertness); A2A blockade in basal ganglia mimics DA (movement)."},
+];
+
+function buildQuiz(qs,cid,sid){const c=document.getElementById(cid);c.innerHTML='';qs.forEach((q,i)=>{const d=document.createElement('div');d.className='quiz-q';d.innerHTML=`<p><span class="q-num">${i+1}</span>${q.q}</p>${q.opts.map((o,j)=>`<button class="quiz-option" onclick="checkAns(this,${i},${j},'${cid}','${sid}')">${o}</button>`).join('')}<div class="explanation" id="exp-${cid}-${i}">${q.exp}</div>`;c.appendChild(d)})}
+function checkAns(btn,qi,oi,cid,sid){const qs=cid==='quiz-container'?quizQuestions:hardQuestions;const btns=btn.parentElement.querySelectorAll('.quiz-option');btns.forEach(b=>b.classList.add('disabled'));if(oi===qs[qi].ans)btn.classList.add('correct');else{btn.classList.add('wrong');btns[qs[qi].ans].classList.add('correct')}document.getElementById(`exp-${cid}-${qi}`).classList.add('show');updateScore(cid,sid)}
+function updateScore(cid,sid){let a=0,c=0;document.getElementById(cid).querySelectorAll('.quiz-q').forEach(q=>{const cr=q.querySelector('.correct'),wr=q.querySelector('.wrong');if(cr||wr)a++;if(cr&&!wr)c++});document.getElementById(sid).textContent=c+' / '+a}
+function resetQuiz(t){if(t==='quiz'){buildQuiz(quizQuestions,'quiz-container','quiz-score');document.getElementById('quiz-score').textContent='0 / 0'}else{buildQuiz(hardQuestions,'hard-container','hard-score');document.getElementById('hard-score').textContent='0 / 0'}}
+buildQuiz(quizQuestions,'quiz-container','quiz-score');buildQuiz(hardQuestions,'hard-container','hard-score');
+
+const matchPairs=[
+["Caffeine","Adenosine receptor antagonist (A1 + A2A)"],
+["A1 receptor","Cortex/hippocampus — opens K⁺, inhibits Ca²⁺"],
+["A2A receptor","Basal ganglia — adenosine here antagonizes DA motor activity"],
+["Cocaine","Blocks reuptake of NE, 5-HT, and DA"],
+["Ethanol","↑ GABA-A, ↓ NMDA, ↓ Ca²⁺ channels, ↓ adenosine uptake"],
+["Naltrexone","Opioid antagonist — reduces alcohol reward"],
+["Disulfiram","Blocks aldehyde dehydrogenase (ALDH) → flushing/nausea"],
+["Methanol","Toxic alcohol — antifreeze ingestion, blindness"],
+["Alcohol dehydrogenase","Ethanol → acetaldehyde (~75%)"],
+["Aldehyde dehydrogenase","Acetaldehyde → acetate"],
+["Fetal Alcohol Syndrome","Wide-set eyes, microcephaly, growth & cognitive deficits"],
+["Delirium tremens","2nd-stage alcohol withdrawal — confusion, agitation, severe hallucinations"],
+];
+let matchSel={left:null,right:null},matchedN=0;
+function resetMatching(){matchSel={left:null,right:null};matchedN=0;document.getElementById('match-score').textContent='0 / '+matchPairs.length;renderMatching()}
+function renderMatching(){const l=matchPairs.map((p,i)=>({t:p[0],i})),r=matchPairs.map((p,i)=>({t:p[1],i}));for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}document.getElementById('match-left').innerHTML=l.map(x=>`<div class="match-item" data-side="left" data-idx="${x.i}" onclick="selMatch(this)">${x.t}</div>`).join('');document.getElementById('match-right').innerHTML=r.map(x=>`<div class="match-item" data-side="right" data-idx="${x.i}" onclick="selMatch(this)">${x.t}</div>`).join('')}
+function selMatch(el){const s=el.dataset.side,idx=+el.dataset.idx;document.querySelectorAll(`.match-item[data-side="${s}"]`).forEach(e=>{if(!e.classList.contains('matched'))e.classList.remove('selected')});el.classList.add('selected');matchSel[s]={el,idx};if(matchSel.left&&matchSel.right){if(matchSel.left.idx===matchSel.right.idx){matchSel.left.el.classList.remove('selected');matchSel.right.el.classList.remove('selected');matchSel.left.el.classList.add('matched');matchSel.right.el.classList.add('matched');matchedN++;document.getElementById('match-score').textContent=matchedN+' / '+matchPairs.length}else{matchSel.left.el.classList.add('wrong-match');matchSel.right.el.classList.add('wrong-match');setTimeout(()=>{matchSel.left.el.classList.remove('selected','wrong-match');matchSel.right.el.classList.remove('selected','wrong-match');matchSel={left:null,right:null}},600);return}matchSel={left:null,right:null}}}
+renderMatching();
+</script>
+</body>
+</html>

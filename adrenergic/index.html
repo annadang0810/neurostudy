@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adrenergic System - Study Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3344;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00cec9;
+    --green-dim: #00cec920;
+    --red: #fd7272;
+    --red-dim: #fd727220;
+    --orange: #ffa94d;
+    --orange-dim: #ffa94d20;
+    --blue: #74b9ff;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-light);
+    white-space: nowrap;
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--surface2); }
+  .nav-btn.active {
+    color: var(--accent-light);
+    background: #6c5ce715;
+    border-color: #6c5ce740;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 84px 24px 60px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent-light);
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+
+  .highlight {
+    color: var(--green);
+    font-weight: 600;
+  }
+  .drug {
+    color: var(--orange);
+    font-weight: 600;
+  }
+  .warn {
+    color: var(--red);
+    font-weight: 600;
+  }
+  .key {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* TABLE */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .info-table th {
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--surface2);
+    color: var(--accent-light);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+  .info-table tr:last-child td { border-bottom: none; }
+
+  /* HERO */
+  .hero-card {
+    background: linear-gradient(135deg, #6c5ce730, #00cec915);
+    border-color: #6c5ce740;
+    text-align: center;
+    padding: 48px 28px;
+  }
+  .hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .hero-card p { color: var(--text-dim); font-size: 15px; }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* TABS within sections */
+  .tab-row {
+    display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* QUIZ */
+  .quiz-q {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .quiz-q p {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .q-num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .quiz-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+  }
+  .quiz-option:hover {
+    border-color: var(--accent);
+    color: var(--text);
+    background: #6c5ce710;
+  }
+  .quiz-option.correct {
+    background: var(--green-dim);
+    border-color: var(--green);
+    color: var(--green);
+  }
+  .quiz-option.wrong {
+    background: var(--red-dim);
+    border-color: var(--red);
+    color: var(--red);
+  }
+  .quiz-option.disabled { pointer-events: none; }
+  .explanation {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--text-dim);
+    border-left: 3px solid var(--accent);
+  }
+  .explanation.show { display: block; }
+
+  /* SCORE */
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-text { font-size: 15px; font-weight: 600; }
+  .score-pct { font-size: 28px; font-weight: 800; color: var(--accent-light); }
+  .reset-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); color: var(--bg); }
+
+  /* FLASHCARD */
+  .fc-container {
+    perspective: 1000px;
+    margin-bottom: 16px;
+  }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flashcard:hover { box-shadow: 0 4px 24px #6c5ce720; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    backface-visibility: hidden;
+    border-radius: 14px;
+  }
+  .fc-front { font-size: 16px; font-weight: 600; color: var(--text); }
+  .fc-back {
+    transform: rotateY(180deg);
+    font-size: 15px;
+    color: var(--green);
+    background: var(--surface);
+    line-height: 1.6;
+  }
+  .fc-nav {
+    display: flex; gap: 10px; justify-content: center; align-items: center;
+  }
+  .fc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .fc-counter { font-size: 13px; color: var(--text-dim); font-weight: 600; min-width: 60px; text-align: center; }
+  .fc-hint { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 10px; }
+
+  /* MATCHING */
+  .match-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .match-col-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .match-item {
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-dim);
+  }
+  .match-item:hover { border-color: var(--accent); color: var(--text); }
+  .match-item.selected { border-color: var(--accent); background: #6c5ce715; color: var(--accent-light); }
+  .match-item.matched { border-color: var(--green); background: var(--green-dim); color: var(--green); pointer-events: none; opacity: 0.7; }
+  .match-item.wrong-match { border-color: var(--red); background: var(--red-dim); color: var(--red); }
+
+  @media (max-width: 600px) {
+    .nav-brand { display: none; }
+    main { padding: 76px 14px 40px; }
+    .card { padding: 20px; }
+    .hero-card { padding: 32px 20px; }
+    .hero-card h1 { font-size: 22px; }
+    .match-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">NeuroStudy</span>
+    <button class="nav-btn active" onclick="showSection('home')">Home</button>
+    <button class="nav-btn" onclick="showSection('learn')">Learn</button>
+    <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showSection('quiz')">Quiz</button>
+    <button class="nav-btn" onclick="showSection('matching')">Matching</button>
+    <button class="nav-btn" onclick="showSection('hard')">Hard Quiz</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+  <div class="card hero-card">
+    <h1>The Adrenergic System</h1>
+    <p>Interactive study guide covering NE biosynthesis, catecholamine transport, adrenergic receptors, pharmacology, and desensitization</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">7</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">40</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Quiz Qs</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>How to Use</h2>
+    <ul>
+      <li><span class="highlight">Learn</span> - Read through all the material organized by topic</li>
+      <li><span class="highlight">Flashcards</span> - Click to flip, test your recall of key terms</li>
+      <li><span class="highlight">Quiz</span> - Multiple choice questions with explanations</li>
+      <li><span class="highlight">Matching</span> - Match drugs to their functions</li>
+      <li><span class="highlight">Hard Quiz</span> - Tougher application-based questions</li>
+    </ul>
+  </div>
+</div>
+
+<!-- LEARN -->
+<div class="section" id="sec-learn">
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showTab('learn',0)">NE Overview</button>
+    <button class="tab-btn" onclick="showTab('learn',1)">Biosynthesis</button>
+    <button class="tab-btn" onclick="showTab('learn',2)">Degradation</button>
+    <button class="tab-btn" onclick="showTab('learn',3)">Transporters</button>
+    <button class="tab-btn" onclick="showTab('learn',4)">Receptors</button>
+    <button class="tab-btn" onclick="showTab('learn',5)">Pharmacology</button>
+    <button class="tab-btn" onclick="showTab('learn',6)">Desensitization</button>
+  </div>
+
+  <!-- NE Overview -->
+  <div class="tab-content active" id="learn-0">
+    <div class="card">
+      <h2>Norepinephrine in the Nervous System</h2>
+      <ul>
+        <li><span class="highlight">Norepinephrine (NE)</span> is produced by neurons in the <span class="highlight">pons and medulla</span></li>
+        <li>The <span class="highlight">locus ceruleus (LC)</span> in the pons contains &gt;50% of NE neurons in the brain and provides almost all NE innervation to the cortex</li>
+        <li>NE signaling contributes to the <span class="highlight">sleep-wake cycle (arousal)</span>, attention, and anxiety</li>
+        <li>NE-modulating drugs treat <span class="highlight">ADHD</span>: <span class="drug">atomoxetine (Strattera)</span>, <span class="drug">desipramine (Norpramin)</span></li>
+        <li>NE acting on <span class="highlight">&beta;-receptors in the amygdala</span> increases memory for negative emotion (relevant to PTSD)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Biosynthesis -->
+  <div class="tab-content" id="learn-1">
+    <div class="card">
+      <h2>Catecholamine Biosynthesis Pathway</h2>
+      <h3>Pathway: Tyrosine &rarr; L-DOPA &rarr; Dopamine &rarr; NE &rarr; Epinephrine</h3>
+      <ul>
+        <li><span class="highlight">Tyrosine hydroxylase (TH)</span> is the <span class="warn">rate-limiting enzyme</span></li>
+        <li>TH is thought to be near saturated under normal conditions</li>
+        <li>TH is inhibited by catecholamines &mdash; <span class="highlight">feedback inhibition</span></li>
+        <li><span class="highlight">Tetrahydrobiopterin (BH4)</span> is a required cofactor for TH (and tryptophan hydroxylase)</li>
+      </ul>
+      <h3>Key Enzymes</h3>
+      <table class="info-table">
+        <tr><th>Enzyme</th><th>Reaction</th><th>Cofactor</th></tr>
+        <tr><td>Tyrosine hydroxylase (TH)</td><td>Tyrosine &rarr; L-DOPA</td><td>BH4</td></tr>
+        <tr><td>DOPA decarboxylase (AADC)</td><td>L-DOPA &rarr; Dopamine</td><td>P5P (B6)</td></tr>
+        <tr><td>Dopamine &beta;-hydroxylase (DBH)</td><td>Dopamine &rarr; NE</td><td>Vitamin C</td></tr>
+        <tr><td>PNMT</td><td>NE &rarr; Epinephrine</td><td>SAM</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Degradation -->
+  <div class="tab-content" id="learn-2">
+    <div class="card">
+      <h2>Catecholamine Degradation</h2>
+      <ul>
+        <li>Catecholamines are degraded by <span class="highlight">monoamine oxidase (MAO)</span> or <span class="highlight">catechol-O-methyltransferase (COMT)</span></li>
+      </ul>
+      <h3>MAO Isoforms</h3>
+      <ul>
+        <li><span class="key">MAOA</span> mostly in noradrenergic neurons (including dopaminergic neurons) &mdash; metabolizes <span class="highlight">5HT, NE, EPI, DA</span></li>
+        <li><span class="key">MAOB</span> mostly in serotonergic and histaminergic neurons &mdash; metabolizes <span class="highlight">DA</span></li>
+      </ul>
+      <h3>MAO Inhibitors (MAOIs) &mdash; Antidepressants</h3>
+      <ul>
+        <li><span class="drug">Isocarboxazid, phenelzine, tranylcypromine, selegiline</span></li>
+        <li>Inhibit breakdown of catecholamines, increasing their synaptic availability</li>
+      </ul>
+      <h3>Degradation Products</h3>
+      <ul>
+        <li>DA &rarr; <span class="highlight">Homovanillic acid (HVA)</span></li>
+        <li>NE &rarr; <span class="highlight">Vanillylmandelic acid (VMA)</span> and <span class="highlight">3-methoxy-4-hydroxyphenylglycol (MHPG)</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Catecholamine Regulation</h2>
+      <ul>
+        <li>Diffusion away from synapses</li>
+        <li>Metabolic transformation (MAO, COMT)</li>
+        <li>Re-uptake into nerve terminals via catecholamine transporters</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Transporters -->
+  <div class="tab-content" id="learn-3">
+    <div class="card">
+      <h2>Catecholamine Transporters</h2>
+      <ul>
+        <li>Selective, pharmacologically distinct transport proteins that remove NE, DA, and 5HT from extracellular space</li>
+        <li><span class="key">NET</span> Norepinephrine Transporter</li>
+        <li><span class="key">DAT</span> Dopamine Transporter</li>
+        <li><span class="key">SERT</span> Serotonin Transporter</li>
+      </ul>
+      <h3>Structure</h3>
+      <ul>
+        <li>12 transmembrane domain proteins</li>
+        <li>Intracellular carboxyl and amino tails</li>
+        <li>Large extracellular loop between TMDs III and IV with multiple N-glycosylation sites</li>
+        <li>Potential phosphorylation sites on intracellular domains &mdash; evidence of kinase-mediated regulation</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Vesicular Monoamine Transporter (VMAT)</h2>
+      <ul>
+        <li>VMAT pumps NE into vesicles (also DA and 5HT)</li>
+        <li>2 isoforms: <span class="highlight">VMAT1</span> and <span class="highlight">VMAT2</span></li>
+        <li>Inhibited by <span class="drug">reserpine</span> and <span class="drug">tetrabenazine</span></li>
+        <li><span class="drug">Guanethidine</span> is taken up by NET into noradrenergic neurons, concentrated in vesicles, eventually depletes NE from vesicles. Does <span class="warn">not cross the BBB</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Transporter Pharmacology &mdash; Stimulants</h2>
+      <h3>Cocaine</h3>
+      <ul>
+        <li>Inhibits re-uptake of NE, Epi, and DA by blocking NET/DAT</li>
+      </ul>
+      <h3>Methylphenidate (Ritalin)</h3>
+      <ul>
+        <li>Blocks NET/DAT</li>
+        <li>Probably does <span class="warn">not</span> lead to increased NE/DA release</li>
+      </ul>
+      <h3>Amphetamine</h3>
+      <ul>
+        <li>Inhibits re-uptake of NE/DA via competition &mdash; amphetamine is a substrate for NET/DAT</li>
+        <li>Depletes NE/DA from vesicles via disruption of proton gradient</li>
+        <li>Stimulates efflux of NE/DA through NET/DAT via phosphorylation</li>
+        <li>Weak MAO inhibitor</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Transporter Pharmacology &mdash; Antidepressants</h2>
+      <table class="info-table">
+        <tr><th>Drug Class</th><th>Example</th><th>Target</th></tr>
+        <tr><td>Tricyclic Antidepressants (TCAs)</td><td><span class="drug">Amitriptyline, Desipramine</span></td><td>NET/SERT or NET</td></tr>
+        <tr><td>NRIs</td><td><span class="drug">Atomoxetine (Strattera)</span></td><td>NET</td></tr>
+        <tr><td>SNRIs</td><td><span class="drug">Venlafaxine (Effexor), Duloxetine (Cymbalta)</span></td><td>SERT/NET</td></tr>
+        <tr><td>NDRIs</td><td><span class="drug">Bupropion (Wellbutrin/Zyban)</span></td><td>NET/DAT</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Receptors -->
+  <div class="tab-content" id="learn-4">
+    <div class="card">
+      <h2>Adrenergic Receptors &mdash; G-Protein Coupling</h2>
+      <table class="info-table">
+        <tr><th>Receptor</th><th>G-Protein</th><th>Effects</th></tr>
+        <tr><td><span class="highlight">&alpha;1</span></td><td>Gq, G12/13</td><td>PLC, Ca2+ increase, Rho</td></tr>
+        <tr><td><span class="highlight">&alpha;2</span></td><td>Go, Gi</td><td>Inhibit Ca2+ channels, inhibit AC, open K+ channels</td></tr>
+        <tr><td><span class="highlight">&beta;1, &beta;2, &beta;3</span></td><td>Gs</td><td>Activate AC, L-type Ca2+ channels</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Autoreceptors (&alpha;2 Presynaptic)</h2>
+      <ul>
+        <li>Autoreceptors for NE are on <span class="highlight">presynaptic terminals</span></li>
+        <li>Release of NE binds to presynaptic &alpha;2 receptors</li>
+        <li>This leads to a <span class="warn">decrease in TH activity</span> and <span class="warn">decrease in NE release</span></li>
+        <li>This is a negative feedback mechanism regulating noradrenergic transmission</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Pharmacology -->
+  <div class="tab-content" id="learn-5">
+    <div class="card">
+      <h2>&alpha;1-Adrenergic Pharmacology</h2>
+      <h3>Agonists</h3>
+      <ul>
+        <li><span class="drug">Phenylephrine</span> &mdash; nasal decongestant</li>
+        <li><span class="drug">Methoxamine, oxymetazoline</span></li>
+      </ul>
+      <h3>Antagonists</h3>
+      <ul>
+        <li><span class="drug">Prazosin</span> &mdash; anti-hypertensive</li>
+        <li><span class="drug">Terazosin, tamsulosin</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>&alpha;2-Adrenergic Pharmacology</h2>
+      <h3>Agonists</h3>
+      <ul>
+        <li><span class="drug">Clonidine (Catapres)</span> &mdash; antihypertensive, ADHD, craving symptoms</li>
+      </ul>
+      <h3>Antagonists</h3>
+      <ul>
+        <li><span class="drug">Yohimbine (Procomil)</span></li>
+        <li><span class="drug">Mirtazapine (Remeron)</span> &mdash; antidepressant</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>&beta;-Adrenergic Pharmacology (General)</h2>
+      <h3>Agonist</h3>
+      <ul>
+        <li><span class="drug">Isoproterenol</span> &mdash; emergency bradycardia, cardiac shock</li>
+      </ul>
+      <h3>Antagonist</h3>
+      <ul>
+        <li><span class="drug">Propranolol</span> &mdash; migraine prophylaxis, blood pressure, performance anxiety</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>&beta;1-Adrenergic Pharmacology</h2>
+      <h3>Agonist</h3>
+      <ul>
+        <li><span class="drug">Dobutamine</span> &mdash; cardiogenic shock</li>
+      </ul>
+      <h3>Antagonist</h3>
+      <ul>
+        <li><span class="drug">Atenolol</span> (drugs ending in -olol) &mdash; angina, recurrent heart attacks</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>&beta;2-Adrenergic Pharmacology</h2>
+      <h3>Agonist</h3>
+      <ul>
+        <li><span class="drug">Albuterol</span> &mdash; asthma</li>
+      </ul>
+      <h3>Antagonist</h3>
+      <ul>
+        <li><span class="drug">Butoxamine</span> &mdash; characterization and identification of &beta;2 activity in research</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Desensitization -->
+  <div class="tab-content" id="learn-6">
+    <div class="card">
+      <h2>Receptor Desensitization</h2>
+      <p>Loss of response of receptor in the continued presence of ligand.</p>
+      <h3>Three General Mechanisms</h3>
+      <ul>
+        <li><span class="highlight">Receptor phosphorylation</span> &mdash; by PKC, &beta;-ARK (&beta;-adrenergic receptor kinase), G-protein coupled receptor kinases (GRKs)</li>
+        <li><span class="highlight">Receptor internalization/sequestration</span> &mdash; phosphorylated receptors are bound by <span class="highlight">&beta;-arrestin</span>, marking them for internalization</li>
+        <li><span class="highlight">Receptor downregulation</span> &mdash; via either internalization or degradation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div class="section" id="sec-flashcards">
+  <div class="fc-container">
+    <div class="flashcard" onclick="flipCard()">
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-btn" onclick="prevCard()">&larr;</button>
+    <span class="fc-counter" id="fc-counter"></span>
+    <button class="fc-btn" onclick="nextCard()">&rarr;</button>
+  </div>
+  <div class="fc-hint">Click card to flip &bull; Use arrows to navigate</div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="sec-quiz">
+  <div class="score-bar">
+    <div><span class="score-text">Score: </span><span class="score-pct" id="quiz-score">0%</span></div>
+    <button class="reset-btn" onclick="resetQuiz('quiz')">Reset Quiz</button>
+  </div>
+  <div id="quiz-container"></div>
+</div>
+
+<!-- MATCHING -->
+<div class="section" id="sec-matching">
+  <div class="card" style="text-align:center; padding:16px;">
+    <span class="score-text">Matched: <span id="match-count">0</span> / <span id="match-total">0</span></span>
+    <button class="reset-btn" style="margin-left:16px;" onclick="resetMatching()">Reset</button>
+  </div>
+  <div class="match-grid">
+    <div>
+      <div class="match-col-header">Drug</div>
+      <div id="match-left"></div>
+    </div>
+    <div>
+      <div class="match-col-header">Use / Mechanism</div>
+      <div id="match-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- HARD QUIZ -->
+<div class="section" id="sec-hard">
+  <div class="score-bar">
+    <div><span class="score-text">Score: </span><span class="score-pct" id="hard-score">0%</span></div>
+    <button class="reset-btn" onclick="resetQuiz('hard')">Reset Quiz</button>
+  </div>
+  <div id="hard-container"></div>
+</div>
+
+</main>
+
+<script>
+// ── NAV ──
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+function showTab(section, idx) {
+  const parent = document.getElementById('sec-' + section);
+  parent.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(section + '-' + idx).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── FLASHCARDS ──
+const flashcards = [
+  ["Where is NE produced?", "Neurons in the pons and medulla; the locus ceruleus (LC) contains >50% of NE neurons in the brain"],
+  ["What does the locus ceruleus provide?", "Almost all NE innervation to the cortex"],
+  ["What functions does NE signaling contribute to?", "Sleep-wake cycle (arousal), attention, anxiety"],
+  ["What is the rate-limiting enzyme in catecholamine biosynthesis?", "Tyrosine hydroxylase (TH)"],
+  ["What cofactor does TH require?", "Tetrahydrobiopterin (BH4)"],
+  ["How is TH inhibited?", "By catecholamines via feedback inhibition"],
+  ["What are the two enzymes that degrade catecholamines?", "Monoamine oxidase (MAO) and catechol-O-methyltransferase (COMT)"],
+  ["What does MAOA metabolize?", "5HT, NE, EPI, DA \u2014 mostly in noradrenergic/dopaminergic neurons"],
+  ["What does MAOB metabolize?", "DA \u2014 mostly in serotonergic and histaminergic neurons"],
+  ["Name 4 MAOIs used as antidepressants", "Isocarboxazid, phenelzine, tranylcypromine, selegiline"],
+  ["What is VMAT?", "Vesicular monoamine transporter \u2014 pumps NE (also DA, 5HT) into vesicles"],
+  ["What inhibits VMAT?", "Reserpine and tetrabenazine"],
+  ["How does guanethidine work?", "Taken up by NET, concentrated in vesicles, depletes NE from vesicles. Does NOT cross BBB"],
+  ["What are the three catecholamine transporters?", "NET (norepinephrine), DAT (dopamine), SERT (serotonin)"],
+  ["How does cocaine work?", "Inhibits reuptake of NE, Epi, and DA by blocking NET/DAT"],
+  ["How does methylphenidate (Ritalin) work?", "Blocks NET/DAT; probably does NOT increase NE/DA release"],
+  ["Name 4 mechanisms of amphetamine action", "1) Competes for NET/DAT uptake 2) Depletes vesicles via proton gradient disruption 3) Stimulates NE/DA efflux via transporter phosphorylation 4) Weak MAO inhibitor"],
+  ["What do TCAs target?", "NET/SERT (amitriptyline) or NET (desipramine)"],
+  ["What do SNRIs target? Give examples.", "SERT and NET. Venlafaxine (Effexor), duloxetine (Cymbalta)"],
+  ["What does bupropion (Wellbutrin) target?", "NET/DAT (norepinephrine-dopamine reuptake inhibitor)"],
+  ["\u03b11 receptor: G-protein and effects?", "Gq, G12/13 \u2192 PLC, Ca2+ increase, Rho activation"],
+  ["\u03b12 receptor: G-protein and effects?", "Go, Gi \u2192 inhibit Ca2+ channels, inhibit AC, open K+ channels"],
+  ["\u03b2 receptors: G-protein and effects?", "Gs \u2192 activate adenylyl cyclase (AC), L-type Ca2+ channels"],
+  ["What are \u03b12 autoreceptors?", "Presynaptic receptors that, when NE binds, decrease TH activity and decrease NE release (negative feedback)"],
+  ["\u03b11 agonist example and use?", "Phenylephrine \u2014 nasal decongestant"],
+  ["\u03b11 antagonist example and use?", "Prazosin \u2014 anti-hypertensive"],
+  ["\u03b12 agonist example and uses?", "Clonidine (Catapres) \u2014 antihypertensive, ADHD, craving symptoms"],
+  ["\u03b12 antagonist examples?", "Yohimbine, mirtazapine (Remeron \u2014 antidepressant)"],
+  ["Non-selective \u03b2 agonist and uses?", "Isoproterenol \u2014 emergency bradycardia, cardiac shock"],
+  ["Non-selective \u03b2 antagonist and uses?", "Propranolol \u2014 migraine prophylaxis, BP, performance anxiety"],
+  ["\u03b21 agonist and use?", "Dobutamine \u2014 cardiogenic shock"],
+  ["\u03b21 antagonist and use?", "Atenolol (drugs ending in -olol) \u2014 angina, recurrent heart attacks"],
+  ["\u03b22 agonist and use?", "Albuterol \u2014 asthma"],
+  ["\u03b22 antagonist and use?", "Butoxamine \u2014 research characterization of \u03b22 activity"],
+  ["What is receptor desensitization?", "Loss of response of receptor in the continued presence of ligand"],
+  ["Name the 3 mechanisms of desensitization", "1) Receptor phosphorylation (PKC, \u03b2-ARK, GRKs) 2) Receptor internalization/sequestration (\u03b2-arrestin) 3) Receptor downregulation (internalization or degradation)"],
+  ["What is \u03b2-ARK?", "\u03b2-adrenergic receptor kinase \u2014 phosphorylates activated \u03b2-receptors, part of GRK family"],
+  ["What role does \u03b2-arrestin play?", "Binds phosphorylated receptors, marking them for internalization"],
+  ["What is atomoxetine (Strattera)?", "A norepinephrine reuptake inhibitor (NRI) used for ADHD"],
+  ["NE metabolic products?", "Vanillylmandelic acid (VMA) and 3-methoxy-4-hydroxyphenylglycol (MHPG)"],
+];
+let fcIdx = 0;
+function renderCard() {
+  const el = document.querySelector('.flashcard');
+  el.classList.remove('flipped');
+  document.getElementById('fc-front').textContent = flashcards[fcIdx][0];
+  document.getElementById('fc-back').textContent = flashcards[fcIdx][1];
+  document.getElementById('fc-counter').textContent = (fcIdx+1) + ' / ' + flashcards.length;
+}
+function flipCard() { document.querySelector('.flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIdx = (fcIdx + 1) % flashcards.length; renderCard(); }
+function prevCard() { fcIdx = (fcIdx - 1 + flashcards.length) % flashcards.length; renderCard(); }
+
+// ── QUIZ DATA ──
+const quizData = [
+  {q:"Where does the locus ceruleus provide NE innervation?", opts:["Spinal cord only","Almost all cortex innervation","Cerebellum exclusively","Basal ganglia only"], ans:1, exp:"The locus ceruleus in the pons provides almost all NE innervation to the cortex."},
+  {q:"What is the rate-limiting enzyme in catecholamine biosynthesis?", opts:["DOPA decarboxylase","Dopamine \u03b2-hydroxylase","Tyrosine hydroxylase","PNMT"], ans:2, exp:"Tyrosine hydroxylase (TH) is the rate-limiting enzyme, converting tyrosine to L-DOPA."},
+  {q:"What cofactor is required by tyrosine hydroxylase?", opts:["Pyridoxal phosphate (P5P)","Tetrahydrobiopterin (BH4)","Vitamin C","SAM"], ans:1, exp:"BH4 is a required cofactor for TH and also tryptophan hydroxylase."},
+  {q:"MAOA is mostly found in which neurons?", opts:["Serotonergic neurons","Histaminergic neurons","Noradrenergic/dopaminergic neurons","GABAergic neurons"], ans:2, exp:"MAOA is mostly in noradrenergic neurons (including dopaminergic) and metabolizes 5HT, NE, EPI, DA."},
+  {q:"Which drugs inhibit VMAT?", opts:["Cocaine and amphetamine","Reserpine and tetrabenazine","Atomoxetine and venlafaxine","Prazosin and yohimbine"], ans:1, exp:"Reserpine and tetrabenazine inhibit the vesicular monoamine transporter (VMAT)."},
+  {q:"Why can't guanethidine deplete central NE?", opts:["It is rapidly metabolized","It is not taken up by NET","It does not cross the blood-brain barrier","It only affects serotonin"], ans:2, exp:"Guanethidine does not cross the BBB, so it only depletes peripheral NE."},
+  {q:"Which mechanism is NOT part of amphetamine's action?", opts:["Competes for NET/DAT uptake","Disrupts vesicular proton gradient","Blocks muscarinic receptors","Weak MAO inhibition"], ans:2, exp:"Amphetamine acts via NET/DAT competition, vesicle depletion, transporter phosphorylation, and weak MAO inhibition \u2014 not muscarinic blockade."},
+  {q:"What G-protein does the \u03b11 receptor couple to?", opts:["Gs","Gi","Gq and G12/13","Go"], ans:2, exp:"\u03b11 couples to Gq and G12/13, activating PLC and increasing Ca2+."},
+  {q:"What effect does \u03b12 receptor activation have?", opts:["Increases cAMP","Activates PLC","Inhibits adenylyl cyclase and opens K+ channels","Activates L-type Ca2+ channels"], ans:2, exp:"\u03b12 couples to Go/Gi, inhibiting Ca2+ channels and AC, and opening K+ channels."},
+  {q:"\u03b2 receptors couple to which G-protein?", opts:["Gq","Gi","Gs","G12/13"], ans:2, exp:"\u03b21, \u03b22, and \u03b23 all couple to Gs, activating adenylyl cyclase."},
+  {q:"What happens when NE binds to presynaptic \u03b12 autoreceptors?", opts:["Increased NE release","Decreased TH activity and NE release","Receptor upregulation","Increased cAMP"], ans:1, exp:"Presynaptic \u03b12 autoreceptors provide negative feedback, decreasing TH activity and NE release."},
+  {q:"Phenylephrine is an agonist at which receptor?", opts:["\u03b12","\u03b21","\u03b11","\u03b22"], ans:2, exp:"Phenylephrine is an \u03b11 agonist used as a nasal decongestant."},
+  {q:"Prazosin is used as an anti-hypertensive by blocking which receptor?", opts:["\u03b11","\u03b12","\u03b21","\u03b22"], ans:0, exp:"Prazosin is an \u03b11 antagonist used for hypertension."},
+  {q:"Clonidine is an agonist at which receptor?", opts:["\u03b11","\u03b12","\u03b21","\u03b22"], ans:1, exp:"Clonidine is an \u03b12 agonist used for hypertension, ADHD, and craving symptoms."},
+  {q:"Which drug is a \u03b21 antagonist used for angina?", opts:["Propranolol","Dobutamine","Atenolol","Albuterol"], ans:2, exp:"Atenolol (drugs ending in -olol) is a \u03b21 antagonist used for angina and recurrent heart attacks."},
+  {q:"Albuterol is an agonist at which receptor?", opts:["\u03b21","\u03b22","\u03b11","\u03b12"], ans:1, exp:"Albuterol is a \u03b22 agonist used for asthma."},
+  {q:"What is \u03b2-arrestin's role in desensitization?", opts:["It phosphorylates receptors","It binds phosphorylated receptors and marks them for internalization","It degrades ligands","It activates adenylyl cyclase"], ans:1, exp:"\u03b2-arrestin binds phosphorylated receptors, marking them for internalization (sequestration)."},
+  {q:"Which is NOT a mechanism of receptor desensitization?", opts:["Receptor phosphorylation","Receptor internalization","Receptor upregulation","Receptor downregulation"], ans:2, exp:"The three mechanisms are phosphorylation, internalization/sequestration, and downregulation. Upregulation is the opposite."},
+  {q:"What class of drug is venlafaxine (Effexor)?", opts:["TCA","MAOI","SNRI","NRI"], ans:2, exp:"Venlafaxine is a serotonin-norepinephrine reuptake inhibitor (SNRI)."},
+  {q:"Bupropion (Wellbutrin) inhibits which transporters?", opts:["SERT only","NET/DAT","NET/SERT","DAT only"], ans:1, exp:"Bupropion is a norepinephrine-dopamine reuptake inhibitor (NDRI) targeting NET and DAT."},
+];
+
+const hardData = [
+  {q:"A patient on an MAOI eats tyramine-rich food. Why is this dangerous?", opts:["Tyramine blocks \u03b2 receptors","MAO can't break down absorbed tyramine, leading to massive NE release and hypertensive crisis","Tyramine inhibits COMT","Tyramine depletes serotonin"], ans:1, exp:"With MAO inhibited, dietary tyramine is not broken down, enters nerve terminals, displaces NE, causing massive sympathetic activation and hypertensive crisis (the 'cheese reaction')."},
+  {q:"A patient presents with nasal congestion. You prescribe phenylephrine. Through which receptor and mechanism does it work?", opts:["\u03b12 agonist \u2192 vasodilation","\u03b11 agonist \u2192 vasoconstriction of nasal blood vessels","\u03b22 agonist \u2192 bronchodilation","\u03b21 agonist \u2192 increased heart rate"], ans:1, exp:"Phenylephrine is an \u03b11 agonist that causes vasoconstriction in nasal blood vessels, reducing congestion."},
+  {q:"Why does amphetamine have a greater abuse potential than methylphenidate?", opts:["Amphetamine only blocks DAT","Amphetamine has additional mechanisms: vesicle depletion, reverse transport via phosphorylation, and weak MAO inhibition","Methylphenidate crosses the BBB better","Amphetamine only works on serotonin"], ans:1, exp:"Unlike methylphenidate (which only blocks NET/DAT), amphetamine also depletes vesicles, causes reverse transport, and weakly inhibits MAO \u2014 producing much greater DA/NE release."},
+  {q:"A patient on propranolol for migraines develops bronchospasm. Why?", opts:["Propranolol activates \u03b11 receptors","Propranolol is non-selective and blocks \u03b22 receptors in airways","Propranolol inhibits COMT","Propranolol stimulates ACh release"], ans:1, exp:"Propranolol is a non-selective \u03b2 blocker. Blocking \u03b22 in bronchial smooth muscle removes the bronchodilatory effect, causing bronchoconstriction."},
+  {q:"Clonidine reduces blood pressure. If it's an \u03b12 agonist, why does activating a receptor LOWER blood pressure?", opts:["It blocks \u03b21 receptors in the heart","It activates presynaptic \u03b12 autoreceptors in the brainstem, reducing sympathetic outflow","It stimulates vasodilation via \u03b22","It directly inhibits RAAS"], ans:1, exp:"Clonidine activates \u03b12 autoreceptors centrally (brainstem), which decreases NE release from sympathetic nerves, reducing sympathetic tone and lowering blood pressure."},
+  {q:"If you block VMAT with reserpine, what happens to synaptic NE over time?", opts:["NE increases because it can't enter vesicles","NE decreases because cytoplasmic NE is degraded by MAO and vesicle stores are depleted","NE stays the same","NE is converted to dopamine"], ans:1, exp:"Without VMAT, NE can't be stored in vesicles. Cytoplasmic NE is broken down by MAO. Over time, releasable NE stores are depleted, reducing sympathetic transmission."},
+  {q:"A patient in cardiogenic shock receives dobutamine. Why is dobutamine preferred over isoproterenol?", opts:["Dobutamine is \u03b21-selective, increasing cardiac contractility with less \u03b22-mediated vasodilation","Dobutamine is an \u03b11 agonist","Isoproterenol has no cardiac effects","Dobutamine blocks \u03b12 receptors"], ans:0, exp:"Dobutamine is \u03b21-selective, so it increases contractility (inotropy) without excessive \u03b22-mediated vasodilation and reflex tachycardia that isoproterenol would cause."},
+  {q:"Why does receptor phosphorylation by GRKs lead to desensitization rather than just signal modification?", opts:["GRKs destroy the receptor","Phosphorylation recruits \u03b2-arrestin which sterically blocks G-protein coupling AND promotes internalization","GRKs convert the receptor to a different subtype","Phosphorylation makes the receptor constitutively active"], ans:1, exp:"GRK phosphorylation creates binding sites for \u03b2-arrestin, which prevents G-protein coupling (steric hindrance) and targets the receptor for clathrin-mediated internalization."},
+  {q:"Why might mirtazapine (an \u03b12 antagonist) work as an antidepressant?", opts:["It blocks \u03b11 receptors","Blocking presynaptic \u03b12 autoreceptors removes negative feedback, increasing NE and serotonin release","It inhibits MAO","It blocks DAT"], ans:1, exp:"By blocking \u03b12 autoreceptors (and heteroreceptors), mirtazapine removes negative feedback on NE release. It also blocks \u03b12 heteroreceptors on serotonergic neurons, increasing 5HT release."},
+  {q:"TH is near-saturated and feedback-inhibited by catecholamines. What is the physiological significance of this?", opts:["It means catecholamine synthesis cannot be increased","It provides a self-regulating system: when NE builds up, synthesis slows; when NE is depleted, feedback inhibition is relieved and synthesis increases","It means BH4 is not needed","It only applies to epinephrine synthesis"], ans:1, exp:"This creates a homeostatic mechanism. High catecholamine levels inhibit TH (slowing synthesis), while depletion relieves inhibition (accelerating synthesis to replenish stores)."},
+  {q:"A researcher finds that cocaine and amphetamine both increase synaptic DA, but amphetamine also depletes vesicular stores. Which drug would have longer-lasting effects after a single dose and why?", opts:["Cocaine, because it has stronger affinity for DAT","Amphetamine, because vesicular depletion continues even as the drug is cleared, and reverse transport maintains elevated synaptic DA longer","They have identical duration","Neither depletes vesicles"], ans:1, exp:"Amphetamine's vesicular depletion is a slower process that persists beyond acute drug presence. Cocaine's effect ends when it dissociates from DAT. Amphetamine's multiple mechanisms produce more sustained DA elevation."},
+  {q:"A patient with asthma is prescribed a \u03b2-blocker for hypertension. Which would be safest?", opts:["Propranolol (non-selective)","Atenolol (\u03b21-selective)","Butoxamine (\u03b22-selective antagonist)","Isoproterenol (non-selective agonist)"], ans:1, exp:"Atenolol is \u03b21-selective, so it lowers BP by reducing cardiac output while sparing \u03b22 receptors in the lungs. Non-selective propranolol would risk bronchospasm."},
+];
+
+// ── QUIZ ENGINE ──
+function buildQuiz(data, containerId, scoreId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  let correct = 0, answered = 0;
+  data.forEach((item, qi) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    let optHtml = '';
+    item.opts.forEach((o, oi) => {
+      optHtml += `<button class="quiz-option" data-q="${qi}" data-o="${oi}">${o}</button>`;
+    });
+    div.innerHTML = `<p><span class="q-num">${qi+1}</span>${item.q}</p>${optHtml}<div class="explanation" id="exp-${containerId}-${qi}">${item.exp}</div>`;
+    container.appendChild(div);
+  });
+  container.addEventListener('click', function handler(e) {
+    const btn = e.target.closest('.quiz-option');
+    if (!btn || btn.classList.contains('disabled')) return;
+    const qi = +btn.dataset.q, oi = +btn.dataset.o;
+    const siblings = container.querySelectorAll(`[data-q="${qi}"]`);
+    siblings.forEach(s => s.classList.add('disabled'));
+    if (oi === data[qi].ans) { btn.classList.add('correct'); correct++; }
+    else { btn.classList.add('wrong'); siblings[data[qi].ans].classList.add('correct'); }
+    answered++;
+    document.getElementById(`exp-${containerId}-${qi}`).classList.add('show');
+    document.getElementById(scoreId).textContent = Math.round(correct/data.length*100) + '%';
+  });
+}
+function resetQuiz(type) {
+  if (type === 'quiz') buildQuiz(quizData, 'quiz-container', 'quiz-score');
+  else buildQuiz(hardData, 'hard-container', 'hard-score');
+}
+
+// ── MATCHING ──
+const matchPairs = [
+  ["Phenylephrine", "\u03b11 agonist \u2013 nasal decongestant"],
+  ["Prazosin", "\u03b11 antagonist \u2013 anti-hypertensive"],
+  ["Clonidine", "\u03b12 agonist \u2013 antihypertensive, ADHD"],
+  ["Yohimbine", "\u03b12 antagonist"],
+  ["Propranolol", "Non-selective \u03b2 blocker \u2013 migraine, BP"],
+  ["Dobutamine", "\u03b21 agonist \u2013 cardiogenic shock"],
+  ["Atenolol", "\u03b21 antagonist \u2013 angina"],
+  ["Albuterol", "\u03b22 agonist \u2013 asthma"],
+  ["Reserpine", "VMAT inhibitor \u2013 depletes NE stores"],
+  ["Cocaine", "Blocks NET/DAT \u2013 inhibits reuptake"],
+  ["Atomoxetine", "NRI \u2013 used for ADHD"],
+  ["Mirtazapine", "\u03b12 antagonist \u2013 antidepressant"],
+];
+let matchLeft = null;
+function resetMatching() {
+  const leftEl = document.getElementById('match-left');
+  const rightEl = document.getElementById('match-right');
+  leftEl.innerHTML = ''; rightEl.innerHTML = '';
+  const shuffledR = [...matchPairs].sort(() => Math.random() - 0.5);
+  const shuffledL = [...matchPairs].sort(() => Math.random() - 0.5);
+  document.getElementById('match-total').textContent = matchPairs.length;
+  document.getElementById('match-count').textContent = '0';
+  let matched = 0;
+  matchLeft = null;
+
+  shuffledL.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'match-item';
+    d.textContent = p[0];
+    d.dataset.key = p[0];
+    d.addEventListener('click', function() {
+      leftEl.querySelectorAll('.match-item').forEach(m => m.classList.remove('selected'));
+      if (this.classList.contains('matched')) return;
+      this.classList.add('selected');
+      matchLeft = p[0];
+    });
+    leftEl.appendChild(d);
+  });
+  shuffledR.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'match-item';
+    d.textContent = p[1];
+    d.dataset.key = p[0];
+    d.addEventListener('click', function() {
+      if (!matchLeft || this.classList.contains('matched')) return;
+      if (this.dataset.key === matchLeft) {
+        this.classList.add('matched');
+        leftEl.querySelector(`[data-key="${matchLeft}"]`).classList.add('matched');
+        matched++;
+        document.getElementById('match-count').textContent = matched;
+        matchLeft = null;
+      } else {
+        this.classList.add('wrong-match');
+        setTimeout(() => this.classList.remove('wrong-match'), 600);
+      }
+    });
+    rightEl.appendChild(d);
+  });
+}
+
+// ── INIT ──
+renderCard();
+buildQuiz(quizData, 'quiz-container', 'quiz-score');
+buildQuiz(hardData, 'hard-container', 'hard-score');
+resetMatching();
+</script>
+</body>
+</html>

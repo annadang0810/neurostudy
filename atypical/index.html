@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atypical Neurotransmitters - Study Guide</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0d12;--surface:#141820;--surface2:#1c2130;--border:#272d40;--text:#dfe2ed;--text-dim:#838aa4;--accent:#4e8ef7;--accent-light:#7cb0ff;--green:#2dd4a0;--green-dim:#2dd4a018;--red:#f06070;--red-dim:#f0607018;--orange:#f0a040;--purple:#a070e0;--teal:#30d0c8;--yellow:#ffd43b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:58px;gap:6px;overflow-x:auto}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-brand{font-weight:700;font-size:15px;color:var(--accent-light);white-space:nowrap;margin-right:14px}
+.nav-btn{background:none;border:1px solid transparent;color:var(--text-dim);padding:6px 13px;border-radius:8px;cursor:pointer;font-size:13px;white-space:nowrap;transition:all .2s;font-weight:500}
+.nav-btn:hover{color:var(--text);background:var(--surface2)}
+.nav-btn.active{color:var(--accent-light);background:#4e8ef715;border-color:#4e8ef740}
+main{max-width:820px;margin:0 auto;padding:80px 24px 60px}
+.section{display:none}.section.active{display:block}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:20px}
+.card h2{font-size:20px;font-weight:700;margin-bottom:14px}
+.card h3{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--accent-light)}
+.card p,.card li{font-size:14.5px;color:var(--text-dim);line-height:1.7}
+.card ul{padding-left:20px}.card li{margin-bottom:5px}
+.card li::marker{color:var(--accent)}
+.hl{color:var(--green);font-weight:600}
+.drug{color:var(--orange);font-weight:600}
+.warn{color:var(--red);font-weight:600}
+.receptor{color:var(--purple);font-weight:600}
+.mol{color:var(--teal);font-weight:600}
+.key{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-right:4px;letter-spacing:.5px}
+.hero-card{background:linear-gradient(135deg,#4e8ef720,#2dd4a010);border-color:#4e8ef730;text-align:center;padding:44px 28px}
+.hero-card h1{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.hero-card p{color:var(--text-dim);font-size:15px}
+.hero-stats{display:flex;gap:14px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-align:center;min-width:110px}
+.stat-num{font-size:24px;font-weight:800;color:var(--accent-light)}
+.stat-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.tab-row{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:8px 15px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
+.tab-btn:hover{color:var(--text)}.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab-content{display:none}.tab-content.active{display:block}
+.cmp-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+.cmp-table th{background:var(--surface2);color:var(--accent-light);padding:10px 12px;text-align:left;border:1px solid var(--border);font-weight:600}
+.cmp-table td{padding:9px 12px;border:1px solid var(--border);color:var(--text-dim)}
+.quiz-q{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px}
+.quiz-q>p{font-size:15px;font-weight:600;margin-bottom:14px;color:var(--text)}
+.q-num{display:inline-block;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:6px;text-align:center;line-height:24px;font-size:12px;font-weight:700;margin-right:8px}
+.quiz-option{display:block;width:100%;text-align:left;background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:12px 16px;border-radius:10px;cursor:pointer;font-size:14px;margin-bottom:8px;transition:all .2s;font-family:inherit}
+.quiz-option:hover{border-color:var(--accent);color:var(--text);background:#4e8ef710}
+.quiz-option.correct{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.quiz-option.wrong{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.quiz-option.disabled{pointer-events:none}
+.explanation{display:none;margin-top:12px;padding:12px 16px;background:var(--surface2);border-radius:10px;font-size:13px;color:var(--text-dim);border-left:3px solid var(--accent)}
+.explanation.show{display:block}
+.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 28px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.score-text{font-size:15px;font-weight:600}
+.score-pct{font-size:28px;font-weight:800;color:var(--accent-light)}
+.reset-btn{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;transition:all .2s}
+.reset-btn:hover{background:var(--accent-light);color:var(--bg)}
+.fc-container{perspective:1000px;margin-bottom:16px}
+.flashcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px;cursor:pointer;transition:transform .5s;transform-style:preserve-3d;position:relative}
+.flashcard:hover{box-shadow:0 4px 24px #4e8ef718}
+.flashcard.flipped{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:32px;backface-visibility:hidden;border-radius:14px}
+.fc-front{font-size:16px;font-weight:600}
+.fc-back{transform:rotateY(180deg);font-size:15px;color:var(--green);background:var(--surface);line-height:1.6}
+.fc-nav{display:flex;gap:10px;justify-content:center;align-items:center}
+.fc-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.fc-btn:hover{background:var(--accent);border-color:var(--accent)}
+.fc-counter{font-size:13px;color:var(--text-dim);font-weight:600;min-width:60px;text-align:center}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.match-col-header{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:700;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.match-item{padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;font-size:13px;cursor:pointer;transition:all .2s;color:var(--text-dim);margin-bottom:8px}
+.match-item:hover{border-color:var(--accent);color:var(--text)}
+.match-item.selected{border-color:var(--accent);background:#4e8ef715;color:var(--accent-light)}
+.match-item.matched{border-color:var(--green);background:var(--green-dim);color:var(--green);pointer-events:none;opacity:.7}
+.match-item.wrong-match{border-color:var(--red);background:var(--red-dim);color:var(--red)}
+@media(max-width:600px){.nav-brand{display:none}main{padding:74px 14px 40px}.card{padding:20px}.hero-card{padding:30px 20px}.hero-card h1{font-size:22px}.match-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+<span class="nav-brand">NeuroStudy</span>
+<button class="nav-btn active" onclick="showSection('home',event)">Home</button>
+<button class="nav-btn" onclick="showSection('learn',event)">Learn</button>
+<button class="nav-btn" onclick="showSection('flashcards',event)">Flashcards</button>
+<button class="nav-btn" onclick="showSection('quiz',event)">Quiz</button>
+<button class="nav-btn" onclick="showSection('matching',event)">Matching</button>
+<button class="nav-btn" onclick="showSection('hard',event)">Hard Quiz</button>
+</div></nav>
+<main>
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+<div class="card hero-card">
+<h1>Atypical Neurotransmitters</h1>
+<p>Endocannabinoids &middot; Purinergic signaling &middot; Nitric oxide &mdash; lipid &amp; gas messengers, retrograde signaling, ATP &amp; adenosine, caffeine</p>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">3</div><div class="stat-label">Systems</div></div>
+<div class="stat"><div class="stat-num">31</div><div class="stat-label">Flashcards</div></div>
+<div class="stat"><div class="stat-num">26</div><div class="stat-label">Quiz Qs</div></div>
+<div class="stat"><div class="stat-num">10</div><div class="stat-label">Hard Qs</div></div>
+</div>
+</div>
+<div class="card"><h2>How to Use</h2><ul>
+<li><span class="hl">Learn</span> &mdash; All material organized by topic with tables</li>
+<li><span class="hl">Flashcards</span> &mdash; Click a card to flip; arrows to navigate</li>
+<li><span class="hl">Quiz</span> &mdash; 26 multiple-choice questions with instant feedback</li>
+<li><span class="hl">Matching</span> &mdash; Match each molecule/receptor to its role</li>
+<li><span class="hl">Hard Quiz</span> &mdash; 10 application/integration MCQs</li>
+</ul></div>
+<div class="card"><h2>Big Picture</h2><p>"Atypical" neurotransmitters break the classical rules: they aren't stored in vesicles by VMAT, they often aren't released by exocytosis, and they can travel <span class="hl">backward</span> across a synapse.</p>
+<ul>
+<li><span class="receptor">Endocannabinoids</span> &mdash; lipids made on demand, retrograde messengers (CB1/CB2)</li>
+<li><span class="receptor">Purines</span> &mdash; ATP, ADP, adenosine; act on P2X (channels), P2Y &amp; P1 (GPCRs)</li>
+<li><span class="receptor">Nitric oxide</span> &mdash; gas, freely diffuses, activates guanylate cyclase</li>
+</ul></div>
+</div>
+
+<!-- LEARN -->
+<div class="section" id="sec-learn">
+<div class="tab-row">
+<button class="tab-btn active" onclick="showTab('learn',0,event)">Cannabinoids</button>
+<button class="tab-btn" onclick="showTab('learn',1,event)">Endocannabinoid Synth</button>
+<button class="tab-btn" onclick="showTab('learn',2,event)">CB Therapeutics</button>
+<button class="tab-btn" onclick="showTab('learn',3,event)">Purinergic</button>
+<button class="tab-btn" onclick="showTab('learn',4,event)">Caffeine</button>
+<button class="tab-btn" onclick="showTab('learn',5,event)">Nitric Oxide</button>
+<button class="tab-btn" onclick="showTab('learn',6,event)">Compare</button>
+</div>
+
+<div class="tab-content active" id="learn-0">
+<div class="card"><h2>Cannabinoid Receptors</h2>
+<p>Both <span class="receptor">CB1</span> and <span class="receptor">CB2</span> are <span class="hl">G-protein–coupled receptors</span> (typically Gi/o).</p>
+<h3>CB1</h3>
+<ul>
+<li><span class="hl">Highly expressed in brain</span> &mdash; especially cerebral cortex, prefrontal cortex, basal ganglia, hippocampus, amygdala, hypothalamus, cerebellum, periaqueductal gray, NTS, brainstem, spinal cord</li>
+<li>Also: adipose tissue, muscle, liver, GI tract, pancreas, reproductive &amp; CV tissues</li>
+</ul>
+<h3>CB2</h3>
+<ul>
+<li>Primarily on <span class="hl">immune cells</span>: T cells, B cells, monocytes, spleen, tonsils</li>
+<li>Some neuronal expression is being studied</li>
+</ul>
+<h3>CB1 ligands &mdash; 3 types</h3>
+<ul>
+<li><span class="mol">Endogenous</span> (endocannabinoids): <span class="mol">AEA (anandamide)</span>, <span class="mol">2-AG (2-arachidonoylglycerol)</span></li>
+<li><span class="drug">Plant-derived</span>: <span class="drug">Δ⁹-tetrahydrocannabinol (Δ⁹-THC)</span>, cannabidiol</li>
+<li><span class="drug">Synthetic</span> agonists/antagonists (e.g., rimonabant, URB597)</li>
+</ul>
+<h3>Endocannabinoid rules</h3>
+<ul>
+<li>Made from <span class="hl">membrane phospholipids</span></li>
+<li><span class="warn">NOT stored</span> in vesicles &mdash; synthesized and immediately released</li>
+<li>In brain: <span class="hl">retrograde messengers</span>; elsewhere: autocrine / paracrine</li>
+<li>Subsequently degraded by <span class="receptor">FAAH</span> (AEA) or <span class="receptor">MGL/MAGL</span> (2-AG)</li>
+</ul></div>
+</div>
+
+<div class="tab-content" id="learn-1">
+<div class="card"><h2>Endocannabinoid Synthesis &amp; Breakdown</h2>
+<table class="cmp-table">
+<tr><th>Step</th><th>Anandamide (AEA)</th><th>2-AG</th></tr>
+<tr><td>Precursor</td><td>Phosphatidylethanolamine</td><td>Phosphatidylinositol (PI)</td></tr>
+<tr><td>Synthesis enzyme 1</td><td>N-acyltransferase (Ca²⁺)</td><td>Phospholipase Cβ (after mGluR/mAChR + Ca²⁺)</td></tr>
+<tr><td>Intermediate</td><td>N-arachidonoyl PE</td><td>Diacylglycerol (DAG)</td></tr>
+<tr><td>Synthesis enzyme 2</td><td>Phospholipase D (Ca²⁺)</td><td>DAG lipase</td></tr>
+<tr><td>Degrading enzyme</td><td><span class="receptor">FAAH</span> (fatty acid amide hydrolase)</td><td><span class="receptor">MGL / MAGL</span> (monoacylglycerol lipase)</td></tr>
+<tr><td>Breakdown products</td><td>Arachidonic acid + ethanolamine</td><td>Arachidonic acid + glycerol</td></tr>
+</table>
+<h3>Pharmacological tools</h3>
+<ul>
+<li><span class="drug">URB597</span> &mdash; FAAH inhibitor (raises AEA)</li>
+<li><span class="drug">AM404</span> &mdash; endocannabinoid membrane transporter inhibitor</li>
+<li><span class="drug">Rimonabant</span> &mdash; CB1 antagonist (Europe-approved for obesity, later withdrawn for psychiatric side effects)</li>
+</ul>
+<h3>Retrograde signaling</h3>
+<p>Postsynaptic <span class="hl">Ca²⁺ rise</span> and/or <span class="hl">mGluR/mAChR activation</span> &rarr; lipid precursor &rarr; endocannabinoid &rarr; diffuses backward to <span class="receptor">presynaptic CB1</span> (Gi) &rarr; <span class="warn">↓ Ca²⁺ entry &rarr; ↓ neurotransmitter release</span>.</p></div>
+</div>
+
+<div class="tab-content" id="learn-2">
+<div class="card"><h2>CNS-Regulated Processes &amp; Therapeutic Apps</h2>
+<h3>Feeding &amp; energy balance</h3>
+<ul>
+<li>CB1 in <span class="hl">hypothalamus</span></li>
+<li>Endocannabinoids <span class="hl">stimulate food intake</span> in a CB1-dependent manner</li>
+<li><span class="warn">CB1 antagonists</span> (rimonabant, taranabant, CP-945,598) &rarr; weight loss via ↓ intake + ↑ energy use; rimonabant approved in Europe for obesity</li>
+</ul>
+<h3>Emesis (nausea / vomiting)</h3>
+<ul>
+<li>Cannabinoid <span class="hl">agonists suppress nausea and vomiting</span></li>
+<li>Endogenous CB1 "tone" may inhibit anticipatory nausea</li>
+</ul>
+<h3>Pain management</h3>
+<ul>
+<li>Selective <span class="receptor">CB1</span> agonists are analgesic</li>
+<li>Oromucosal spray: <span class="drug">Δ⁹-THC + cannabidiol</span> &mdash; approved in Canada for MS-related neuropathic pain &amp; advanced cancer pain</li>
+<li><span class="receptor">CB2</span> also inhibits pain perception (anti-nociception); role in chronic inflammatory &amp; neuropathic pain</li>
+<li>Novel strategy: endocannabinoid-degradation inhibitors (FAAH/MGL) + selective CB2 agonists</li>
+</ul></div>
+</div>
+
+<div class="tab-content" id="learn-3">
+<div class="card"><h2>Purinergic Signaling</h2>
+<h3>Signaling molecules</h3>
+<p>Nucleotide / nucleoside derivatives of <span class="mol">adenine, guanine, uracil, thymidine, cytosine</span>. Most common: <span class="mol">ATP, ADP, AMP, cAMP, adenosine</span>; also <span class="mol">UTP, UDP</span>.</p>
+<p>Structure: base + ribose = <span class="hl">nucleoside</span> (e.g., adenosine); add phosphate(s) = <span class="hl">nucleotide</span> (e.g., adenosine 5′-monophosphate).</p>
+<h3>Breakdown (extracellular, &lt;1 second)</h3>
+<p><span class="hl">ATP &rarr; ADP &rarr; AMP</span> by <span class="receptor">ectodiphosphohydrolase</span><br>
+<span class="hl">AMP &rarr; adenosine</span> by <span class="receptor">ectonucleotidase / ecto-5′-nucleotidase</span></p>
+<h3>Storage &amp; release</h3>
+<ul>
+<li>Loaded into vesicles by <span class="receptor">VNUT</span> (vesicular nucleotide transporter)</li>
+<li>Often <span class="hl">co-released</span> with classic neurotransmitters from the same vesicle</li>
+<li>Also released via: ATP transporters, <span class="hl">connexin/pannexin hemichannels</span>, voltage-dependent anion channels, <span class="receptor">P2X7</span> channel (large pore)</li>
+</ul>
+<h3>Receptor families</h3>
+<table class="cmp-table">
+<tr><th>Family</th><th>Type</th><th>Ligands</th><th>Key signaling</th></tr>
+<tr><td>P1 (A1, A2A, A2B, A3)</td><td>GPCR</td><td>Adenosine</td><td>A1/A3: Gi/o (↓cAMP). A2A/A2B: Gs (↑cAMP). A3 also Gq</td></tr>
+<tr><td>P2X (1–7)</td><td>Ligand-gated ion channel</td><td>ATP</td><td>Cation influx (Ca²⁺, Na⁺). P2X7 = large pore</td></tr>
+<tr><td>P2Y (1,2,4,6,11,12,13,14)</td><td>GPCR</td><td>ATP, ADP, UTP, UDP, UDP-glucose</td><td>Mostly Gq/G11 (PLCβ); P2Y12/13 = Gi/o</td></tr>
+</table>
+<h3>Key distributions</h3>
+<ul>
+<li><span class="receptor">A1</span>: brain, spinal cord, heart &mdash; antagonists ↑ catecholamines</li>
+<li><span class="receptor">A2A</span>: brain, heart, lungs, spleen</li>
+<li><span class="receptor">P2X3</span>: sensory neurons, NTS &mdash; ATP-mediated taste, carotid body, bladder afferents</li>
+<li><span class="receptor">P2X4</span> on microglia &mdash; activation in dorsal horn after nerve injury triggers BDNF release &rarr; <span class="warn">neuropathic pain</span></li>
+<li><span class="receptor">P2Y12</span>: platelets &amp; glia &mdash; target of antiplatelet drugs (clopidogrel)</li>
+</ul>
+<h3>Where it shows up</h3>
+<ul>
+<li>Neuron-to-neuron throughout CNS &amp; PNS</li>
+<li>Neuron-to-glia (astrocytes, oligodendrocytes, Schwann cells, microglia)</li>
+<li>Glia-to-glia (ATP is the dominant signal)</li>
+<li><span class="warn">Pathology:</span> excessive ATP from injury/overstimulation &rarr; reactive astrocytes &amp; activated microglia &rarr; pro-inflammatory cascades &mdash; implicated in <span class="warn">Alzheimer's</span> and <span class="warn">chronic pain</span></li>
+</ul></div>
+</div>
+
+<div class="tab-content" id="learn-4">
+<div class="card"><h2>Caffeine &amp; Methylxanthines</h2>
+<ul>
+<li><span class="drug">Caffeine</span> = <span class="hl">adenosine receptor antagonist</span></li>
+<li>Adenosine normally inhibits catecholamine release at A2A; blocking A2A &rarr; <span class="hl">↑ catecholamines</span> (alertness, ↑ HR, ↑ BP)</li>
+<li>Caffeine is metabolized into 3 other adenosine antagonists:</li>
+</ul>
+<table class="cmp-table">
+<tr><th>Metabolite</th><th>% of caffeine metabolism</th><th>Also found in</th></tr>
+<tr><td>Paraxanthine</td><td>~84%</td><td>—</td></tr>
+<tr><td>Theobromine</td><td>~12%</td><td>Chocolate</td></tr>
+<tr><td>Theophylline</td><td>~4%</td><td>Tea (also a bronchodilator drug)</td></tr>
+</table>
+</div>
+</div>
+
+<div class="tab-content" id="learn-5">
+<div class="card"><h2>Nitric Oxide (NO) Signaling</h2>
+<ul>
+<li>Originally identified as the <span class="hl">endothelial-derived relaxation factor</span></li>
+<li>A <span class="warn">gaseous</span> signaling molecule &mdash; freely diffuses across membranes; not packaged or transported</li>
+</ul>
+<h3>Synthesis</h3>
+<p><span class="mol">L-arginine + O₂</span> &rarr; <span class="mol">NO + citrulline</span>, by <span class="receptor">nitric oxide synthase (NOS)</span>, activated by <span class="hl">Ca²⁺ – calmodulin</span>.</p>
+<table class="cmp-table">
+<tr><th>Isoform</th><th>Where</th><th>Notes</th></tr>
+<tr><td><span class="receptor">nNOS</span> (neuronal)</td><td>Exclusively neurons</td><td>Coupled to NMDA via PSD-95</td></tr>
+<tr><td><span class="receptor">eNOS</span> (endothelial)</td><td>Endothelial cells + neurons</td><td>Vasodilation</td></tr>
+<tr><td><span class="receptor">iNOS</span> (inducible)</td><td>Immune cells + neurons</td><td>Induced by inflammation; Ca²⁺-independent</td></tr>
+</table>
+<h3>Targets &amp; effects</h3>
+<ul>
+<li><span class="hl">Activates soluble guanylate cyclase (sGC)</span> &rarr; GTP &rarr; cGMP in neighboring cells</li>
+<li>Can <span class="hl">S-nitrosylate cysteine residues</span> on proteins (post-translational modification)</li>
+<li>Reacts with O₂ radicals (superoxide) &rarr; <span class="warn">peroxynitrite (ONOO⁻)</span> &rarr; damages neurons in <span class="warn">ischemia–reperfusion</span> (stroke)</li>
+</ul>
+<h3>Retrograde signaling at glutamate synapses</h3>
+<p>Glutamate &rarr; postsynaptic <span class="receptor">NMDA</span> receptors &rarr; Ca²⁺ entry &rarr; activates <span class="receptor">nNOS</span> (with CaM, scaffolded by PSD-95) &rarr; <span class="hl">NO diffuses backward</span> &rarr; presynaptic sGC &rarr; cGMP &rarr; modulates release.</p></div>
+</div>
+
+<div class="tab-content" id="learn-6">
+<div class="card"><h2>Atypical vs Classical Neurotransmitters</h2>
+<table class="cmp-table">
+<tr><th>Feature</th><th>Classical (Glu, GABA, ACh, monoamines)</th><th>Atypical (endocannabinoids, NO, often purines)</th></tr>
+<tr><td>Stored in vesicles?</td><td>Yes</td><td>Endocannabinoids: <span class="warn">No</span> &middot; NO: <span class="warn">No</span> &middot; ATP: <span class="hl">Yes</span> (VNUT)</td></tr>
+<tr><td>Released by exocytosis?</td><td>Yes</td><td>Endocannabinoids/NO: <span class="warn">No</span> (made on demand) &middot; ATP: yes (and channels)</td></tr>
+<tr><td>Direction</td><td>Anterograde</td><td>Often <span class="hl">retrograde</span> (endocannabinoids, NO)</td></tr>
+<tr><td>Receptors</td><td>Ligand-gated channels &amp; GPCRs</td><td>CB1/CB2 (GPCR), P1/P2Y (GPCR), P2X (channel), sGC (enzyme &mdash; NO)</td></tr>
+<tr><td>Termination</td><td>Reuptake (transporters), degradation</td><td>FAAH/MGL (endocannabinoids); ectonucleotidases (ATP&rarr;adenosine); chemical reaction (NO)</td></tr>
+</table>
+<h3>Common themes</h3>
+<ul>
+<li>Many serve as <span class="hl">retrograde messengers</span> &mdash; postsynaptic activity feeds back to tune presynaptic release</li>
+<li>They tend to be <span class="hl">made on demand</span>, not stockpiled</li>
+<li>They often modulate <span class="hl">other transmitters</span> rather than carry the primary signal</li>
+</ul></div>
+</div>
+
+</div>
+
+<!-- FLASHCARDS -->
+<div class="section" id="sec-flashcards">
+<div class="fc-container"><div class="flashcard" id="flashcard" onclick="flipCard()">
+<div class="fc-front" id="fc-front"></div>
+<div class="fc-back" id="fc-back"></div>
+</div></div>
+<div class="fc-nav">
+<button class="fc-btn" onclick="prevCard()">‹</button>
+<div class="fc-counter" id="fc-counter">1 / 31</div>
+<button class="fc-btn" onclick="nextCard()">›</button>
+<button class="fc-btn" onclick="shuffleCards()" style="width:auto;padding:0 14px;font-size:13px">Shuffle</button>
+</div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="sec-quiz">
+<div class="score-bar"><div><div class="score-text">Score</div><div class="score-pct" id="quiz-score">0 / 0</div></div><button class="reset-btn" onclick="resetQuiz('quiz')">Reset Quiz</button></div>
+<div id="quiz-container"></div>
+</div>
+
+<!-- MATCHING -->
+<div class="section" id="sec-matching">
+<div class="card" style="padding:14px 28px"><p style="font-size:14px;font-weight:600">Match the molecule / receptor on the left with its role on the right.</p></div>
+<div class="score-bar"><div><div class="score-text">Matched</div><div class="score-pct" id="match-score">0 / 12</div></div><button class="reset-btn" onclick="resetMatching()">Reset</button></div>
+<div class="match-grid"><div><div class="match-col-header">Term</div><div id="match-left"></div></div><div><div class="match-col-header">Role / Description</div><div id="match-right"></div></div></div>
+</div>
+
+<!-- HARD QUIZ -->
+<div class="section" id="sec-hard">
+<div class="score-bar"><div><div class="score-text">Score</div><div class="score-pct" id="hard-score">0 / 0</div></div><button class="reset-btn" onclick="resetQuiz('hard')">Reset Quiz</button></div>
+<div id="hard-container"></div>
+</div>
+
+</main>
+<script>
+function showSection(id,e){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');e.target.classList.add('active');window.scrollTo(0,0)}
+function showTab(s,i,e){const p=document.getElementById('sec-'+s);p.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById(s+'-'+i).classList.add('active');e.target.classList.add('active')}
+
+const flashcards=[
+["What are the two cannabinoid receptors and where is each primarily found?","CB1 — highly in brain (also adipose, muscle, liver, GI, pancreas, repro/CV). CB2 — primarily immune cells (T, B, monocytes, spleen, tonsils)."],
+["What receptor class do CB1 and CB2 belong to?","G-protein–coupled receptors (typically Gi/o)."],
+["What are the three classes of cannabinoid ligands?","Endogenous (endocannabinoids), plant-derived (e.g., Δ⁹-THC, cannabidiol), and synthetic."],
+["Name the two main endocannabinoids.","Anandamide (AEA) and 2-arachidonoylglycerol (2-AG)."],
+["Are endocannabinoids stored in vesicles?","No. They are synthesized on demand from membrane phospholipids and released immediately."],
+["What direction do endocannabinoids signal in the brain?","Retrograde (postsynaptic → presynaptic). Elsewhere they act autocrine/paracrine."],
+["Which enzyme degrades anandamide (AEA)?","FAAH (fatty acid amide hydrolase) → arachidonic acid + ethanolamine."],
+["Which enzyme degrades 2-AG?","MGL / MAGL (monoacylglycerol lipase) → arachidonic acid + glycerol."],
+["What is anandamide synthesized from?","Phosphatidylethanolamine, via N-acyltransferase + phospholipase D (Ca²⁺-dependent)."],
+["What is 2-AG synthesized from?","Phosphatidylinositol → DAG (via PLCβ after mGluR/mAChR activation + Ca²⁺) → 2-AG (via DAG lipase)."],
+["What does URB597 do?","Inhibits FAAH, raising endogenous anandamide levels."],
+["What does AM404 do?","Inhibits the endocannabinoid membrane transporter."],
+["What is rimonabant and why was it developed?","A CB1 receptor antagonist; was approved in Europe for obesity treatment (later withdrawn for psychiatric side effects)."],
+["Why do CB1 antagonists reduce food intake?","CB1 receptors in the hypothalamus mediate appetite; endocannabinoids stimulate feeding via CB1, so antagonists block this."],
+["What CNS effect do cannabinoid agonists have on emesis?","They suppress nausea and vomiting; endogenous CB1 tone may inhibit anticipatory nausea."],
+["What cannabinoid product was approved in Canada and for what?","An oromucosal spray of Δ⁹-THC + cannabidiol — for neuropathic pain in MS and adjunctive analgesia in advanced cancer."],
+["What role does CB2 play in pain?","Inhibits pain perception (anti-nociception) in inflammatory and neuropathic chronic pain. CB2 agonists + FAAH/MGL inhibitors are a novel chronic-pain strategy."],
+["What signaling molecules are involved in purinergic signaling?","Nucleotide and nucleoside derivatives — most commonly ATP, ADP, AMP, adenosine, cAMP; also UTP, UDP."],
+["What enzymes break down ATP extracellularly, and how fast?","Ectodiphosphohydrolase (ATP→ADP→AMP) then ectonucleotidase / ecto-5′-nucleotidase (AMP→adenosine). The full chain happens in <1 second."],
+["What is VNUT?","Vesicular nucleotide transporter — loads ATP into vesicles, alone or with classic neurotransmitters (allows co-release)."],
+["List four ways ATP can leave a cell.","Vesicular exocytosis, ATP transporters, connexin/pannexin hemichannels, voltage-dependent anion channels, and the P2X7 channel pore."],
+["Name the three families of purinergic receptors.","P1 (adenosine, GPCR), P2X (ATP, ligand-gated cation channel), P2Y (nucleotide, GPCR)."],
+["What G-proteins do the P1 (adenosine) receptors couple to?","A1 and A3 → Gi/o (↓ cAMP). A2A and A2B → Gs (↑ cAMP). A3 also signals via Gq."],
+["What kind of receptors are P2X receptors?","Ligand-gated cation channels (Ca²⁺, Na⁺ in; K⁺ out). Activated by ATP. P2X7 forms a large pore with prolonged activation."],
+["How does caffeine work?","It is an adenosine receptor antagonist — blocks adenosine's inhibition of catecholamine release, producing alertness/stimulation."],
+["What are caffeine's main metabolites?","Paraxanthine (~84%), theobromine (~12%), theophylline (~4%) — all also adenosine receptor antagonists. Theobromine/theophylline are also in chocolate and tea."],
+["How can purinergic signaling contribute to disease (e.g., Alzheimer's, chronic pain)?","Excessive ATP release from injured/overstimulated neurons activates microglia and astrocytes via P2X/P2Y → reactive glia → pro-inflammatory cascades."],
+["What enzyme produces nitric oxide and from what substrate?","Nitric oxide synthase (NOS), from L-arginine + O₂ (yields NO + citrulline). Activated by Ca²⁺-calmodulin."],
+["Name the three NOS isoforms and where each is found.","nNOS — exclusively in neurons. eNOS — endothelial cells and neurons. iNOS — immune cells and neurons (induced by inflammation)."],
+["What is NO's classic intracellular target?","Soluble guanylate cyclase (sGC), which converts GTP → cGMP."],
+["How does NO contribute to stroke damage?","NO + superoxide → peroxynitrite (ONOO⁻), which damages neurons during ischemia–reperfusion."],
+];
+
+let fcIndex=0;
+function renderCard(){document.getElementById('fc-front').textContent=flashcards[fcIndex][0];document.getElementById('fc-back').textContent=flashcards[fcIndex][1];document.getElementById('flashcard').classList.remove('flipped');document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+flashcards.length}
+function flipCard(){document.getElementById('flashcard').classList.toggle('flipped')}
+function nextCard(){fcIndex=(fcIndex+1)%flashcards.length;renderCard()}
+function prevCard(){fcIndex=(fcIndex-1+flashcards.length)%flashcards.length;renderCard()}
+function shuffleCards(){for(let i=flashcards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[flashcards[i],flashcards[j]]=[flashcards[j],flashcards[i]]}fcIndex=0;renderCard()}
+renderCard();
+
+const quizQuestions=[
+{q:"CB1 receptors are most abundantly expressed in:",opts:["Immune cells","Brain","Skin","Bone marrow"],ans:1,exp:"CB1 is highly expressed in the brain (also adipose, muscle, liver, GI, pancreas, repro/CV tissues). CB2 dominates the immune system."},
+{q:"CB2 receptors are predominantly expressed on:",opts:["Cerebellar Purkinje cells","Cardiac myocytes","Immune cells (T, B, monocytes, spleen, tonsils)","Skeletal muscle"],ans:2,exp:"CB2 is primarily on immune cells; some neuronal expression is being studied."},
+{q:"CB1 and CB2 are both:",opts:["Ligand-gated ion channels","Tyrosine kinase receptors","G-protein–coupled receptors","Nuclear hormone receptors"],ans:2,exp:"Both CB1 and CB2 are GPCRs, typically Gi/o-coupled."},
+{q:"Which of the following is an endocannabinoid?",opts:["Anandamide","Δ⁹-THC","Rimonabant","URB597"],ans:0,exp:"Anandamide (AEA) and 2-AG are the two main endogenous cannabinoids. Δ⁹-THC is plant-derived."},
+{q:"Endocannabinoids are:",opts:["Stored in vesicles by VMAT and released by exocytosis","Synthesized on demand from membrane phospholipids","Synthesized from amino acids and stored in vesicles","Loaded into vesicles by VNUT and co-released with ATP"],ans:1,exp:"Endocannabinoids are NOT stored in vesicles. They are made on demand from membrane lipids and released immediately."},
+{q:"In the brain, endocannabinoids primarily act as:",opts:["Anterograde transmitters","Retrograde messengers","Hormones in the bloodstream","Volume transmitters via the CSF"],ans:1,exp:"In the brain, endocannabinoids are released from the postsynaptic cell and act on presynaptic CB1 — retrograde signaling."},
+{q:"Which enzyme degrades anandamide?",opts:["MGL/MAGL","FAAH","MAO","COMT"],ans:1,exp:"FAAH (fatty acid amide hydrolase) breaks AEA into arachidonic acid + ethanolamine."},
+{q:"2-AG is degraded primarily by:",opts:["FAAH","MGL / MAGL","Acetylcholinesterase","Catalase"],ans:1,exp:"MGL/MAGL hydrolyzes 2-AG into arachidonic acid + glycerol."},
+{q:"URB597 is a:",opts:["CB1 antagonist","FAAH inhibitor","CB2 agonist","MAGL inhibitor"],ans:1,exp:"URB597 inhibits FAAH, raising AEA and increasing endocannabinoid tone at CB1."},
+{q:"Rimonabant was developed as a treatment for:",opts:["Pain","Obesity","Anxiety","Multiple sclerosis"],ans:1,exp:"Rimonabant is a CB1 antagonist approved in Europe for obesity (later withdrawn for psychiatric side effects)."},
+{q:"Anandamide is synthesized from:",opts:["Phosphatidylinositol","Phosphatidylethanolamine","Phosphatidylserine","Phosphatidylcholine"],ans:1,exp:"AEA: phosphatidylethanolamine → N-acyltransferase → N-arachidonoyl PE → phospholipase D → anandamide (Ca²⁺-dependent)."},
+{q:"2-AG is synthesized via:",opts:["Phosphatidylinositol → DAG (PLCβ) → 2-AG (DAG lipase)","Tyrosine → DOPA → dopamine","Cholesterol → pregnenolone","Tryptophan → 5-HT"],ans:0,exp:"PI → PLCβ → DAG → DAG lipase → 2-AG. PLCβ is activated downstream of mGluR/mAChR + Ca²⁺."},
+{q:"The Canadian-approved oromucosal cannabinoid spray contains:",opts:["Rimonabant only","Δ⁹-THC + cannabidiol","AM404 only","Pure anandamide"],ans:1,exp:"Approved in Canada for MS-related neuropathic pain and adjunctive cancer pain."},
+{q:"Cannabinoid agonists are useful for:",opts:["Inducing emesis","Suppressing nausea/vomiting and stimulating appetite","Lowering blood pressure exclusively","Stimulating immune attack"],ans:1,exp:"Cannabinoid agonists suppress nausea/vomiting; CB1 in hypothalamus drives appetite — agonists ↑ feeding, antagonists ↓ feeding."},
+{q:"The order of ATP breakdown outside the cell is:",opts:["ATP → AMP → ADP → adenosine","ATP → ADP → AMP → adenosine","ATP → adenosine → ADP","ATP → cAMP → AMP → adenosine"],ans:1,exp:"Ectodiphosphohydrolase: ATP → ADP → AMP. Then ectonucleotidase: AMP → adenosine. <1 sec total."},
+{q:"Which transporter loads ATP into synaptic vesicles?",opts:["VMAT","VNUT","VGLUT","DAT"],ans:1,exp:"VNUT = vesicular nucleotide transporter. Allows ATP to be co-released with classic neurotransmitters."},
+{q:"P2X receptors are:",opts:["GPCRs that increase cAMP","Ligand-gated cation channels gated by ATP","Tyrosine kinase receptors","Voltage-gated channels"],ans:1,exp:"P2X (1–7) are ATP-gated ion channels (Ca²⁺/Na⁺ in). P2X7 forms a large pore with prolonged activation."},
+{q:"The A2A adenosine receptor signals through:",opts:["Gi/o (↓ cAMP)","Gs (↑ cAMP)","Gq (PLC/IP₃)","An ion channel"],ans:1,exp:"A2A and A2B are Gs-coupled (↑ cAMP). A1 and A3 are Gi/o-coupled (↓ cAMP)."},
+{q:"Caffeine produces its stimulant effect by:",opts:["Activating dopamine receptors","Antagonizing adenosine receptors","Inhibiting MAO","Activating CB1 receptors"],ans:1,exp:"Caffeine blocks adenosine receptors (especially A2A). Adenosine normally inhibits catecholamine release; antagonism → ↑ catecholamines → alertness."},
+{q:"Which is NOT a metabolite of caffeine?",opts:["Paraxanthine","Theobromine","Theophylline","Anandamide"],ans:3,exp:"Caffeine is metabolized into paraxanthine (~84%), theobromine (~12%), and theophylline (~4%) — all adenosine antagonists."},
+{q:"Which gas signals neurons by activating soluble guanylate cyclase?",opts:["CO₂","Nitric oxide (NO)","Hydrogen sulfide only","Oxygen"],ans:1,exp:"NO diffuses into nearby cells and activates sGC → cGMP. (H₂S is also a gasotransmitter, but the canonical answer here is NO.)"},
+{q:"NO is produced from:",opts:["Tyrosine + ATP","L-arginine + O₂","Glutamate + GTP","Choline + acetyl-CoA"],ans:1,exp:"NOS converts L-arginine + O₂ → NO + citrulline, activated by Ca²⁺-calmodulin."},
+{q:"Which NOS isoform is found exclusively in neurons?",opts:["eNOS","iNOS","nNOS","mNOS"],ans:2,exp:"nNOS is neuron-only. eNOS is in endothelial cells AND neurons. iNOS is in immune cells AND neurons (and is induced by inflammation)."},
+{q:"NOS activity is normally triggered by:",opts:["cAMP binding","Ca²⁺-calmodulin","Direct glucose binding","Falling pH"],ans:1,exp:"nNOS and eNOS are activated by Ca²⁺-CaM; iNOS is largely Ca²⁺-independent and induced by inflammatory signals."},
+{q:"Why is NO well-suited as a retrograde messenger?",opts:["It is stored in dense-core vesicles","It is a small gas that freely diffuses across membranes","It is degraded by FAAH","It binds an extracellular receptor on the presynaptic cell"],ans:1,exp:"Because NO is a small gas, it can leave the postsynaptic cell, cross the cleft, and enter the presynaptic terminal to act on sGC."},
+{q:"Peroxynitrite (ONOO⁻) is harmful because it:",opts:["Activates NMDA receptors","Forms when NO meets superoxide and damages neurons in ischemia–reperfusion","Is an antioxidant","Inhibits guanylate cyclase only briefly"],ans:1,exp:"NO + O₂•⁻ → ONOO⁻ → oxidative damage; especially relevant in stroke (ischemia–reperfusion)."},
+];
+
+const hardQuestions=[
+{q:"A drug that selectively inhibits FAAH would be expected to:",opts:["Decrease anandamide levels","Increase anandamide levels and CB1 tone","Block CB2 receptors","Lower cAMP via Gi"],ans:1,exp:"FAAH degrades AEA. Inhibiting FAAH (e.g., URB597) raises endogenous AEA, increasing CB1 tone — a strategy for pain and other indications."},
+{q:"At a glutamate synapse, postsynaptic depolarization releases endocannabinoids that:",opts:["Bind postsynaptic CB1 to enhance EPSPs","Diffuse back to presynaptic CB1 (Gi/o), reducing Ca²⁺ entry and neurotransmitter release","Get loaded into vesicles by VMAT for the next release","Activate NMDA receptors directly"],ans:1,exp:"Classic retrograde signaling: postsynaptic Ca²⁺/mGluR/mAChR → endocannabinoid → presynaptic CB1 (Gi/o) → ↓ presynaptic Ca²⁺ → ↓ release."},
+{q:"Why would a MAGL inhibitor have CNS effects similar to but distinct from a FAAH inhibitor?",opts:["MAGL also degrades dopamine","MAGL degrades 2-AG, so inhibiting it elevates 2-AG specifically, while FAAH inhibitors elevate AEA","MAGL acts on GABA","They target the same substrate"],ans:1,exp:"FAAH and MAGL hit different endocannabinoids (AEA vs 2-AG), which are made in different ways and may target slightly different synapses."},
+{q:"After tissue injury, ATP released into the extracellular space rapidly becomes:",opts:["cAMP within seconds","Adenosine within seconds","GTP within seconds","Hydrolyzed only over hours"],ans:1,exp:"Ectoenzymes convert ATP → ADP → AMP → adenosine in <1 second, shifting signaling from P2X/P2Y to P1 (adenosine) receptors."},
+{q:"Reactive microglia in the dorsal horn release BDNF in response to ATP acting on:",opts:["A1 receptors","P2X4 receptors","Muscarinic receptors","CB2 receptors"],ans:1,exp:"After peripheral nerve injury, microglial P2X4 activation triggers BDNF release, which alters dorsal-horn neuron responses — a mechanism of neuropathic pain."},
+{q:"After drinking coffee, you feel more alert because caffeine:",opts:["Directly binds dopamine D1 receptors","Antagonizes adenosine A2A receptors, removing adenosine's inhibition of catecholamine release","Increases melatonin","Inhibits VMAT"],ans:1,exp:"Adenosine normally suppresses catecholamines via A2A. Caffeine blocks this, allowing more catecholamine signaling → alertness."},
+{q:"A patient with a stroke shows neuronal damage partly mediated by NO. The proposed mechanism is:",opts:["NO directly cleaves DNA","NO + superoxide → peroxynitrite (ONOO⁻), damaging neurons during ischemia–reperfusion","NO is a typical excitatory neurotransmitter that overstimulates ion channels","NO triggers FAAH"],ans:1,exp:"During ischemia–reperfusion, NO reacts with O₂•⁻ to form peroxynitrite, a potent oxidant that nitrates and damages proteins/lipids."},
+{q:"NO can affect protein function without using a receptor by:",opts:["Phosphorylating serines","S-nitrosylating cysteine residues","Acetylating lysines","Methylating histones"],ans:1,exp:"NO can S-nitrosylate cysteines, a post-translational modification that alters protein function — independent of sGC/cGMP signaling."},
+{q:"Which feature most distinguishes endocannabinoids and NO from 'classical' neurotransmitters?",opts:["They are stored in vesicles like glutamate","Both are synthesized on demand and released without classical exocytosis (and NO is gaseous)","They use voltage-gated release exclusively","They are degraded only inside the cell of origin"],ans:1,exp:"Endocannabinoids are made on demand from membrane lipids; NO is a gas made on demand from L-arginine. Neither is stockpiled in vesicles."},
+{q:"A clinician wants to treat chronic neuropathic pain while avoiding the psychotropic effects of CB1 agonism. The best target would be:",opts:["A pure CB1 agonist","A selective CB2 agonist or an endocannabinoid-degradation inhibitor","A CB1 antagonist (rimonabant)","A general nicotinic antagonist"],ans:1,exp:"CB2 agonists provide anti-nociception (especially in inflammatory/neuropathic pain) without CB1-mediated psychotropic effects. FAAH/MGL inhibitors raise endocannabinoids more selectively at active sites."},
+];
+
+function buildQuiz(qs,cid,sid){const c=document.getElementById(cid);c.innerHTML='';qs.forEach((q,i)=>{const d=document.createElement('div');d.className='quiz-q';d.innerHTML=`<p><span class="q-num">${i+1}</span>${q.q}</p>${q.opts.map((o,j)=>`<button class="quiz-option" onclick="checkAns(this,${i},${j},'${cid}','${sid}')">${o}</button>`).join('')}<div class="explanation" id="exp-${cid}-${i}">${q.exp}</div>`;c.appendChild(d)})}
+function checkAns(btn,qi,oi,cid,sid){const qs=cid==='quiz-container'?quizQuestions:hardQuestions;const btns=btn.parentElement.querySelectorAll('.quiz-option');btns.forEach(b=>b.classList.add('disabled'));if(oi===qs[qi].ans)btn.classList.add('correct');else{btn.classList.add('wrong');btns[qs[qi].ans].classList.add('correct')}document.getElementById(`exp-${cid}-${qi}`).classList.add('show');updateScore(cid,sid)}
+function updateScore(cid,sid){let a=0,c=0;document.getElementById(cid).querySelectorAll('.quiz-q').forEach(q=>{const cr=q.querySelector('.correct'),wr=q.querySelector('.wrong');if(cr||wr)a++;if(cr&&!wr)c++});document.getElementById(sid).textContent=c+' / '+a}
+function resetQuiz(t){if(t==='quiz'){buildQuiz(quizQuestions,'quiz-container','quiz-score');document.getElementById('quiz-score').textContent='0 / 0'}else{buildQuiz(hardQuestions,'hard-container','hard-score');document.getElementById('hard-score').textContent='0 / 0'}}
+buildQuiz(quizQuestions,'quiz-container','quiz-score');buildQuiz(hardQuestions,'hard-container','hard-score');
+
+const matchPairs=[
+["AEA (anandamide)","Endocannabinoid made from phosphatidylethanolamine"],
+["2-AG","Endocannabinoid made via DAG lipase from PI"],
+["Δ⁹-THC","Plant-derived CB1 agonist"],
+["Rimonabant","CB1 antagonist (was approved in Europe for obesity)"],
+["URB597","FAAH inhibitor (raises AEA)"],
+["CB2 receptor","Cannabinoid GPCR predominantly on immune cells"],
+["VNUT","Loads ATP into synaptic vesicles"],
+["P2X","ATP-gated cation channel"],
+["A2A","Adenosine GPCR coupled to Gs (↑ cAMP)"],
+["Caffeine","Adenosine receptor antagonist"],
+["nNOS","NO synthase exclusive to neurons"],
+["sGC","NO target enzyme — produces cGMP"],
+];
+let matchSel={left:null,right:null},matchedN=0;
+function resetMatching(){matchSel={left:null,right:null};matchedN=0;document.getElementById('match-score').textContent='0 / '+matchPairs.length;renderMatching()}
+function renderMatching(){const l=matchPairs.map((p,i)=>({t:p[0],i})),r=matchPairs.map((p,i)=>({t:p[1],i}));for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}document.getElementById('match-left').innerHTML=l.map(x=>`<div class="match-item" data-side="left" data-idx="${x.i}" onclick="selMatch(this)">${x.t}</div>`).join('');document.getElementById('match-right').innerHTML=r.map(x=>`<div class="match-item" data-side="right" data-idx="${x.i}" onclick="selMatch(this)">${x.t}</div>`).join('')}
+function selMatch(el){const s=el.dataset.side,idx=+el.dataset.idx;document.querySelectorAll(`.match-item[data-side="${s}"]`).forEach(e=>{if(!e.classList.contains('matched'))e.classList.remove('selected')});el.classList.add('selected');matchSel[s]={el,idx};if(matchSel.left&&matchSel.right){if(matchSel.left.idx===matchSel.right.idx){matchSel.left.el.classList.remove('selected');matchSel.right.el.classList.remove('selected');matchSel.left.el.classList.add('matched');matchSel.right.el.classList.add('matched');matchedN++;document.getElementById('match-score').textContent=matchedN+' / '+matchPairs.length}else{matchSel.left.el.classList.add('wrong-match');matchSel.right.el.classList.add('wrong-match');setTimeout(()=>{matchSel.left.el.classList.remove('selected','wrong-match');matchSel.right.el.classList.remove('selected','wrong-match');matchSel={left:null,right:null}},600);return}matchSel={left:null,right:null}}}
+renderMatching();
+</script>
+</body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drug Dependence, Abuse &amp; Tolerance - Study Guide</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0d12;--surface:#141820;--surface2:#1c2130;--border:#272d40;--text:#dfe2ed;--text-dim:#838aa4;--accent:#4e8ef7;--accent-light:#7cb0ff;--green:#2dd4a0;--green-dim:#2dd4a018;--red:#f06070;--red-dim:#f0607018;--orange:#f0a040;--purple:#a070e0;--teal:#30d0c8;--yellow:#ffd43b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:58px;gap:6px;overflow-x:auto}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-brand{font-weight:700;font-size:15px;color:var(--accent-light);white-space:nowrap;margin-right:14px}
+.nav-btn{background:none;border:1px solid transparent;color:var(--text-dim);padding:6px 13px;border-radius:8px;cursor:pointer;font-size:13px;white-space:nowrap;transition:all .2s;font-weight:500}
+.nav-btn:hover{color:var(--text);background:var(--surface2)}
+.nav-btn.active{color:var(--accent-light);background:#4e8ef715;border-color:#4e8ef740}
+main{max-width:820px;margin:0 auto;padding:80px 24px 60px}
+.section{display:none}.section.active{display:block}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:20px}
+.card h2{font-size:20px;font-weight:700;margin-bottom:14px}
+.card h3{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--accent-light)}
+.card p,.card li{font-size:14.5px;color:var(--text-dim);line-height:1.7}
+.card ul{padding-left:20px}.card li{margin-bottom:5px}
+.card li::marker{color:var(--accent)}
+.hl{color:var(--green);font-weight:600}
+.drug{color:var(--orange);font-weight:600}
+.warn{color:var(--red);font-weight:600}
+.receptor{color:var(--purple);font-weight:600}
+.mol{color:var(--teal);font-weight:600}
+.key{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-right:4px;letter-spacing:.5px}
+.hero-card{background:linear-gradient(135deg,#4e8ef720,#2dd4a010);border-color:#4e8ef730;text-align:center;padding:44px 28px}
+.hero-card h1{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.hero-card p{color:var(--text-dim);font-size:15px}
+.hero-stats{display:flex;gap:14px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-align:center;min-width:110px}
+.stat-num{font-size:24px;font-weight:800;color:var(--accent-light)}
+.stat-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.tab-row{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:8px 15px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
+.tab-btn:hover{color:var(--text)}.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab-content{display:none}.tab-content.active{display:block}
+.cmp-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+.cmp-table th{background:var(--surface2);color:var(--accent-light);padding:10px 12px;text-align:left;border:1px solid var(--border);font-weight:600}
+.cmp-table td{padding:9px 12px;border:1px solid var(--border);color:var(--text-dim)}
+.quiz-q{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px}
+.quiz-q>p{font-size:15px;font-weight:600;margin-bottom:14px;color:var(--text)}
+.q-num{display:inline-block;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:6px;text-align:center;line-height:24px;font-size:12px;font-weight:700;margin-right:8px}
+.quiz-option{display:block;width:100%;text-align:left;background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:12px 16px;border-radius:10px;cursor:pointer;font-size:14px;margin-bottom:8px;transition:all .2s;font-family:inherit}
+.quiz-option:hover{border-color:var(--accent);color:var(--text);background:#4e8ef710}
+.quiz-option.correct{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.quiz-option.wrong{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.quiz-option.disabled{pointer-events:none}
+.explanation{display:none;margin-top:12px;padding:12px 16px;background:var(--surface2);border-radius:10px;font-size:13px;color:var(--text-dim);border-left:3px solid var(--accent)}
+.explanation.show{display:block}
+.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 28px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.score-text{font-size:15px;font-weight:600}
+.score-pct{font-size:28px;font-weight:800;color:var(--accent-light)}
+.reset-btn{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;transition:all .2s}
+.reset-btn:hover{background:var(--accent-light);color:var(--bg)}
+.fc-container{perspective:1000px;margin-bottom:16px}
+.flashcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px;cursor:pointer;transition:transform .5s;transform-style:preserve-3d;position:relative}
+.flashcard:hover{box-shadow:0 4px 24px #4e8ef718}
+.flashcard.flipped{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:32px;backface-visibility:hidden;border-radius:14px}
+.fc-front{font-size:16px;font-weight:600}
+.fc-back{transform:rotateY(180deg);font-size:15px;color:var(--green);background:var(--surface);line-height:1.6}
+.fc-nav{display:flex;gap:10px;justify-content:center;align-items:center}
+.fc-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.fc-btn:hover{background:var(--accent);border-color:var(--accent)}
+.fc-counter{font-size:13px;color:var(--text-dim);font-weight:600;min-width:60px;text-align:center}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.match-col-header{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:700;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.match-item{padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;font-size:13px;cursor:pointer;transition:all .2s;color:var(--text-dim);margin-bottom:8px}
+.match-item:hover{border-color:var(--accent);color:var(--text)}
+.match-item.selected{border-color:var(--accent);background:#4e8ef715;color:var(--accent-light)}
+.match-item.matched{border-color:var(--green);background:var(--green-dim);color:var(--green);pointer-events:none;opacity:.7}
+.match-item.wrong-match{border-color:var(--red);background:var(--red-dim);color:var(--red)}
+@media(max-width:600px){.nav-brand{display:none}main{padding:74px 14px 40px}.card{padding:20px}.hero-card{padding:30px 20px}.hero-card h1{font-size:22px}.match-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+<span class="nav-brand">NeuroStudy</span>
+<button class="nav-btn active" onclick="showSection('home',event)">Home</button>
+<button class="nav-btn" onclick="showSection('learn',event)">Learn</button>
+<button class="nav-btn" onclick="showSection('flashcards',event)">Flashcards</button>
+<button class="nav-btn" onclick="showSection('quiz',event)">Quiz</button>
+<button class="nav-btn" onclick="showSection('matching',event)">Matching</button>
+<button class="nav-btn" onclick="showSection('hard',event)">Hard Quiz</button>
+</div></nav>
+<main>
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+<div class="card hero-card">
+<h1>Drug Dependence, Abuse &amp; Tolerance</h1>
+<p>Definitions &middot; Reward pathway &middot; Dependence liability &middot; CSA schedules &middot; Stimulants, depressants, cannabinoids &middot; Treatments</p>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">8</div><div class="stat-label">Topic tabs</div></div>
+<div class="stat"><div class="stat-num">30</div><div class="stat-label">Flashcards</div></div>
+<div class="stat"><div class="stat-num">28</div><div class="stat-label">Quiz Qs</div></div>
+<div class="stat"><div class="stat-num">10</div><div class="stat-label">Hard Qs</div></div>
+</div>
+</div>
+<div class="card"><h2>How to Use</h2><ul>
+<li><span class="hl">Learn</span> &mdash; All material organized by topic with tables</li>
+<li><span class="hl">Flashcards</span> &mdash; Click a card to flip; arrows to navigate</li>
+<li><span class="hl">Quiz</span> &mdash; 28 multiple-choice questions with instant feedback</li>
+<li><span class="hl">Matching</span> &mdash; Match drugs/treatments to mechanisms</li>
+<li><span class="hl">Hard Quiz</span> &mdash; 10 clinical-application MCQs</li>
+</ul></div>
+<div class="card"><h2>Big Picture</h2>
+<p>Three concepts to keep separate:</p>
+<ul>
+<li><span class="hl">Tolerance</span> &mdash; the body becomes <em>less</em> responsive to a dose; user must take more to feel the same effect.</li>
+<li><span class="hl">Dependence</span> &mdash; a stable change in brain function; stopping causes a <em>withdrawal syndrome</em>. Even non-addictive drugs (SSRIs, antipsychotics) can cause dependence.</li>
+<li><span class="warn">Addiction</span> &mdash; compulsive drug-seeking behavior, relapse, and dulled response to natural rewards. Implies physical AND psychological dependence.</li>
+</ul>
+<p>Virtually all addictive drugs converge on the <span class="hl">mesolimbic dopamine reward pathway</span> (VTA → NAc) regardless of their primary molecular target.</p>
+</div>
+</div>
+
+<!-- LEARN -->
+<div class="section" id="sec-learn">
+<div class="tab-row">
+<button class="tab-btn active" onclick="showTab('learn',0,event)">Definitions</button>
+<button class="tab-btn" onclick="showTab('learn',1,event)">Reward &amp; Reinforcement</button>
+<button class="tab-btn" onclick="showTab('learn',2,event)">Dependence Liability</button>
+<button class="tab-btn" onclick="showTab('learn',3,event)">CSA / Schedules</button>
+<button class="tab-btn" onclick="showTab('learn',4,event)">Treatment</button>
+<button class="tab-btn" onclick="showTab('learn',5,event)">Stimulants</button>
+<button class="tab-btn" onclick="showTab('learn',6,event)">Depressants</button>
+<button class="tab-btn" onclick="showTab('learn',7,event)">Cannabinoids</button>
+</div>
+
+<div class="tab-content active" id="learn-0">
+<div class="card"><h2>Key Definitions</h2>
+<table class="cmp-table">
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td><span class="hl">Drug abuse</span></td><td>Any recurrent use of substances that are illegal or that cause harm to the individual.</td></tr>
+<tr><td><span class="hl">Drug dependence</span></td><td>Body's <em>physical need</em> for a specific agent &mdash; a <span class="hl">stable change in brain function</span>. Stopping &rarr; withdrawal symptoms. Implies physical and/or psychological dependence.</td></tr>
+<tr><td><span class="hl">Drug addiction</span></td><td>Compulsive drug taking that takes precedence over other needs; <span class="warn">drug-seeking behavior</span>, vulnerability to relapse, and decreased response to natural rewards.</td></tr>
+<tr><td><span class="hl">Tolerance</span></td><td>Body becomes <em>less responsive</em> to a given dose &rarr; must increase intake to recapture the same effect. A defining feature of dependence.</td></tr>
+<tr><td><span class="hl">Withdrawal / abstinence syndrome</span></td><td>Physical AND psychological adverse effects after stopping a drug; lasts days to weeks; intensity and nature vary by drug class.</td></tr>
+</table>
+<h3>Dependence ≠ addiction</h3>
+<p>Several psychotropic drugs (antidepressants, antipsychotics) <span class="warn">produce withdrawal symptoms but are not addictive</span>. So the two terms must be distinguished.</p></div>
+</div>
+
+<div class="tab-content" id="learn-1">
+<div class="card"><h2>Reward, Reinforcement &amp; Conditioning</h2>
+<p>"Drugs of abuse" are pharmacologically heterogeneous but share one feature: their effect is <span class="hl">hedonic</span> (pleasurable) &mdash; users want to repeat it.</p>
+<h3>Mesolimbic dopamine pathway (the "reward pathway")</h3>
+<ul>
+<li>Begins in the <span class="receptor">ventral tegmental area (VTA)</span> in the midbrain</li>
+<li>Projects to: <span class="receptor">nucleus accumbens</span>, amygdala, hippocampus, prefrontal cortex</li>
+<li>Mediates motivation, reward, and behavior &mdash; makes survival behaviors feel good</li>
+<li><span class="hl">Virtually all dependence-producing drugs activate this pathway</span> even though their primary molecular sites differ</li>
+</ul>
+<h3>Two kinds of reinforcement</h3>
+<table class="cmp-table">
+<tr><th>Type</th><th>Mechanism</th></tr>
+<tr><td><span class="hl">Positive reinforcement</span></td><td>Reward pathway is stimulated &rarr; user feels pleasure &rarr; repeats behavior</td></tr>
+<tr><td><span class="hl">Negative reinforcement</span></td><td>User self-administers to escape aversive withdrawal symptoms</td></tr>
+</table>
+<p><span class="hl">Conditioning</span> (cues, contexts, paraphernalia) further sustains dependence: drug-associated cues evoke craving; cues associated with cessation become aversive.</p>
+<p>In long-term dependence, <span class="warn">psychological reinforcement</span> &mdash; not physical dependence &mdash; is the main driver of relapse.</p></div>
+</div>
+
+<div class="tab-content" id="learn-2">
+<div class="card"><h2>Dependence Liability by Drug Class</h2>
+<table class="cmp-table">
+<tr><th>Class</th><th>Examples</th><th>Dependence liability</th></tr>
+<tr><td>Narcotic analgesics</td><td><span class="drug">Morphine, heroin (diamorphine)</span></td><td><span class="warn">Very strong</span></td></tr>
+<tr><td>General CNS depressants</td><td><span class="drug">Ethanol, barbiturates</span></td><td>Strong</td></tr>
+<tr><td></td><td>Methaqualone, glutethimide, anesthetics</td><td>Moderate</td></tr>
+<tr><td></td><td>Solvents</td><td>Strong</td></tr>
+<tr><td>Anxiolytics</td><td><span class="drug">Benzodiazepines</span></td><td>Moderate</td></tr>
+<tr><td>Psychomotor stimulants</td><td><span class="drug">Amphetamines</span></td><td>Strong</td></tr>
+<tr><td></td><td><span class="drug">Cocaine</span></td><td><span class="warn">Very strong</span></td></tr>
+<tr><td></td><td>Caffeine</td><td>Weak</td></tr>
+<tr><td></td><td><span class="drug">Nicotine</span></td><td><span class="warn">Very strong</span></td></tr>
+<tr><td>Other</td><td>LSD</td><td>Weak or absent</td></tr>
+<tr><td></td><td>PCP</td><td>Moderate</td></tr>
+<tr><td></td><td>Cannabis</td><td>Weak</td></tr>
+</table>
+<h3>Warning signs of drug abuse (selected)</h3>
+<ul>
+<li>Secrecy / withdrawal; depressed or suicidal</li>
+<li>Loss of focus on customary activities; trouble with the law</li>
+<li>Cycles of energy / restlessness / inability to sleep <em>or</em> abnormally slow movements / speech</li>
+<li>Confusion or disorientation; sudden weight loss or gain</li>
+</ul></div>
+</div>
+
+<div class="tab-content" id="learn-3">
+<div class="card"><h2>Controlled Substances Act (CSA, 1970s)</h2>
+<ul>
+<li>Regulates manufacture, importation, possession, and distribution of certain drugs</li>
+<li>Created <span class="hl">5 Schedules</span>; oversight by <span class="receptor">Department of Justice (DEA)</span> and <span class="receptor">Department of Health &amp; Human Services</span></li>
+<li><span class="warn">Explicitly exempt</span>: tobacco, beer, wine, spirits, caffeine</li>
+</ul>
+<h3>Schedule I criteria (all three must apply)</h3>
+<ol>
+<li>High potential for <span class="warn">abuse</span></li>
+<li><span class="warn">No currently accepted medical use</span> in US treatment</li>
+<li><span class="warn">Lack of accepted safety</span> for use under medical supervision</li>
+</ol>
+<p>No prescriptions may be written for Schedule I; production is quota-limited by the DEA.</p>
+<h3>Schedule examples</h3>
+<table class="cmp-table">
+<tr><th>Schedule</th><th>Restriction</th><th>Examples</th></tr>
+<tr><td><span class="warn">I</span></td><td>Most restrictive (no Rx)</td><td>Cannabis (federal), heroin, MDMA (ecstasy), LSD</td></tr>
+<tr><td>II</td><td>Most restrictive of those with medical uses</td><td>Morphine, cocaine, methadone, oxycodone, fentanyl</td></tr>
+<tr><td>III–IV</td><td>Lower abuse potential, accepted medical uses</td><td>(BZDs, codeine combos, etc.)</td></tr>
+<tr><td>V</td><td>Least restrictive</td><td>Cough medicines with codeine</td></tr>
+</table></div>
+</div>
+
+<div class="tab-content" id="learn-4">
+<div class="card"><h2>Pharmacological Approaches to Treating Dependence</h2>
+<table class="cmp-table">
+<tr><th>Strategy</th><th>Examples</th></tr>
+<tr><td><span class="hl">Substitution to alleviate withdrawal</span></td><td><span class="drug">Methadone</span> short-term for opiate withdrawal &middot; <span class="drug">Benzodiazepines</span> for alcohol withdrawal &middot; <span class="drug">Clonidine</span> (α₂ agonist) to diminish withdrawal symptoms</td></tr>
+<tr><td><span class="hl">Long-term substitution</span></td><td><span class="drug">Methadone</span> maintenance for opioid use disorder &middot; <span class="drug">Nicotine</span> patches / gum for smoking cessation</td></tr>
+<tr><td><span class="hl">Blocking therapies</span></td><td><span class="drug">Naltrexone</span> blocks opioid effects (and reduces alcohol reward) &middot; <span class="drug">Mecamylamine</span> blocks nicotine effects &middot; immunization against cocaine / nicotine (investigational)</td></tr>
+</table>
+<h3>Why "substitution" works</h3>
+<p>Replacing a short-acting, high-reinforcement drug (heroin, alcohol, short-acting BZD) with a longer-acting, less-rewarding agonist at the same target prevents withdrawal &mdash; while removing the rapid "high" that drives compulsive use. The patient can then taper.</p></div>
+</div>
+
+<div class="tab-content" id="learn-5">
+<div class="card"><h2>Stimulants — Amphetamine / Methamphetamine</h2>
+<ul>
+<li>Produce alertness, increased energy, euphoria</li>
+<li>Routes and onset:
+<ul>
+<li><span class="hl">Smoking / IV</span> &mdash; immediate intense rush, lasts only minutes</li>
+<li><span class="hl">Snorting</span> &mdash; euphoria after 3–5 min (no intense rush)</li>
+<li><span class="hl">Swallowing</span> &mdash; euphoria after 15–20 min (no intense rush)</li>
+</ul>
+</li>
+</ul>
+<h3>"Binge abuse cycle"</h3>
+<table class="cmp-table">
+<tr><th>Stage</th><th>Duration</th><th>Features</th></tr>
+<tr><td>Rush</td><td>5–30 min</td><td>↑ HR, BP, metabolism; intense pleasure</td></tr>
+<tr><td>High</td><td>4–16 h</td><td>Aggressive, "smarter," argumentative</td></tr>
+<tr><td>Binge</td><td>3–15 days</td><td>Hyperactive mentally and physically; sustains the high</td></tr>
+<tr><td><span class="warn">Tweaking</span></td><td>(Most dangerous stage)</td><td>No sleep 3–15 days; irritable, paranoid, violent; eyes move ~10× faster than normal; voice quiver; quick jerky movements; no dose recreates euphoria</td></tr>
+<tr><td>Crash → normal → withdrawal</td><td>Up to 30–90 days</td><td>Depression, lethargy, suicidal craving, fatigue, excessive sleep, agitation, possible psychosis</td></tr>
+</table>
+<p><span class="warn">Chronic features:</span> extreme weight loss, pale skin, body odor, discolored / rotten teeth ("meth mouth"), open sores from "<span class="warn">crank bug</span>" hallucinations of bugs on skin.</p>
+<p><span class="hl">Treatment:</span> motivation; avoid all stimulants (incl. caffeine and tobacco); behavioral programs; <span class="drug">antidepressants</span> (depression/craving), <span class="drug">sedatives</span> (anxiety/sleep), <span class="drug">antipsychotics</span> (paranoia/cravings).</p>
+</div>
+<div class="card"><h2>Stimulants — Cocaine</h2>
+<table class="cmp-table">
+<tr><th>Route</th><th>Onset of intense rush</th></tr>
+<tr><td>IV (injection)</td><td>15–30 sec</td></tr>
+<tr><td>Smoking (freebase / crack)</td><td>5–8 sec</td></tr>
+<tr><td>Snorting (intranasal)</td><td>3–5 min to brain (self-limiting; vasoconstriction slows further absorption)</td></tr>
+</table>
+<h3>Forms</h3>
+<ul>
+<li><span class="drug">Cocaine hydrochloride</span> &mdash; water-soluble: drinking, snorting, injecting</li>
+<li><span class="drug">Freebase cocaine</span> &mdash; water-insoluble: smoking</li>
+<li><span class="drug">Crack</span> &mdash; freebase made with sodium bicarbonate; smokeable</li>
+</ul>
+<h3>Withdrawal</h3>
+<p>Anhedonia, anergia, loss of motivation, emotional depression, nightmares, insomnia, hunger.</p>
+<h3>Overdose ("caine reaction")</h3>
+<p>Triggered by anywhere from <span class="hl">1/50 g to 1.2 g</span>. Most users survive the cold-clammy sweaty sensation with a feeling of impending death. Fatalities, however, do occur from <span class="warn">cardiac arrest, seizures, respiratory failure, and severe hyperthermia</span>.</p>
+<p><span class="hl">Treatment:</span> no specific medication &mdash; behavioral programs and treatment programs.</p></div>
+</div>
+
+<div class="tab-content" id="learn-6">
+<div class="card"><h2>Depressants — Benzodiazepines</h2>
+<ul>
+<li>Examples: <span class="drug">diazepam, clonazepam, lorazepam</span></li>
+<li>Abused for sedative + anxiolytic effects</li>
+<li><span class="hl">Withdrawal:</span> similar to alcohol withdrawal (anxiety, tremor, hallucinations, possible seizures)</li>
+<li><span class="hl">Treatment:</span> transfer the dependent patient to an equivalent dose of <span class="drug">diazepam</span>, then <span class="warn">gradual taper</span></li>
+</ul>
+</div>
+<div class="card"><h2>Depressants — Barbiturates</h2>
+<ul>
+<li>Examples: <span class="drug">phenobarbital, pentobarbital, amobarbital</span></li>
+<li>Intoxication resembles ethanol &mdash; relaxed contentment, euphoria</li>
+<li><span class="warn">Main risk of acute abuse: respiratory depression</span> (much narrower therapeutic window than BZDs)</li>
+</ul>
+<h3>Withdrawal (12–20 h after last dose)</h3>
+<ul>
+<li>Anxiety, irritability, ↑ HR &amp; RR, muscle pain, nausea, tremors, hallucinations, confusion, <span class="warn">seizures</span></li>
+<li>Barbiturates ↓ REM sleep &rarr; withdrawal often produces nightmares, insomnia, vivid dreaming (REM rebound)</li>
+</ul>
+<p><span class="hl">Treatment:</span> transfer to equivalent diazepam, then taper.</p>
+</div>
+<div class="card"><h2>Depressants — Methaqualone (Quaaludes)</h2>
+<ul>
+<li>Sedative similar in effect to barbiturates; popular as a hypnotic / sedative / muscle relaxant in the 1960s–70s</li>
+<li><span class="hl">Actions:</span> relaxation, euphoria, drowsiness, ↓ HR/RR, ↑ sexual arousal, numbness of fingers/toes; high doses &rarr; depression, ataxia, slurred speech, headache, photophobia</li>
+<li><span class="warn">Overdose:</span> delirium, convulsions, hypertonia, hyperreflexia, vomiting, renal insufficiency, coma, cardiac/respiratory arrest</li>
+<li><span class="hl">Treatment:</span> diazepam substitution and taper</li>
+</ul>
+</div>
+</div>
+
+<div class="tab-content" id="learn-7">
+<div class="card"><h2>Cannabinoids</h2>
+<p><span class="hl">Marijuana</span> = dried leaves and flower heads. <span class="hl">Hashish</span> = extracted resin. Cannabis extracts contain &gt;60 lipid compounds called <span class="mol">cannabinoids</span>.</p>
+<h3>Receptors</h3>
+<ul>
+<li><span class="receptor">CB1</span> &mdash; the <span class="hl">most abundant GPCR in the human brain</span>. High in hippocampus, cortex, basal ganglia, cerebellum, spinal cord &rarr; explains effects on memory, cognition, movement.</li>
+<li><span class="receptor">CB2</span> &mdash; immune cells and other peripheral tissues</li>
+</ul>
+<h3>Cannabinoid receptor signaling (Gi/o)</h3>
+<ul>
+<li>Directly inhibit N- and P/Q-type Ca²⁺ channels</li>
+<li>Indirectly inhibit A-type Ca²⁺ channels via adenylyl cyclase</li>
+<li>Directly inhibit Na⁺ channels</li>
+<li>Activate inwardly rectifying K⁺ channels</li>
+<li>Activate the MAP-kinase signaling pathway</li>
+</ul>
+<h3>Δ⁹-THC</h3>
+<table class="cmp-table">
+<tr><th>Aspect</th><th>Detail</th></tr>
+<tr><td>Mechanism</td><td>Δ⁹-tetrahydrocannabinol &mdash; agonist at CB1 + CB2</td></tr>
+<tr><td>Actions</td><td>Euphoria, drowsiness, relaxation; impairs short-term memory and skilled motor activity (e.g., driving); catalepsy; analgesia; antiemetic; ↑ appetite; xerostomia; high doses: hallucinations, delusions, toxic psychosis</td></tr>
+<tr><td>Adverse</td><td>↑ HR, ↓ BP, conjunctival redness, ↓ intraocular pressure, bronchodilation; tolerance and mild physical dependence</td></tr>
+</table>
+<h3>Pharmacokinetics</h3>
+<ul>
+<li>Highly lipophilic &mdash; sequestered into body fat; large volume of distribution</li>
+<li>Peak effects ~20 min after smoking; gone after ~3 h. Dronabinol oral peak 2–4 h; psychoactivity ~6 h; appetite stimulation up to 24 h</li>
+<li>Metabolized by mixed-function oxidases; small amount &rarr; <span class="hl">11-hydroxy-THC</span> (more active than Δ⁹-THC); enterohepatic recirculation; biliary elimination &mdash; <span class="hl">can persist 3 months</span> in body</li>
+</ul>
+<h3>Clinical uses</h3>
+<table class="cmp-table">
+<tr><th>Drug</th><th>Use</th></tr>
+<tr><td><span class="drug">Dronabinol (Marinol)</span></td><td>Appetite stimulant in AIDS</td></tr>
+<tr><td><span class="drug">Nabilone (Cesamet)</span></td><td>Synthetic cannabinoid &mdash; antiemetic, neuropathic pain, AIDS appetite</td></tr>
+<tr><td><span class="drug">Sativex</span></td><td>Oromucosal Δ⁹-THC + CBD &mdash; neuropathic pain &amp; MS spasticity</td></tr>
+<tr><td><span class="drug">Rimonabant</span></td><td>CB1 antagonist (anti-obesity, antiemetic in chemo) &mdash; <span class="warn">withdrawn for psychiatric side effects</span></td></tr>
+</table>
+<h3>Withdrawal (often missed)</h3>
+<p>Because cannabinoids leach slowly out of fat, immediate withdrawal is mild &mdash; leading some to think it doesn't occur. Symptoms: irritability/anger, depression, sleep disturbance, ↓ appetite, sweating, tremors, craving. Tolerance develops rapidly.</p></div>
+</div>
+
+</div>
+
+<!-- FLASHCARDS -->
+<div class="section" id="sec-flashcards">
+<div class="fc-container"><div class="flashcard" id="flashcard" onclick="flipCard()">
+<div class="fc-front" id="fc-front"></div>
+<div class="fc-back" id="fc-back"></div>
+</div></div>
+<div class="fc-nav">
+<button class="fc-btn" onclick="prevCard()">‹</button>
+<div class="fc-counter" id="fc-counter">1 / 30</div>
+<button class="fc-btn" onclick="nextCard()">›</button>
+<button class="fc-btn" onclick="shuffleCards()" style="width:auto;padding:0 14px;font-size:13px">Shuffle</button>
+</div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="sec-quiz">
+<div class="score-bar"><div><div class="score-text">Score</div><div class="score-pct" id="quiz-score">0 / 0</div></div><button class="reset-btn" onclick="resetQuiz('quiz')">Reset Quiz</button></div>
+<div id="quiz-container"></div>
+</div>
+
+<!-- MATCHING -->
+<div class="section" id="sec-matching">
+<div class="card" style="padding:14px 28px"><p style="font-size:14px;font-weight:600">Match each term on the left with its description / role on the right.</p></div>
+<div class="score-bar"><div><div class="score-text">Matched</div><div class="score-pct" id="match-score">0 / 12</div></div><button class="reset-btn" onclick="resetMatching()">Reset</button></div>
+<div class="match-grid"><div><div class="match-col-header">Term</div><div id="match-left"></div></div><div><div class="match-col-header">Description / Role</div><div id="match-right"></div></div></div>
+</div>
+
+<!-- HARD QUIZ -->
+<div class="section" id="sec-hard">
+<div class="score-bar"><div><div class="score-text">Score</div><div class="score-pct" id="hard-score">0 / 0</div></div><button class="reset-btn" onclick="resetQuiz('hard')">Reset Quiz</button></div>
+<div id="hard-container"></div>
+</div>
+
+</main>
+<script>
+function showSection(id,e){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');e.target.classList.add('active');window.scrollTo(0,0)}
+function showTab(s,i,e){const p=document.getElementById('sec-'+s);p.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById(s+'-'+i).classList.add('active');e.target.classList.add('active')}
+
+const flashcards=[
+["Define drug abuse.","Any recurrent use of substances that are illegal or that cause harm to the individual."],
+["Define drug dependence.","The body's physical need for a specific agent — a stable change in brain function. Stopping leads to physical/psychological withdrawal symptoms."],
+["Define drug addiction.","A chronic condition with compulsive drug taking that takes precedence over other needs; drug-seeking behavior, vulnerability to relapse, and decreased response to natural rewards."],
+["Define tolerance.","The body becomes less responsive to a given dose; the user must increase intake to reproduce the previous effect."],
+["What is a withdrawal (abstinence) syndrome?","The physical and psychological adverse effects that develop after stopping a drug; lasts days to weeks; intensity and nature vary by drug class."],
+["Why do clinicians distinguish dependence from addiction?","Some drugs (e.g., antidepressants, antipsychotics) produce withdrawal symptoms but are not addictive — so dependence does not always mean addiction."],
+["What is the 'reward pathway'?","The mesolimbic dopamine pathway: VTA in midbrain → nucleus accumbens, amygdala, hippocampus, and prefrontal cortex. Mediates motivation, reward, and behavior."],
+["Why is the mesolimbic pathway central to addiction across all drug classes?","Virtually all dependence-producing drugs converge on it (raise DA in NAc) regardless of their primary molecular target."],
+["Positive vs negative reinforcement in addiction?","Positive: pleasure from reward-pathway stimulation drives repeat use. Negative: aversive withdrawal symptoms drive self-administration to escape them."],
+["Which drugs have very strong dependence liability?","Heroin, morphine, cocaine, nicotine."],
+["Which drugs have weak / absent dependence liability?","LSD (weak or absent), cannabis (weak), caffeine (weak)."],
+["What does the Controlled Substances Act do?","US federal law (1970s) regulating manufacture, importation, possession, and distribution. Created 5 Schedules; oversight by DOJ (DEA) and HHS. Tobacco, alcohol, and caffeine are explicitly exempt."],
+["Three criteria for Schedule I?","High potential for abuse + no currently accepted medical use in US treatment + lack of accepted safety under medical supervision. No prescriptions allowed."],
+["Examples of Schedule I drugs?","Cannabis (federal), heroin, MDMA (ecstasy), LSD."],
+["What schedule are morphine, cocaine, and methadone?","Schedule II — most restrictive of drugs with accepted medical uses."],
+["What is methadone used for in dependence treatment?","Short-term: blunts opiate withdrawal. Long-term: maintenance therapy for opioid addiction (a longer-acting μ agonist that prevents withdrawal without the rapid high)."],
+["Why are benzodiazepines first-line for alcohol withdrawal?","They potentiate GABA-A like ethanol — substituting cross-tolerant inhibition prevents the rebound glutamatergic overactivity (seizures, DTs)."],
+["What is naltrexone used for?","An opioid antagonist that blocks opioid effects (used for opioid use disorder) and reduces alcohol reward (used for alcohol use disorder)."],
+["What is clonidine used for in withdrawal?","α₂-adrenergic agonist used to diminish autonomic withdrawal symptoms (e.g., during opioid withdrawal)."],
+["What is mecamylamine?","A nicotinic acetylcholine receptor antagonist used to block nicotine's effects (smoking-cessation aid)."],
+["Stages of the meth 'binge abuse cycle'?","Rush (5–30 min) → high (4–16 h) → binge (3–15 days) → tweaking (most dangerous, no sleep 3–15 days, paranoid violent) → crash → normal → withdrawal (30–90 days)."],
+["What are 'crank bugs'?","Tactile hallucinations of bugs on the skin in chronic meth users; scratching to remove them produces characteristic open sores and scars."],
+["Onset times of cocaine by route?","IV ≈ 15–30 s; smoking (freebase/crack) ≈ 5–8 s; snorting ≈ 3–5 min (self-limiting because cocaine vasoconstricts the nasal mucosa, slowing further absorption)."],
+["Three forms of cocaine?","Cocaine HCl (water-soluble — drink, snort, inject); freebase cocaine (water-insoluble — smoke); crack cocaine (freebase made with sodium bicarbonate — smoke)."],
+["What is the 'caine reaction'?","Cocaine overdose feeling — sweaty, cold, clammy, sense of impending death. Triggered by anywhere from ~1/50 g to 1.2 g; most survive but cardiac arrest, seizures, respiratory failure, and severe hyperthermia can be fatal."],
+["Main acute risk of barbiturate abuse?","Respiratory depression (much narrower therapeutic index than benzodiazepines)."],
+["Why does barbiturate withdrawal cause vivid dreaming / nightmares?","Barbiturates suppress REM sleep; on withdrawal there is REM rebound — intense, vivid dreams, nightmares, insomnia."],
+["How is benzodiazepine dependence withdrawn?","Switch to an equivalent dose of diazepam (long-acting BZD), then taper gradually."],
+["What is methaqualone?","A sedative similar to barbiturates, popular in the 60s–70s. Overdose: delirium, convulsions, hypertonia, hyperreflexia, vomiting, renal insufficiency, coma, cardiac/respiratory arrest. Treated by diazepam taper."],
+["Where are CB1 receptors most abundant?","CB1 is the most abundant GPCR in the human brain — densest in hippocampus, cortex, basal ganglia, cerebellum, and spinal cord, accounting for cannabis effects on memory, cognition, and movement."],
+["What does Δ⁹-THC do?","Agonist at CB1 and CB2 (Gi/o) — inhibits N- and P/Q-type Ca²⁺ channels, activates inwardly-rectifying K⁺ channels, and engages MAP kinase. Effects: euphoria, drowsiness, ↓ short-term memory, impaired skilled motor activity, analgesia, antiemetic, ↑ appetite."],
+];
+
+let fcIndex=0;
+function renderCard(){document.getElementById('fc-front').textContent=flashcards[fcIndex][0];document.getElementById('fc-back').textContent=flashcards[fcIndex][1];document.getElementById('flashcard').classList.remove('flipped');document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+flashcards.length}
+function flipCard(){document.getElementById('flashcard').classList.toggle('flipped')}
+function nextCard(){fcIndex=(fcIndex+1)%flashcards.length;renderCard()}
+function prevCard(){fcIndex=(fcIndex-1+flashcards.length)%flashcards.length;renderCard()}
+function shuffleCards(){for(let i=flashcards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[flashcards[i],flashcards[j]]=[flashcards[j],flashcards[i]]}fcIndex=0;renderCard()}
+renderCard();
+
+const quizQuestions=[
+{q:"Drug dependence is best described as:",opts:["The body's physical need for a specific agent — a stable change in brain function","A purely psychological habit","Acute intoxication","Recreational use without consequences"],ans:0,exp:"Dependence reflects a stable change in brain function; stopping the drug produces a withdrawal syndrome."},
+{q:"Which best defines tolerance?",opts:["Pleasure from drug-taking","The body becomes less responsive to a given dose; user takes more to achieve previous effect","Avoiding withdrawal symptoms","A purely legal classification"],ans:1,exp:"Tolerance: blunted response to a given dose, requiring escalation."},
+{q:"Why is the distinction between dependence and addiction important?",opts:["They are synonymous","Some drugs (e.g., antidepressants, antipsychotics) cause withdrawal but are not addictive","Addiction never causes withdrawal","Tolerance only happens in addiction"],ans:1,exp:"Several psychotropics produce withdrawal without compulsive drug-seeking — dependence ≠ addiction."},
+{q:"Positive reinforcement in addiction means:",opts:["Avoidance of withdrawal","Pleasure from stimulation of the reward pathway drives repeat use","Conditioned cue avoidance","Tolerance"],ans:1,exp:"Positive reinforcement = repeating behavior because it feels rewarding."},
+{q:"Negative reinforcement in addiction means:",opts:["Drug-induced punishment","Self-administering the drug to escape aversive withdrawal symptoms","Tolerance","Cross-tolerance"],ans:1,exp:"Negative reinforcement = use motivated by escape from unpleasant withdrawal."},
+{q:"The mesolimbic dopamine pathway begins in the:",opts:["Locus coeruleus","Ventral tegmental area (VTA)","Substantia nigra pars compacta","Raphe nucleus"],ans:1,exp:"Dopamine reward neurons originate in the VTA and project to the nucleus accumbens, amygdala, hippocampus, and prefrontal cortex."},
+{q:"Which drug has very strong dependence liability?",opts:["Caffeine","Cannabis","Cocaine","LSD"],ans:2,exp:"Cocaine, nicotine, heroin/morphine are very strong dependence liability."},
+{q:"Which drug has weak or absent dependence liability?",opts:["Heroin","Cocaine","Nicotine","LSD"],ans:3,exp:"LSD has weak or absent dependence liability."},
+{q:"The Controlled Substances Act is overseen by:",opts:["FDA only","Department of Justice (DEA) and Department of Health and Human Services","Federal Reserve","ATF only"],ans:1,exp:"DEA (DOJ) and HHS jointly determine drug scheduling under the CSA."},
+{q:"Schedule I criteria require ALL of the following EXCEPT:",opts:["High potential for abuse","Currently accepted medical use","No accepted safety under medical supervision","No accepted medical use in the US"],ans:1,exp:"Schedule I drugs explicitly have NO currently accepted medical use; they cannot be prescribed."},
+{q:"Which is a Schedule I drug?",opts:["Morphine","Codeine cough syrup","Heroin","Diazepam"],ans:2,exp:"Heroin, MDMA, LSD, and (federally) cannabis are Schedule I. Morphine is Schedule II; codeine cough syrup is Schedule V."},
+{q:"Which substances are explicitly exempt from the CSA?",opts:["Cocaine and morphine","Heroin and LSD","Tobacco, alcohol, and caffeine","Methadone and methamphetamine"],ans:2,exp:"Tobacco, beer, wine, spirits, and caffeine are explicitly exempt from the CSA."},
+{q:"Methadone is best described as:",opts:["A μ-opioid antagonist","A long-acting μ-opioid agonist used short-term to blunt opiate withdrawal and long-term for opioid maintenance","A barbiturate","A benzodiazepine"],ans:1,exp:"Methadone is a longer-acting μ agonist — used both for short-term withdrawal blunting and as long-term maintenance therapy."},
+{q:"Benzodiazepines are first-line treatment for:",opts:["Cocaine overdose","Alcohol withdrawal","LSD-induced psychosis","Cannabis intoxication"],ans:1,exp:"BZDs cross-substitute for ethanol at GABA-A — preventing seizures and DTs during alcohol withdrawal."},
+{q:"Naltrexone is used to:",opts:["Substitute for opioids long term","Block opioid receptors (and reduce alcohol reward)","Activate GABA-A","Block CB1 receptors"],ans:1,exp:"Naltrexone is an opioid antagonist used to block opioid effects and reduce alcohol reward."},
+{q:"Clonidine reduces opioid-withdrawal symptoms by:",opts:["μ-opioid agonism","α₂-adrenergic agonism (suppressing autonomic withdrawal)","NMDA antagonism","COX inhibition"],ans:1,exp:"Clonidine is an α₂ agonist that blunts the autonomic surge of opioid withdrawal."},
+{q:"Mecamylamine is used as:",opts:["A nicotinic ACh receptor antagonist for nicotine effects","A μ agonist","A CB1 antagonist","A barbiturate"],ans:0,exp:"Mecamylamine is a non-selective nicotinic antagonist — used to block nicotine's effects."},
+{q:"The most dangerous stage of the methamphetamine binge cycle is:",opts:["Rush","High","Binge","Tweaking — paranoid, no sleep 3–15 days, often violent"],ans:3,exp:"Tweaking is the most dangerous stage — sleep-deprived, paranoid, violent, with no dose able to recreate the high."},
+{q:"'Crank bugs' refer to:",opts:["A specific drug","Tactile hallucinations of bugs on the skin in chronic meth users","A pharmaceutical brand","A microbiology term"],ans:1,exp:"Tactile hallucinations of bugs on the skin in chronic meth users — scratching causes characteristic sores."},
+{q:"Smoking cocaine produces an intense rush in approximately:",opts:["5–8 seconds","30 minutes","2 hours","8 hours"],ans:0,exp:"Smoking freebase/crack delivers cocaine very rapidly — rush within 5–8 s. IV: 15–30 s. Snorting: 3–5 min to brain."},
+{q:"Snorting cocaine is somewhat self-limiting because:",opts:["Nasal mucosa metabolizes cocaine","Cocaine causes vasoconstriction in the nasal mucosa, slowing further absorption","It tastes bad","Stomach acid degrades it"],ans:1,exp:"Cocaine vasoconstricts; the more snorted, the slower additional absorption — a brake on intranasal dosing."},
+{q:"The 'caine reaction' is:",opts:["A standard EEG finding","Cocaine overdose syndrome — sweaty, cold/clammy, feeling of impending death; can include cardiac arrest, seizure, respiratory failure, hyperthermia","An allergic reaction","A withdrawal feature"],ans:1,exp:"Cocaine overdose; most survive the unpleasant feeling but fatalities occur from cardiac, seizure, respiratory, and hyperthermic mechanisms."},
+{q:"The main acute risk of barbiturate abuse is:",opts:["Hyperthermia","Respiratory depression","Cardiac stimulation","Hypertensive crisis"],ans:1,exp:"Barbiturates have a narrow therapeutic window — respiratory depression is the dominant fatal risk."},
+{q:"Why does barbiturate withdrawal cause vivid dreaming and nightmares?",opts:["Random side effect","Barbiturates suppress REM; withdrawal causes REM rebound","Toxic acetaldehyde buildup","Adrenergic surge"],ans:1,exp:"REM rebound after chronic REM suppression produces intense, vivid dreams during withdrawal."},
+{q:"Benzodiazepine dependence is typically managed by:",opts:["Abrupt discontinuation","Switch to equivalent dose of diazepam, then gradually taper","Naltrexone","Clonidine alone"],ans:1,exp:"Long-acting BZD substitution and gradual taper minimizes withdrawal severity."},
+{q:"CB1 receptors:",opts:["Are ligand-gated ion channels","Are the most abundant GPCRs in the human brain — concentrated in hippocampus, cortex, basal ganglia, cerebellum, spinal cord","Are found mostly on immune cells","Open Cl⁻ channels"],ans:1,exp:"CB1 dominates the brain — explaining cannabis effects on memory, cognition, and movement. CB2 is mostly peripheral/immune."},
+{q:"Δ⁹-THC's mechanism of action is:",opts:["GABA-A potentiator","CB1 + CB2 receptor agonist","Monoamine reuptake inhibitor","NMDA antagonist"],ans:1,exp:"Δ⁹-THC is the major psychoactive cannabinoid, an agonist at both CB1 and CB2."},
+{q:"Why do many people incorrectly assume cannabis has no withdrawal syndrome?",opts:["It actually has none","Cannabinoids are highly lipophilic and persist in fat for up to 3 months — withdrawal develops slowly and is missed","Withdrawal is fatal","Withdrawal is identical to acute intoxication"],ans:1,exp:"Slow leaching out of fat blunts the abrupt onset typical of other drug withdrawals; symptoms still occur (irritability, depression, sleep disturbance, ↓ appetite, sweating, craving)."},
+];
+
+const hardQuestions=[
+{q:"A patient stops their long-term SSRI and develops dizziness and flu-like symptoms. They have never craved the drug. This best illustrates:",opts:["Addiction","Dependence without addiction","Pure tolerance","Acute intoxication"],ans:1,exp:"SSRI-Discontinuation Syndrome is dependence (withdrawal symptoms) without addiction (no compulsive drug-seeking). Distinguishing the two is clinically critical."},
+{q:"A heavy alcohol-use patient is admitted with tremor and possible seizure risk. The most appropriate withdrawal treatment is:",opts:["Naltrexone","Long-acting benzodiazepines on a tapering schedule","Disulfiram","Clonidine alone"],ans:1,exp:"BZDs cross-substitute for ethanol at GABA-A; tapering prevents seizures and DTs."},
+{q:"Why does cocaine, whose primary action is monoamine-reuptake inhibition at the dopamine transporter, also drive addiction across the same pathway as opioids?",opts:["They share an identical receptor","Virtually all dependence-producing drugs converge on the mesolimbic DA reward pathway, regardless of their primary molecular target","Cocaine binds μ-opioid receptors","They share the same metabolic pathway"],ans:1,exp:"Many drugs differ in primary target but converge on raising NAc dopamine — the common reward final pathway."},
+{q:"A motivated heroin-use-disorder patient wants long-term pharmacotherapy. The first-line option is:",opts:["Naloxone IV infusion","Methadone (or buprenorphine) maintenance","Clonidine alone indefinitely","Disulfiram"],ans:1,exp:"Methadone (or buprenorphine, a partial μ agonist) is the cornerstone of long-term opioid-use-disorder treatment."},
+{q:"A meth user has not slept in 8 days and is irritable, paranoid, threatening violence. This corresponds to which stage of the binge cycle?",opts:["Rush","High","Tweaking","Withdrawal"],ans:2,exp:"Tweaking — most dangerous stage; sleep deprivation, paranoia, and unpredictable violence."},
+{q:"Federally (US), cannabis is currently classified as:",opts:["Schedule V","Schedule III","Schedule II","Schedule I"],ans:3,exp:"At the federal level, cannabis is Schedule I — alongside heroin, MDMA, and LSD — even though many states have legalized medical/recreational use."},
+{q:"A patient on chronic high-dose phenobarbital abruptly stops. Which complication is most concerning?",opts:["Mild headache only","Seizures","Hypoglycemia only","Dyskinesia"],ans:1,exp:"Barbiturate withdrawal can include severe seizures (similar to alcohol/BZD withdrawal). Treatment: switch to diazepam and taper."},
+{q:"Why does naltrexone help in alcohol use disorder, even though alcohol primarily targets GABA/NMDA?",opts:["Naltrexone activates GABA-A","Endogenous opioids contribute to alcohol's reward; blocking μ receptors reduces drinking pleasure","Naltrexone inhibits ALDH","Naltrexone enhances cannabinoid signaling"],ans:1,exp:"Alcohol reward involves endogenous opioid release; naltrexone (μ antagonist) blunts this and reduces craving/heavy drinking."},
+{q:"Sativex is best described as:",opts:["A pure CB1 antagonist for obesity","An oromucosal spray of Δ⁹-THC + cannabidiol used for neuropathic pain and MS spasticity","A synthetic opioid","A barbiturate"],ans:1,exp:"Sativex is approved for MS-related neuropathic pain and spasticity (and adjunct cancer pain in some jurisdictions)."},
+{q:"A regular cannabis user stops abruptly and feels minimal withdrawal in the first day, then over the next week develops irritability, depression, sleep disturbance, and craving. The slow onset is best explained by:",opts:["Cannabinoids being highly water-soluble","Cannabinoids being highly lipophilic and slowly leaching out of body fat (persistence up to ~3 months)","CB1 being downregulated instantly","An immune mechanism"],ans:1,exp:"Cannabinoids are highly lipophilic; storage in adipose tissue produces a long, gradual washout — withdrawal develops slowly rather than acutely."},
+];
+
+function buildQuiz(qs,cid,sid){const c=document.getElementById(cid);c.innerHTML='';qs.forEach((q,i)=>{const d=document.createElement('div');d.className='quiz-q';d.innerHTML=`<p><span class="q-num">${i+1}</span>${q.q}</p>${q.opts.map((o,j)=>`<button class="quiz-option" onclick="checkAns(this,${i},${j},'${cid}','${sid}')">${o}</button>`).join('')}<div class="explanation" id="exp-${cid}-${i}">${q.exp}</div>`;c.appendChild(d)})}
+function checkAns(btn,qi,oi,cid,sid){const qs=cid==='quiz-container'?quizQuestions:hardQuestions;const btns=btn.parentElement.querySelectorAll('.quiz-option');btns.forEach(b=>b.classList.add('disabled'));if(oi===qs[qi].ans)btn.classList.add('correct');else{btn.classList.add('wrong');btns[qs[qi].ans].classList.add('correct')}document.getElementById(`exp-${cid}-${qi}`).classList.add('show');updateScore(cid,sid)}
+function updateScore(cid,sid){let a=0,c=0;document.getElementById(cid).querySelectorAll('.quiz-q').forEach(q=>{const cr=q.querySelector('.correct'),wr=q.querySelector('.wrong');if(cr||wr)a++;if(cr&&!wr)c++});document.getElementById(sid).textContent=c+' / '+a}
+function resetQuiz(t){if(t==='quiz'){buildQuiz(quizQuestions,'quiz-container','quiz-score');document.getElementById('quiz-score').textContent='0 / 0'}else{buildQuiz(hardQuestions,'hard-container','hard-score');document.getElementById('hard-score').textContent='0 / 0'}}
+buildQuiz(quizQuestions,'quiz-container','quiz-score');buildQuiz(hardQuestions,'hard-container','hard-score');
+
+const matchPairs=[
+["Methadone","Long-acting μ agonist — opioid substitution / maintenance"],
+["Naltrexone","μ-opioid antagonist (blocking therapy)"],
+["Clonidine","α₂-adrenergic agonist — blunts withdrawal autonomic symptoms"],
+["Mecamylamine","Nicotinic ACh receptor antagonist (smoking cessation)"],
+["Diazepam","Long-acting BZD used for taper in BZD/barb dependence"],
+["Disulfiram","Inhibits ALDH — aversion therapy in alcohol use disorder"],
+["Crack cocaine","Freebase cocaine made with NaHCO₃ — smokeable"],
+["Cocaine HCl","Water-soluble form — drink, snort, or inject"],
+["Δ⁹-THC","Major psychoactive cannabinoid — CB1 + CB2 agonist"],
+["Dronabinol (Marinol)","Appetite stimulant for AIDS-related anorexia"],
+["Nabilone (Cesamet)","Synthetic cannabinoid — antiemetic & adjunct neuropathic pain"],
+["Sativex","Δ⁹-THC + CBD oromucosal spray — MS spasticity / neuropathic pain"],
+];
+let matchSel={left:null,right:null},matchedN=0;
+function resetMatching(){matchSel={left:null,right:null};matchedN=0;document.getElementById('match-score').textContent='0 / '+matchPairs.length;renderMatching()}
+function renderMatching(){const l=matchPairs.map((p,i)=>({t:p[0],i})),r=matchPairs.map((p,i)=>({t:p[1],i}));for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}document.getElementById('match-left').innerHTML=l.map(x=>`<div class="match-item" data-side="left" data-idx="${x.i}" onclick="selMatch(this)">${x.t}</div>`).join('');document.getElementById('match-right').innerHTML=r.map(x=>`<div class="match-item" data-side="right" data-idx="${x.i}" onclick="selMatch(this)">${x.t}</div>`).join('')}
+function selMatch(el){const s=el.dataset.side,idx=+el.dataset.idx;document.querySelectorAll(`.match-item[data-side="${s}"]`).forEach(e=>{if(!e.classList.contains('matched'))e.classList.remove('selected')});el.classList.add('selected');matchSel[s]={el,idx};if(matchSel.left&&matchSel.right){if(matchSel.left.idx===matchSel.right.idx){matchSel.left.el.classList.remove('selected');matchSel.right.el.classList.remove('selected');matchSel.left.el.classList.add('matched');matchSel.right.el.classList.add('matched');matchedN++;document.getElementById('match-score').textContent=matchedN+' / '+matchPairs.length}else{matchSel.left.el.classList.add('wrong-match');matchSel.right.el.classList.add('wrong-match');setTimeout(()=>{matchSel.left.el.classList.remove('selected','wrong-match');matchSel.right.el.classList.remove('selected','wrong-match');matchSel={left:null,right:null}},600);return}matchSel={left:null,right:null}}}
+renderMatching();
+</script>
+</body>
+</html>

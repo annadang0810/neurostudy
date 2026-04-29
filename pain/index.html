@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pain, Opioids &amp; NSAIDs - Study Guide</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0d12;--surface:#141820;--surface2:#1c2130;--border:#272d40;--text:#dfe2ed;--text-dim:#838aa4;--accent:#4e8ef7;--accent-light:#7cb0ff;--green:#2dd4a0;--green-dim:#2dd4a018;--red:#f06070;--red-dim:#f0607018;--orange:#f0a040;--purple:#a070e0;--teal:#30d0c8;--yellow:#ffd43b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:58px;gap:6px;overflow-x:auto}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-brand{font-weight:700;font-size:15px;color:var(--accent-light);white-space:nowrap;margin-right:14px}
+.nav-btn{background:none;border:1px solid transparent;color:var(--text-dim);padding:6px 13px;border-radius:8px;cursor:pointer;font-size:13px;white-space:nowrap;transition:all .2s;font-weight:500}
+.nav-btn:hover{color:var(--text);background:var(--surface2)}
+.nav-btn.active{color:var(--accent-light);background:#4e8ef715;border-color:#4e8ef740}
+main{max-width:820px;margin:0 auto;padding:80px 24px 60px}
+.section{display:none}.section.active{display:block}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:20px}
+.card h2{font-size:20px;font-weight:700;margin-bottom:14px}
+.card h3{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--accent-light)}
+.card p,.card li{font-size:14.5px;color:var(--text-dim);line-height:1.7}
+.card ul{padding-left:20px}.card li{margin-bottom:5px}
+.card li::marker{color:var(--accent)}
+.hl{color:var(--green);font-weight:600}
+.drug{color:var(--orange);font-weight:600}
+.warn{color:var(--red);font-weight:600}
+.receptor{color:var(--purple);font-weight:600}
+.mol{color:var(--teal);font-weight:600}
+.key{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-right:4px;letter-spacing:.5px}
+.hero-card{background:linear-gradient(135deg,#4e8ef720,#2dd4a010);border-color:#4e8ef730;text-align:center;padding:44px 28px}
+.hero-card h1{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.hero-card p{color:var(--text-dim);font-size:15px}
+.hero-stats{display:flex;gap:14px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-align:center;min-width:110px}
+.stat-num{font-size:24px;font-weight:800;color:var(--accent-light)}
+.stat-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.tab-row{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:8px 15px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
+.tab-btn:hover{color:var(--text)}.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab-content{display:none}.tab-content.active{display:block}
+.cmp-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+.cmp-table th{background:var(--surface2);color:var(--accent-light);padding:10px 12px;text-align:left;border:1px solid var(--border);font-weight:600}
+.cmp-table td{padding:9px 12px;border:1px solid var(--border);color:var(--text-dim)}
+.quiz-q{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px}
+.quiz-q>p{font-size:15px;font-weight:600;margin-bottom:14px;color:var(--text)}
+.q-num{display:inline-block;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:6px;text-align:center;line-height:24px;font-size:12px;font-weight:700;margin-right:8px}
+.quiz-option{display:block;width:100%;text-align:left;background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:12px 16px;border-radius:10px;cursor:pointer;font-size:14px;margin-bottom:8px;transition:all .2s;font-family:inherit}
+.quiz-option:hover{border-color:var(--accent);color:var(--text);background:#4e8ef710}
+.quiz-option.correct{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.quiz-option.wrong{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.quiz-option.disabled{pointer-events:none}
+.explanation{display:none;margin-top:12px;padding:12px 16px;background:var(--surface2);border-radius:10px;font-size:13px;color:var(--text-dim);border-left:3px solid var(--accent)}
+.explanation.show{display:block}
+.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 28px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.score-text{font-size:15px;font-weight:600}
+.score-pct{font-size:28px;font-weight:800;color:var(--accent-light)}
+.reset-btn{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;transition:all .2s}
+.reset-btn:hover{background:var(--accent-light);color:var(--bg)}
+.fc-container{perspective:1000px;margin-bottom:16px}
+.flashcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px;cursor:pointer;transition:transform .5s;transform-style:preserve-3d;position:relative}
+.flashcard:hover{box-shadow:0 4px 24px #4e8ef718}
+.flashcard.flipped{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:32px;backface-visibility:hidden;border-radius:14px}
+.fc-front{font-size:16px;font-weight:600}
+.fc-back{transform:rotateY(180deg);font-size:15px;color:var(--green);background:var(--surface);line-height:1.6}
+.fc-nav{display:flex;gap:10px;justify-content:center;align-items:center}
+.fc-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.fc-btn:hover{background:var(--accent);border-color:var(--accent)}
+.fc-counter{font-size:13px;color:var(--text-dim);font-weight:600;min-width:60px;text-align:center}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.match-col-header{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:700;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.match-item{padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;font-size:13px;cursor:pointer;transition:all .2s;color:var(--text-dim);margin-bottom:8px}
+.match-item:hover{border-color:var(--accent);color:var(--text)}
+.match-item.selected{border-color:var(--accent);background:#4e8ef715;color:var(--accent-light)}
+.match-item.matched{border-color:var(--green);background:var(--green-dim);color:var(--green);pointer-events:none;opacity:.7}
+.match-item.wrong-match{border-color:var(--red);background:var(--red-dim);color:var(--red)}
+@media(max-width:600px){.nav-brand{display:none}main{padding:74px 14px 40px}.card{padding:20px}.hero-card{padding:30px 20px}.hero-card h1{font-size:22px}.match-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+<span class="nav-brand">NeuroStudy</span>
+<button class="nav-btn active" onclick="showSection('home',event)">Home</button>
+<button class="nav-btn" onclick="showSection('learn',event)">Learn</button>
+<button class="nav-btn" onclick="showSection('flashcards',event)">Flashcards</button>
+<button class="nav-btn" onclick="showSection('quiz',event)">Quiz</button>
+<button class="nav-btn" onclick="showSection('matching',event)">Matching</button>
+<button class="nav-btn" onclick="showSection('hard',event)">Hard Quiz</button>
+</div></nav>
+<main>
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+<div class="card hero-card">
+<h1>Pain, Opioids &amp; NSAIDs</h1>
+<p>Nociception, fibers &amp; TRP channels &middot; Opioid receptors &amp; analgesics &middot; NSAIDs &middot; Local anesthetics &middot; Centrally-acting analgesics</p>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">3</div><div class="stat-label">Drug classes</div></div>
+<div class="stat"><div class="stat-num">30</div><div class="stat-label">Flashcards</div></div>
+<div class="stat"><div class="stat-num">28</div><div class="stat-label">Quiz Qs</div></div>
+<div class="stat"><div class="stat-num">10</div><div class="stat-label">Hard Qs</div></div>
+</div>
+</div>
+<div class="card"><h2>How to Use</h2><ul>
+<li><span class="hl">Learn</span> &mdash; All material organized by topic with tables</li>
+<li><span class="hl">Flashcards</span> &mdash; Click a card to flip; arrows to navigate</li>
+<li><span class="hl">Quiz</span> &mdash; 28 multiple-choice questions with instant feedback</li>
+<li><span class="hl">Matching</span> &mdash; Match drugs to mechanism / receptor</li>
+<li><span class="hl">Hard Quiz</span> &mdash; 10 clinical-application MCQs</li>
+</ul></div>
+<div class="card"><h2>Big Picture</h2>
+<p><span class="hl">Pain ≠ nociception.</span> Nociception is the neural encoding; pain is the conscious experience (sensory + affective). Therapeutic goal: <span class="hl">eliminate abnormal pain without interfering with normal protective pain</span>.</p>
+<ul>
+<li><span class="receptor">Opioids</span> &mdash; act at μ/δ/κ GPCRs to ↓ presynaptic Ca²⁺ + ↑ postsynaptic K⁺ &rarr; analgesia (and respiratory depression, addiction)</li>
+<li><span class="receptor">NSAIDs / acetaminophen</span> &mdash; inhibit COX &rarr; ↓ prostaglandins &rarr; less peripheral nociceptor sensitization</li>
+<li><span class="receptor">Local anesthetics</span> &mdash; block voltage-gated Na⁺ channels &rarr; halt action potentials in nociceptors</li>
+</ul>
+</div>
+</div>
+
+<!-- LEARN -->
+<div class="section" id="sec-learn">
+<div class="tab-row">
+<button class="tab-btn active" onclick="showTab('learn',0,event)">Pain basics</button>
+<button class="tab-btn" onclick="showTab('learn',1,event)">Classification</button>
+<button class="tab-btn" onclick="showTab('learn',2,event)">Pathways</button>
+<button class="tab-btn" onclick="showTab('learn',3,event)">Fibers &amp; TRP</button>
+<button class="tab-btn" onclick="showTab('learn',4,event)">Sensitization</button>
+<button class="tab-btn" onclick="showTab('learn',5,event)">Opioids</button>
+<button class="tab-btn" onclick="showTab('learn',6,event)">NSAIDs/LA</button>
+<button class="tab-btn" onclick="showTab('learn',7,event)">Centrally-acting</button>
+</div>
+
+<div class="tab-content active" id="learn-0">
+<div class="card"><h2>What is Pain?</h2>
+<p><span class="hl">IASP definition:</span> "an unpleasant sensory and emotional experience associated with actual or potential tissue damage, or described in terms of such damage."</p>
+<p><span class="hl">Nociception:</span> the neural process of encoding noxious stimuli (≠ the conscious feeling of pain).</p>
+<h3>Four neural steps in pain processing</h3>
+<ul>
+<li><span class="hl">Transduction</span> &mdash; noxious stimuli are converted to electrical signals at sensory nerve endings</li>
+<li><span class="hl">Transmission</span> &mdash; relays the signal from periphery to cortex</li>
+<li><span class="hl">Modulation</span> &mdash; the nervous system selectively inhibits transmission</li>
+<li><span class="hl">Perception</span> &mdash; subjective interpretation by cortex; has a <span class="hl">sensory</span> component AND an <span class="hl">affective</span> component</li>
+</ul>
+<h3>Acute vs chronic pain</h3>
+<table class="cmp-table">
+<tr><th></th><th>Acute (normal, protective)</th><th>Chronic (abnormal, "pain as disease")</th></tr>
+<tr><td>Function</td><td>Reflexes; signals injury; drives inflammation/repair</td><td>Non-protective; persists past healing</td></tr>
+<tr><td>Examples</td><td>Burns, post-op, sprains</td><td>Low back pain, fibromyalgia, neuropathy, PHN</td></tr>
+</table>
+<p><span class="warn">Therapeutic goal:</span> eliminate abnormal pain without interfering with normal, protective pain.</p>
+<p>The brain is <span class="hl">necessary</span> for pain. Activation of nociceptors signals to many regions: spinal cord → thalamus → S1/S2, insula, ACC, prefrontal cortex; also amygdala, hippocampus, basal ganglia, brainstem. Pain is <span class="hl">influenced by</span> mood (depression, anxiety, catastrophizing), context (beliefs, expectation, placebo), and cognitive set (attention, distraction, hypervigilance).</p></div>
+</div>
+
+<div class="tab-content" id="learn-1">
+<div class="card"><h2>Pain Classification</h2>
+<table class="cmp-table">
+<tr><th></th><th>1. Nociceptive</th><th>2a. Peripheral neuropathic</th><th>2b. Central neuropathic</th><th>3. Visceral</th></tr>
+<tr><td><span class="hl">Acute</span></td><td>Burns, post-op, sprains, low back pain</td><td>Acute herpes zoster (AHZ)</td><td>—</td><td>"Stone" pain, GI ulcer</td></tr>
+<tr><td><span class="hl">Intermittent</span></td><td>Headache, migraine, osteoarthritis flare, sickle cell, intermittent claudication</td><td>Trigeminal neuralgia</td><td>—</td><td>Angina/MI, dysmenorrhea, endometriosis, IBS, dyspepsia</td></tr>
+<tr><td><span class="hl">Chronic</span></td><td>Osteoarthritis, RA, fibromyalgia, myofascial, LBP</td><td>Postherpetic neuralgia (PHN), diabetic neuropathy, nerve trauma, HIV neuropathy</td><td>Spinal cord injury, central post-stroke pain, MS, Parkinson's, HIV</td><td>Pelvic, cancer</td></tr>
+</table>
+<p><span class="hl">Combined</span> states include labor pain, post-operative, cancer, LBP with radiculopathy, whiplash.</p></div>
+</div>
+
+<div class="tab-content" id="learn-2">
+<div class="card"><h2>Ascending and Descending Pathways</h2>
+<ul>
+<li><span class="hl">Ascending pain system</span> &mdash; transmits info from nerve endings to brain via spinothalamic / spinoparabrachial / spinoreticular tracts</li>
+<li><span class="hl">Descending pain system</span> &mdash; brain modulates incoming signals via projections to spinal cord (PAG → RVM/LC → dorsal horn)</li>
+</ul>
+<h3>DRG &amp; dorsal horn</h3>
+<ul>
+<li><span class="receptor">Dorsal root ganglion (DRG)</span>: thousands of cell bodies — touch, temperature, pain, itch — one DRG on each side at each spinal level</li>
+<li>Primary afferents synapse in the <span class="hl">dorsal horn</span> (Rexed laminae I–V/VI for nociception)</li>
+<li>From there, two parallel ascending streams:
+<ul>
+<li><span class="hl">Lateral spinothalamic tract</span> &rarr; lateral thalamus &rarr; somatosensory cortex (sensory-discriminative aspect)</li>
+<li><span class="hl">Spinoparabrachial tract</span> &rarr; limbic centers (emotional/aversive aspect)</li>
+</ul>
+</li>
+</ul>
+<h3>Central regions activated by nociception</h3>
+<p>Spinal cord, thalamus, S1/S2, insula, anterior cingulate cortex (ACC), prefrontal cortex; amygdala, hippocampus, posterior parietal cortex, basal ganglia, brainstem, PAG.</p></div>
+</div>
+
+<div class="tab-content" id="learn-3">
+<div class="card"><h2>Primary Afferent Fibers</h2>
+<table class="cmp-table">
+<tr><th>Fiber</th><th>Myelin</th><th>Speed</th><th>Function</th></tr>
+<tr><td><span class="receptor">Aβ</span></td><td>Heavily myelinated</td><td>Very fast</td><td>Light touch, vibration; <span class="warn">may become nociceptive after nerve injury</span> (basis of allodynia)</td></tr>
+<tr><td><span class="receptor">Aδ</span></td><td>Myelinated</td><td>Fast (5–30 m/s)</td><td><span class="hl">"First pain"</span> — sharp, pricking, punctate; cold &amp; thermal nociception</td></tr>
+<tr><td><span class="receptor">C</span></td><td>Unmyelinated</td><td>Slow (&lt;1 m/s)</td><td><span class="hl">"Second pain"</span> — slow burning, aching; <span class="hl">polymodal</span> (mechanical/thermal/chemical)</td></tr>
+</table>
+<p>Polymodal subtypes: CPM (C polymodal), CM (C mechano), CH (C heat); also A-fiber nociceptors APM (A polymodal), AM (A mechano).</p>
+<h3>TRP channels — thermosensors / chemosensors on nociceptors</h3>
+<table class="cmp-table">
+<tr><th>Channel</th><th>Activated by</th><th>Plant trigger</th></tr>
+<tr><td><span class="receptor">TRPV1</span></td><td>Heat (≥~43°C), acid (low pH), capsaicin</td><td>Chili</td></tr>
+<tr><td><span class="receptor">TRPV2</span></td><td>Noxious heat (very high T)</td><td>—</td></tr>
+<tr><td><span class="receptor">TRPV3 / V4</span></td><td>Warming temperatures</td><td>Camphor (V3)</td></tr>
+<tr><td><span class="receptor">TRPM8</span></td><td>Cold</td><td>Mint / menthol</td></tr>
+<tr><td><span class="receptor">TRPA1</span></td><td>Reactive chemicals (acid/base), cold hyperalgesia</td><td>Mustard oil, cinnamon, garlic, horseradish</td></tr>
+</table>
+<p>TRP channels can <span class="hl">change their thresholds in inflammation</span> &rarr; sensitization.</p></div>
+</div>
+
+<div class="tab-content" id="learn-4">
+<div class="card"><h2>Sensitization &amp; Inflammation</h2>
+<ul>
+<li><span class="hl">Allodynia</span> &mdash; perception of pain from a normally <em>non-painful</em> stimulus (e.g., light touch hurts)</li>
+<li><span class="hl">Hyperalgesia</span> &mdash; <em>exaggerated</em> pain from a normally painful stimulus</li>
+</ul>
+<p>After injury, the curve of pain intensity vs stimulus temperature shifts left (allodynia) and up (hyperalgesia).</p>
+<h3>Inflammation sensitizes nociceptors via prostaglandins</h3>
+<ul>
+<li><span class="mol">Phospholipase A₂</span> liberates <span class="mol">arachidonic acid</span> from membranes</li>
+<li><span class="receptor">COX-1</span> (constitutive) and <span class="receptor">COX-2</span> (inducible in inflammation) produce <span class="hl">prostaglandins, thromboxanes, prostacyclins</span></li>
+<li>Prostaglandins act on <span class="receptor">EP/IP</span> receptors &rarr; G<sub>s</sub>/G<sub>q</sub> &rarr; ↑ cAMP/PKA &amp; ↑ PKCε &rarr; <span class="hl">phosphorylate &amp; sensitize TRPV1, TRPA1, voltage-gated Na⁺ channels</span> and inhibit K⁺ channels (HCN2, TREK, CAKC)</li>
+<li>Net effect: nociceptors fire to weaker stimuli &rarr; clinical hyperalgesia</li>
+<li>This is why <span class="drug">NSAIDs</span> (COX inhibitors) reduce inflammatory pain</li>
+</ul></div>
+</div>
+
+<div class="tab-content" id="learn-5">
+<div class="card"><h2>Opioids</h2>
+<p>Plant alkaloids (esp. <span class="drug">morphine</span>) from opium poppy sap are the active ingredients. Morphine is acetylated to make heroin. Morphine, heroin, and synthetic opiates (methadone, fentanyl) are potent <span class="hl">analgesics</span>.</p>
+<h3>Three endogenous opioid peptide families</h3>
+<ul>
+<li><span class="mol">Endorphins</span> ("endogenous morphine") &mdash; bind <span class="receptor">μ</span></li>
+<li><span class="mol">Enkephalins</span> &mdash; bind <span class="receptor">δ</span></li>
+<li><span class="mol">Dynorphins</span> &mdash; bind <span class="receptor">κ</span></li>
+</ul>
+<h3>Three opioid receptors (all GPCRs, mostly Gi/o)</h3>
+<table class="cmp-table">
+<tr><th>Receptor</th><th>Main role</th><th>Endogenous ligand</th></tr>
+<tr><td><span class="receptor">μ (mu)</span></td><td><span class="hl">Major analgesic target</span>; also responsible for <span class="warn">addiction</span>, respiratory depression, euphoria, miosis, constipation</td><td>Endorphins</td></tr>
+<tr><td><span class="receptor">δ (delta)</span></td><td>Minor analgesic target</td><td>Enkephalins</td></tr>
+<tr><td><span class="receptor">κ (kappa)</span></td><td>Possible <span class="warn">pro-nociceptive</span>; produces <span class="warn">dysphoria</span></td><td>Dynorphin</td></tr>
+</table>
+<h3>Mechanism of opioid analgesia</h3>
+<ul>
+<li><span class="hl">Presynaptic</span>: block voltage-gated Ca²⁺ influx + open K⁺ channels (efflux) &rarr; ↓ excitatory neurotransmitter release (glutamate, substance P)</li>
+<li><span class="hl">Postsynaptic</span>: open K⁺ channels &rarr; hyperpolarize 2nd-order neuron &rarr; inhibit AP generation</li>
+<li>Receptors located along the entire pain axis: peripheral C/Aδ terminals, immune cells, dorsal horn (laminae I–V), <span class="receptor">PAG</span>, <span class="receptor">RVM</span>, <span class="receptor">LC</span> (drives descending NE inhibition)</li>
+</ul>
+<h3>Clinically used opioids</h3>
+<table class="cmp-table">
+<tr><th>Drug</th><th>Mechanism / note</th></tr>
+<tr><td><span class="drug">Morphine</span> (MS Contin, Kadian)</td><td>Full μ agonist — gold standard</td></tr>
+<tr><td><span class="drug">Codeine</span></td><td>Less potent; pro-drug (CYP2D6 → morphine)</td></tr>
+<tr><td><span class="drug">Oxycodone</span> (OxyContin, Percocet)</td><td>Better oral bioavailability than morphine</td></tr>
+<tr><td><span class="drug">Hydrocodone</span> (Vicodin, Lortab)</td><td>Often combined with acetaminophen</td></tr>
+<tr><td><span class="drug">Fentanyl</span> (Duragesic, Actiq)</td><td><span class="warn">~100× more potent than morphine</span></td></tr>
+<tr><td><span class="drug">Methadone</span></td><td>Orally available, <span class="hl">long half-life</span></td></tr>
+<tr><td><span class="drug">Buprenorphine</span></td><td><span class="hl">Partial μ agonist</span> (ceiling effect on respiratory depression)</td></tr>
+<tr><td><span class="drug">Pentazocine</span></td><td>κ + μ agonist &mdash; can cause <span class="warn">dysphoria</span></td></tr>
+<tr><td><span class="drug">Naloxone / Naltrexone</span></td><td>Opioid receptor <span class="warn">antagonists</span> (overdose reversal / addiction Tx)</td></tr>
+</table>
+<h3>Opioid side effects</h3>
+<p><span class="warn">Emesis, constipation, somnolence, confusion, respiratory depression, abuse</span> (and miosis, urinary retention, pruritus).</p></div>
+</div>
+
+<div class="tab-content" id="learn-6">
+<div class="card"><h2>NSAIDs &amp; Acetaminophen</h2>
+<p><span class="hl">NSAIDs</span> = non-steroidal anti-inflammatory drugs &mdash; inhibit <span class="receptor">COX-1</span> and <span class="receptor">COX-2</span> &rarr; ↓ prostaglandins, thromboxanes, prostacyclins &rarr; ↓ inflammation, ↓ peripheral nociceptor sensitization, ↓ fever.</p>
+<table class="cmp-table">
+<tr><th>Drug</th><th>Note</th></tr>
+<tr><td><span class="drug">Aspirin</span></td><td><span class="warn">Irreversible</span> COX inhibitor (acetylates); antiplatelet</td></tr>
+<tr><td><span class="drug">Ibuprofen</span> (Motrin)</td><td>Non-selective</td></tr>
+<tr><td><span class="drug">Naproxen</span> (Aleve)</td><td>Non-selective; longer half-life</td></tr>
+<tr><td><span class="drug">Diclofenac</span> (Voltaren)</td><td>Topical or oral</td></tr>
+<tr><td><span class="drug">Indomethacin</span> (Indocin)</td><td>Strong; gout, PDA closure</td></tr>
+<tr><td><span class="drug">Ketorolac</span> (Toradol)</td><td>Potent IV/IM NSAID; short courses only</td></tr>
+<tr><td><span class="drug">Celecoxib</span> (Celebrex)</td><td><span class="hl">COX-2–selective</span> &mdash; less GI ulceration</td></tr>
+<tr><td><span class="drug">Acetaminophen</span> (Paracetamol)</td><td>COX inhibition (different mechanism); little anti-inflammatory action; <span class="warn">hepatotoxic in overdose</span></td></tr>
+</table>
+<h3>NSAID side effects</h3>
+<p><span class="warn">GI ulcers, kidney failure, liver failure, prolonged bleeding</span>, nausea/vomiting, diarrhea/constipation, rash. <span class="warn">Reye's syndrome:</span> aspirin in children/teens with chickenpox or influenza.</p>
+<h2 style="margin-top:24px">Local Anesthetics</h2>
+<p>Block <span class="hl">voltage-gated Na⁺ channels</span> &rarr; halt action potential conduction in nociceptive fibers.</p>
+<ul>
+<li><span class="drug">Lidocaine</span> (Xylocaine) &mdash; workhorse</li>
+<li><span class="drug">Bupivacaine</span> &mdash; long-acting</li>
+<li><span class="drug">Tetracaine, procaine, mepivacaine, benzocaine</span></li>
+</ul>
+<p><span class="warn">Side effects:</span> respiratory depression, cardiovascular problems, seizures (with systemic absorption / overdose).</p></div>
+</div>
+
+<div class="tab-content" id="learn-7">
+<div class="card"><h2>Centrally-Acting Analgesics</h2>
+<ul>
+<li><span class="drug">Opioids</span> &mdash; act at PAG, RVM, dorsal horn; effective against moderate-severe pain</li>
+<li><span class="drug">Cannabinoids</span> &mdash; analgesic profile similar to opioids (CB1 agonism)</li>
+<li><span class="drug">α₂-adrenergic agonists</span> (e.g., clonidine) &mdash; used as an "<span class="hl">opioid holiday</span>" during chronic opioid therapy; act on descending noradrenergic inhibition</li>
+<li><span class="drug">NE reuptake inhibitors</span> (TCAs, SNRIs) &mdash; ↑ NE in dorsal horn &rarr; activate α₂ inhibition</li>
+<li><span class="drug">Selective ion-channel blockers</span> &mdash; subtype-selective Ca²⁺ &amp; Na⁺ channel antagonists modulate excitability with potentially fewer side effects</li>
+</ul>
+<h3>Descending pain modulation circuit</h3>
+<p>PAG &rarr; RVM &amp; LC &rarr; dorsal horn. Opioids and cannabinoids work at PAG and RVM; α₂ agonists, opioids, TCAs, and SNRIs reinforce inhibition at the dorsal horn (NE acts on α₂ on primary afferent terminals and 2nd-order neurons).</p></div>
+</div>
+
+</div>
+
+<!-- FLASHCARDS -->
+<div class="section" id="sec-flashcards">
+<div class="fc-container"><div class="flashcard" id="flashcard" onclick="flipCard()">
+<div class="fc-front" id="fc-front"></div>
+<div class="fc-back" id="fc-back"></div>
+</div></div>
+<div class="fc-nav">
+<button class="fc-btn" onclick="prevCard()">‹</button>
+<div class="fc-counter" id="fc-counter">1 / 30</div>
+<button class="fc-btn" onclick="nextCard()">›</button>
+<button class="fc-btn" onclick="shuffleCards()" style="width:auto;padding:0 14px;font-size:13px">Shuffle</button>
+</div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="sec-quiz">
+<div class="score-bar"><div><div class="score-text">Score</div><div class="score-pct" id="quiz-score">0 / 0</div></div><button class="reset-btn" onclick="resetQuiz('quiz')">Reset Quiz</button></div>
+<div id="quiz-container"></div>
+</div>
+
+<!-- MATCHING -->
+<div class="section" id="sec-matching">
+<div class="card" style="padding:14px 28px"><p style="font-size:14px;font-weight:600">Match each drug or molecule on the left with its mechanism / role on the right.</p></div>
+<div class="score-bar"><div><div class="score-text">Matched</div><div class="score-pct" id="match-score">0 / 12</div></div><button class="reset-btn" onclick="resetMatching()">Reset</button></div>
+<div class="match-grid"><div><div class="match-col-header">Term</div><div id="match-left"></div></div><div><div class="match-col-header">Mechanism / Role</div><div id="match-right"></div></div></div>
+</div>
+
+<!-- HARD QUIZ -->
+<div class="section" id="sec-hard">
+<div class="score-bar"><div><div class="score-text">Score</div><div class="score-pct" id="hard-score">0 / 0</div></div><button class="reset-btn" onclick="resetQuiz('hard')">Reset Quiz</button></div>
+<div id="hard-container"></div>
+</div>
+
+</main>
+<script>
+function showSection(id,e){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');e.target.classList.add('active');window.scrollTo(0,0)}
+function showTab(s,i,e){const p=document.getElementById('sec-'+s);p.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById(s+'-'+i).classList.add('active');e.target.classList.add('active')}
+
+const flashcards=[
+["IASP definition of pain?","An unpleasant sensory and emotional experience associated with actual or potential tissue damage, or described in terms of such damage."],
+["Define nociception.","The neural process of encoding noxious stimuli — a physiological process, not the conscious feeling."],
+["Four neural steps in pain processing?","Transduction (stimulus → electrical signal), transmission (periphery → cortex), modulation (NS inhibits transmission), perception (cortex interprets — sensory + affective components)."],
+["Two components of pain perception?","Sensory-discriminative and affective (emotional)."],
+["Acute vs chronic pain — function?","Acute pain is normal/protective (reflexes, signals injury, drives inflammation/repair). Chronic pain is non-protective — 'pain as disease'."],
+["Therapeutic goal in pain management?","Eliminate abnormal pain without interfering with normal, protective pain."],
+["Two major ascending pain streams?","Lateral spinothalamic tract → lateral thalamus → S1/S2 (sensory-discriminative). Spinoparabrachial tract → limbic centers (emotional/aversive)."],
+["What is the descending pain system?","Brain → spinal cord modulation: PAG → RVM/LC → dorsal horn. Reduces (or facilitates) ascending nociceptive transmission."],
+["What does the dorsal root ganglion (DRG) contain?","Cell bodies of primary sensory neurons (touch, temperature, pain, itch). One DRG on each side at every spinal level."],
+["Aβ fibers — myelination, speed, and function?","Heavily myelinated, very fast; light touch and vibration. May become nociceptive after nerve injury (basis of allodynia)."],
+["Aδ fibers — myelination, speed, and pain quality?","Myelinated, fast (5–30 m/s); 'first pain' — sharp, pricking, punctate; cold/thermal nociception."],
+["C fibers — myelination, speed, pain quality?","Unmyelinated, slow (<1 m/s); 'second pain' — slow burning, aching; polymodal (mechanical/thermal/chemical)."],
+["What does it mean for a nociceptor to be 'polymodal'?","It responds to multiple stimulus modalities (mechanical, thermal, chemical) — e.g., CPM (C polymodal) or APM (A polymodal)."],
+["TRPV1 — what activates it?","Heat (≥~43°C), low pH (acid), and capsaicin (chili). Sensitized by inflammation."],
+["TRPM8 — what activates it?","Cold and menthol (cool sensation)."],
+["TRPA1 — activators?","Reactive chemicals (mustard oil, cinnamon, garlic, horseradish), acid/base, and cold hyperalgesia."],
+["Define allodynia.","Perception of pain from a normally non-painful stimulus (e.g., light touch hurts after sunburn)."],
+["Define hyperalgesia.","Exaggerated perception of pain from a normally painful stimulus."],
+["How do prostaglandins sensitize nociceptors?","Made by COX-1/COX-2 from arachidonic acid; act on EP/IP GPCRs → ↑ cAMP/PKA & PKCε → phosphorylate and sensitize TRPV1/TRPA1/Na+ channels and inhibit K+ channels — nociceptors fire to weaker stimuli."],
+["Three endogenous opioid peptide families and their receptors?","Endorphins → μ. Enkephalins → δ. Dynorphins → κ."],
+["Mu opioid receptor — what is it for?","Major analgesic target. Also responsible for euphoria, addiction, respiratory depression, miosis, constipation."],
+["Kappa opioid receptor — clinical caveat?","Possible pro-nociceptive effect; produces dysphoria — limits its therapeutic appeal."],
+["Opioid mechanism at the presynaptic terminal?","Block voltage-gated Ca²⁺ influx and open K⁺ channels (efflux) → ↓ release of excitatory neurotransmitters (glutamate, substance P)."],
+["Opioid mechanism postsynaptically?","Open K⁺ channels → hyperpolarize the 2nd-order neuron → inhibit action potential generation."],
+["How potent is fentanyl relative to morphine?","About 100× more potent than morphine."],
+["What is special about methadone?","Orally available, long half-life — useful for chronic pain and opioid-use-disorder maintenance."],
+["What kind of opioid is buprenorphine?","A partial μ agonist — has a ceiling effect on respiratory depression, used in opioid-use-disorder treatment."],
+["Common side effects of opioids?","Emesis, constipation, somnolence, confusion, respiratory depression, and abuse/dependence."],
+["How do NSAIDs work?","Inhibit COX-1 and COX-2 → ↓ prostaglandins, thromboxanes, prostacyclins. Reduce inflammation, peripheral nociceptor sensitization, and fever."],
+["What is celecoxib's distinguishing feature, and why does it matter?","It is COX-2–selective — sparing constitutive COX-1 reduces GI ulcer risk."],
+["What is Reye's syndrome?","A potentially fatal encephalopathy/liver disease in children/teens given aspirin during a viral illness (chickenpox, influenza)."],
+["How do local anesthetics work and what are key side effects?","Block voltage-gated Na⁺ channels → halt action-potential conduction in nociceptive fibers. Side effects (with systemic absorption): respiratory depression, cardiovascular problems, seizures."],
+];
+
+let fcIndex=0;
+function renderCard(){document.getElementById('fc-front').textContent=flashcards[fcIndex][0];document.getElementById('fc-back').textContent=flashcards[fcIndex][1];document.getElementById('flashcard').classList.remove('flipped');document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+flashcards.length}
+function flipCard(){document.getElementById('flashcard').classList.toggle('flipped')}
+function nextCard(){fcIndex=(fcIndex+1)%flashcards.length;renderCard()}
+function prevCard(){fcIndex=(fcIndex-1+flashcards.length)%flashcards.length;renderCard()}
+function shuffleCards(){for(let i=flashcards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[flashcards[i],flashcards[j]]=[flashcards[j],flashcards[i]]}fcIndex=0;renderCard()}
+renderCard();
+
+const quizQuestions=[
+{q:"The IASP definition of pain emphasizes:",opts:["Tissue damage only","An unpleasant sensory AND emotional experience associated with actual or potential tissue damage","A purely peripheral phenomenon","Conscious recognition of mechanical injury only"],ans:1,exp:"Pain has both sensory and affective components, with or without overt tissue damage."},
+{q:"Which step converts a noxious stimulus into an electrical signal?",opts:["Transmission","Modulation","Transduction","Perception"],ans:2,exp:"Transduction occurs at the sensory nerve ending. Transmission is signal relay; modulation is descending control; perception is cortical interpretation."},
+{q:"The 'affective' component of pain refers to:",opts:["Where on the body the pain is felt","The unpleasantness/emotion of pain","The reflex withdrawal","The transduction step"],ans:1,exp:"Pain perception has a sensory-discriminative component and an affective (emotional/aversive) component."},
+{q:"Postherpetic neuralgia (PHN) is best classified as:",opts:["Acute nociceptive","Acute visceral","Chronic peripheral neuropathic","Chronic central neuropathic"],ans:2,exp:"PHN follows shingles and represents chronic peripheral neuropathic pain."},
+{q:"The dorsal root ganglion contains:",opts:["Motor neuron axons","Cell bodies of primary sensory neurons","2nd-order projection neurons","Microglia of the dorsal horn"],ans:1,exp:"DRGs hold sensory cell bodies (touch, temperature, pain, itch) — one on each side at every spinal level."},
+{q:"Which fiber conveys 'first pain' (sharp/pricking)?",opts:["Aβ","Aδ","C","Aα"],ans:1,exp:"Aδ fibers are myelinated, conduct fast (5–30 m/s), and carry sharp pricking 'first pain'."},
+{q:"Which fiber conveys 'second pain' (slow burning/aching)?",opts:["Aβ","Aδ","C","Aα"],ans:2,exp:"C fibers are unmyelinated, conduct slowly (<1 m/s), and convey slow burning 'second pain' — often polymodal."},
+{q:"After nerve injury, light touch can become painful. The fiber type that may now drive pain is:",opts:["Aβ","Aδ","C","Aα"],ans:0,exp:"Aβ fibers (normally non-nociceptive touch fibers) can become nociceptive after injury — a substrate for allodynia."},
+{q:"TRPV1 is activated by:",opts:["Cold and menthol","Heat (~43°C), acid, and capsaicin","Mustard oil only","Cinnamon and garlic"],ans:1,exp:"TRPV1 is the canonical heat/acid/capsaicin sensor; it is sensitized in inflammation."},
+{q:"Which TRP channel is the cold/menthol sensor?",opts:["TRPV1","TRPV3","TRPM8","TRPA1"],ans:2,exp:"TRPM8 detects cool/cold and is activated by menthol; TRPA1 also contributes to cold hyperalgesia."},
+{q:"Allodynia is best defined as:",opts:["Exaggerated pain from a painful stimulus","Pain from a normally non-painful stimulus","Loss of pain sensation","Spontaneous pain only"],ans:1,exp:"Allodynia: pain from a normally non-painful stimulus. Hyperalgesia is exaggerated pain from a normally painful stimulus."},
+{q:"Hyperalgesia is best defined as:",opts:["Pain from a non-painful stimulus","Loss of all sensation","Exaggerated pain from a normally painful stimulus","Reflex absence"],ans:2,exp:"Hyperalgesia = exaggerated pain perception from a stimulus that is normally painful."},
+{q:"Prostaglandins sensitize nociceptors mainly through:",opts:["Direct opening of TRPV1","GPCR-coupled second-messenger phosphorylation of TRP and Na⁺ channels (and inhibition of K⁺ channels)","Direct ATP release","Vesicular fusion of substance P"],ans:1,exp:"PGE2 binds EP/IP GPCRs → cAMP/PKA & PKCε → phosphorylates TRPV1/TRPA1/Na⁺ channels and inhibits K⁺ channels — increasing nociceptor excitability."},
+{q:"Which endogenous opioid peptide family preferentially binds the μ receptor?",opts:["Enkephalins","Endorphins","Dynorphins","Substance P"],ans:1,exp:"Endorphins → μ. Enkephalins → δ. Dynorphins → κ."},
+{q:"The major analgesic opioid receptor — also responsible for addictive effects — is:",opts:["κ (kappa)","δ (delta)","μ (mu)","σ (sigma)"],ans:2,exp:"μ is the major analgesic target and is also responsible for euphoria/addiction and respiratory depression."},
+{q:"Kappa opioid receptor agonists tend to produce:",opts:["Euphoria","Dysphoria (and possible pro-nociceptive effects)","Pure analgesia without side effects","Respiratory stimulation"],ans:1,exp:"κ agonism causes dysphoria and may be pro-nociceptive — limiting its therapeutic role."},
+{q:"At the presynaptic terminal, opioid receptor activation:",opts:["Increases voltage-gated Ca²⁺ influx and increases neurotransmitter release","Decreases Ca²⁺ influx and opens K⁺ channels — reducing excitatory neurotransmitter release","Activates NMDA receptors","Hydrolyzes substance P"],ans:1,exp:"Opioid receptors (Gi/o-coupled) close Ca²⁺ channels and open K⁺ channels presynaptically — diminishing release of glutamate and substance P."},
+{q:"Postsynaptically, opioids:",opts:["Depolarize and excite the 2nd-order neuron","Open K⁺ channels and hyperpolarize the 2nd-order neuron, inhibiting action potential generation","Activate adenylyl cyclase via Gs","Open voltage-gated Ca²⁺ channels"],ans:1,exp:"Postsynaptic K⁺ efflux hyperpolarizes the membrane, raising the threshold for AP generation."},
+{q:"Fentanyl is approximately how potent compared to morphine?",opts:["10× less potent","Equivalent","100× more potent","1000× less potent"],ans:2,exp:"Fentanyl is roughly 100× more potent than morphine — narrow therapeutic window for respiratory depression."},
+{q:"Buprenorphine is:",opts:["A full μ agonist","A partial μ agonist (with a ceiling on respiratory depression)","A pure μ antagonist","A κ antagonist"],ans:1,exp:"Buprenorphine is a partial μ agonist — useful in opioid-use-disorder treatment with a respiratory-depression ceiling."},
+{q:"Naloxone is used clinically to:",opts:["Treat refractory pain","Reverse opioid overdose by antagonizing opioid receptors","Increase μ receptor expression","Block COX-2"],ans:1,exp:"Naloxone is a competitive opioid antagonist used to reverse overdose (esp. respiratory depression)."},
+{q:"Local anesthetics produce analgesia by:",opts:["Activating GABA-A receptors","Blocking voltage-gated Na⁺ channels","Inhibiting COX-2","Activating opioid receptors"],ans:1,exp:"Lidocaine and related agents block voltage-gated Na⁺ channels, halting AP conduction."},
+{q:"NSAIDs reduce pain primarily by:",opts:["Activating opioid receptors","Inhibiting COX-1 and COX-2 → ↓ prostaglandins","Blocking Na⁺ channels","Antagonizing TRPV1"],ans:1,exp:"COX inhibition reduces prostaglandin production and the inflammatory sensitization of nociceptors."},
+{q:"Celecoxib differs from ibuprofen because it is:",opts:["A COX-1 selective inhibitor","A COX-2–selective inhibitor","An opioid","A muscarinic antagonist"],ans:1,exp:"Celecoxib is COX-2 selective, sparing constitutive COX-1 → less GI ulceration (but cardiovascular caveats)."},
+{q:"Reye's syndrome is associated with:",opts:["Acetaminophen overdose","Aspirin use in children/teens with chickenpox or influenza","Long-term opioids","Naloxone misuse"],ans:1,exp:"Aspirin during viral illness in children/teens can trigger Reye's syndrome — avoid ASA in this group."},
+{q:"Acetaminophen differs from classic NSAIDs in that it:",opts:["Has potent anti-inflammatory action","Is COX-2–selective","Has analgesic & antipyretic action with little anti-inflammatory effect; major risk is hepatotoxicity in overdose","Blocks Na⁺ channels"],ans:2,exp:"Acetaminophen inhibits COX (with a different mechanism), is analgesic/antipyretic but not strongly anti-inflammatory; high doses cause hepatotoxicity."},
+{q:"During chronic opioid therapy, which agent class is sometimes used as an 'opioid holiday' to reduce tolerance and provide analgesia?",opts:["α₁ agonists","α₂-adrenergic agonists","β₂ agonists","Muscarinic antagonists"],ans:1,exp:"α₂ agonists (e.g., clonidine) augment descending noradrenergic inhibition and are used during opioid holidays."},
+{q:"TCAs and SNRIs help neuropathic pain by:",opts:["Activating opioid receptors","Increasing NE in the dorsal horn → α₂-mediated inhibition","Antagonizing GABA-A","Blocking COX"],ans:1,exp:"NE reuptake inhibition raises NE at the dorsal horn, where α₂ receptors inhibit nociceptive transmission."},
+];
+
+const hardQuestions=[
+{q:"A patient develops persistent burning pain in a dermatome 3 months after shingles. This is best characterized as:",opts:["Chronic visceral pain","Postherpetic neuralgia — chronic peripheral neuropathic pain","Acute nociceptive pain","Central post-stroke pain"],ans:1,exp:"PHN is the classic chronic peripheral neuropathic pain — sensitized DRG neurons after VZV reactivation."},
+{q:"After a sunburn, even a light shirt brushing the skin is painful. This phenomenon is:",opts:["Hyperalgesia from C-fiber sensitization only","Allodynia, with Aβ touch fibers contributing to pain via central sensitization","Reye's syndrome","Pure neuropathic pain"],ans:1,exp:"Sunburn produces inflammation that sensitizes nociceptors and recruits Aβ touch fibers into pain pathways centrally — classic allodynia."},
+{q:"A patient on long-term high-dose morphine has dose-limiting tolerance. Which approach is supported by an 'opioid holiday' rationale?",opts:["Switch to fentanyl at 100× the dose","Add an α₂ agonist (e.g., clonidine) to provide non-opioid analgesia and let opioid tolerance reset","Add aspirin","Block COX-2 selectively"],ans:1,exp:"α₂ agonists augment descending NE inhibition, providing analgesia while allowing opioid receptors to recover."},
+{q:"A bystander finds a person unresponsive with pinpoint pupils and respiratory rate of 5. Best initial pharmacologic treatment:",opts:["Fentanyl","Naloxone","Aspirin","Lidocaine"],ans:1,exp:"This is opioid overdose. Naloxone competitively antagonizes μ receptors and reverses respiratory depression."},
+{q:"Why does aspirin reduce pain AND prolong bleeding time?",opts:["It activates μ receptors","It irreversibly inhibits platelet COX-1, decreasing thromboxane A2 and platelet aggregation","It blocks Na⁺ channels in platelets","It directly thins blood by inhibiting fibrin"],ans:1,exp:"Aspirin acetylates COX-1 in platelets (which lack nuclei) for the platelet's lifespan — diminished TXA2 → less aggregation."},
+{q:"For a patient who needs long-term NSAID therapy and has a history of GI ulcers, the best NSAID choice is:",opts:["Ibuprofen","Naproxen","Celecoxib","Indomethacin"],ans:2,exp:"Celecoxib is COX-2 selective, sparing constitutive COX-1 in the GI mucosa → fewer ulcers."},
+{q:"A 6-year-old with influenza is given aspirin and develops vomiting, encephalopathy, and liver dysfunction. The diagnosis is:",opts:["Acetaminophen toxicity","Reye's syndrome","Opioid overdose","Lidocaine toxicity"],ans:1,exp:"Reye's syndrome — aspirin in children/teens with viral illness (esp. influenza, varicella). Avoid ASA in this group."},
+{q:"Why does buprenorphine cause less respiratory depression than morphine at high doses?",opts:["It is a δ antagonist","It is a partial μ agonist with a ceiling effect","It blocks Na⁺ channels","It is converted to naloxone in vivo"],ans:1,exp:"Partial agonism produces a sub-maximal μ response — even at saturating doses, ventilation is suppressed less than with full agonists."},
+{q:"A patient maintained on chronic morphine receives naloxone for elective procedure. Predicted result:",opts:["Sedation","Acute opioid withdrawal — agitation, GI upset, pain return","Hyperalgesia only, no other symptoms","Respiratory failure"],ans:1,exp:"In chronic opioid users, μ blockade precipitates withdrawal — autonomic activation, GI symptoms, severe pain."},
+{q:"Why does morphine cause respiratory depression?",opts:["Direct effect on lung tissue","μ-receptor agonism in brainstem respiratory centers reduces responsiveness to CO₂","It blocks COX-1 in alveoli","It opens TRPV1 in airway"],ans:1,exp:"Brainstem μ activation lowers central chemoreceptor sensitivity to CO₂ — the dose-limiting toxicity of opioids."},
+];
+
+function buildQuiz(qs,cid,sid){const c=document.getElementById(cid);c.innerHTML='';qs.forEach((q,i)=>{const d=document.createElement('div');d.className='quiz-q';d.innerHTML=`<p><span class="q-num">${i+1}</span>${q.q}</p>${q.opts.map((o,j)=>`<button class="quiz-option" onclick="checkAns(this,${i},${j},'${cid}','${sid}')">${o}</button>`).join('')}<div class="explanation" id="exp-${cid}-${i}">${q.exp}</div>`;c.appendChild(d)})}
+function checkAns(btn,qi,oi,cid,sid){const qs=cid==='quiz-container'?quizQuestions:hardQuestions;const btns=btn.parentElement.querySelectorAll('.quiz-option');btns.forEach(b=>b.classList.add('disabled'));if(oi===qs[qi].ans)btn.classList.add('correct');else{btn.classList.add('wrong');btns[qs[qi].ans].classList.add('correct')}document.getElementById(`exp-${cid}-${qi}`).classList.add('show');updateScore(cid,sid)}
+function updateScore(cid,sid){let a=0,c=0;document.getElementById(cid).querySelectorAll('.quiz-q').forEach(q=>{const cr=q.querySelector('.correct'),wr=q.querySelector('.wrong');if(cr||wr)a++;if(cr&&!wr)c++});document.getElementById(sid).textContent=c+' / '+a}
+function resetQuiz(t){if(t==='quiz'){buildQuiz(quizQuestions,'quiz-container','quiz-score');document.getElementById('quiz-score').textContent='0 / 0'}else{buildQuiz(hardQuestions,'hard-container','hard-score');document.getElementById('hard-score').textContent='0 / 0'}}
+buildQuiz(quizQuestions,'quiz-container','quiz-score');buildQuiz(hardQuestions,'hard-container','hard-score');
+
+const matchPairs=[
+["Morphine","Full μ-opioid agonist (analgesic gold standard)"],
+["Fentanyl","~100× more potent than morphine"],
+["Methadone","Oral, long half-life μ agonist"],
+["Buprenorphine","Partial μ agonist (ceiling on respiratory depression)"],
+["Pentazocine","κ + μ agonist — can cause dysphoria"],
+["Naloxone","Opioid receptor antagonist (overdose reversal)"],
+["Lidocaine","Blocks voltage-gated Na⁺ channels"],
+["Aspirin","Irreversible COX-1/COX-2 inhibitor"],
+["Celecoxib","COX-2–selective NSAID"],
+["Acetaminophen","COX inhibition, weak anti-inflammatory; hepatotoxic in overdose"],
+["TRPV1","Heat / capsaicin / acid sensor on nociceptors"],
+["TRPM8","Cold / menthol sensor"],
+];
+let matchSel={left:null,right:null},matchedN=0;
+function resetMatching(){matchSel={left:null,right:null};matchedN=0;document.getElementById('match-score').textContent='0 / '+matchPairs.length;renderMatching()}
+function renderMatching(){const l=matchPairs.map((p,i)=>({t:p[0],i})),r=matchPairs.map((p,i)=>({t:p[1],i}));for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}document.getElementById('match-left').innerHTML=l.map(x=>`<div class="match-item" data-side="left" data-idx="${x.i}" onclick="selMatch(this)">${x.t}</div>`).join('');document.getElementById('match-right').innerHTML=r.map(x=>`<div class="match-item" data-side="right" data-idx="${x.i}" onclick="selMatch(this)">${x.t}</div>`).join('')}
+function selMatch(el){const s=el.dataset.side,idx=+el.dataset.idx;document.querySelectorAll(`.match-item[data-side="${s}"]`).forEach(e=>{if(!e.classList.contains('matched'))e.classList.remove('selected')});el.classList.add('selected');matchSel[s]={el,idx};if(matchSel.left&&matchSel.right){if(matchSel.left.idx===matchSel.right.idx){matchSel.left.el.classList.remove('selected');matchSel.right.el.classList.remove('selected');matchSel.left.el.classList.add('matched');matchSel.right.el.classList.add('matched');matchedN++;document.getElementById('match-score').textContent=matchedN+' / '+matchPairs.length}else{matchSel.left.el.classList.add('wrong-match');matchSel.right.el.classList.add('wrong-match');setTimeout(()=>{matchSel.left.el.classList.remove('selected','wrong-match');matchSel.right.el.classList.remove('selected','wrong-match');matchSel={left:null,right:null}},600);return}matchSel={left:null,right:null}}}
+renderMatching();
+</script>
+</body>
+</html>

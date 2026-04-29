@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cholinergic System & Alzheimer's Disease - Study Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3344;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00cec9;
+    --green-dim: #00cec920;
+    --red: #fd7272;
+    --red-dim: #fd727220;
+    --orange: #ffa94d;
+    --orange-dim: #ffa94d20;
+    --blue: #74b9ff;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-light);
+    white-space: nowrap;
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--surface2); }
+  .nav-btn.active {
+    color: var(--accent-light);
+    background: #6c5ce715;
+    border-color: #6c5ce740;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 84px 24px 60px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent-light);
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+  .card li::marker { color: var(--accent); }
+
+  .highlight {
+    color: var(--green);
+    font-weight: 600;
+  }
+  .drug {
+    color: var(--orange);
+    font-weight: 600;
+  }
+  .warn {
+    color: var(--red);
+    font-weight: 600;
+  }
+  .key {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* HERO */
+  .hero-card {
+    background: linear-gradient(135deg, #6c5ce730, #00cec915);
+    border-color: #6c5ce740;
+    text-align: center;
+    padding: 48px 28px;
+  }
+  .hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .hero-card p { color: var(--text-dim); font-size: 15px; }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* TABS within sections */
+  .tab-row {
+    display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* QUIZ */
+  .quiz-q {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .quiz-q p {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .q-num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .quiz-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+  }
+  .quiz-option:hover {
+    border-color: var(--accent);
+    color: var(--text);
+    background: #6c5ce710;
+  }
+  .quiz-option.correct {
+    background: var(--green-dim);
+    border-color: var(--green);
+    color: var(--green);
+  }
+  .quiz-option.wrong {
+    background: var(--red-dim);
+    border-color: var(--red);
+    color: var(--red);
+  }
+  .quiz-option.disabled { pointer-events: none; }
+  .explanation {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--text-dim);
+    border-left: 3px solid var(--accent);
+  }
+  .explanation.show { display: block; }
+
+  /* SCORE */
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-text { font-size: 15px; font-weight: 600; }
+  .score-pct { font-size: 28px; font-weight: 800; color: var(--accent-light); }
+  .reset-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); color: var(--bg); }
+
+  /* FLASHCARD */
+  .fc-container {
+    perspective: 1000px;
+    margin-bottom: 16px;
+  }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flashcard:hover { box-shadow: 0 4px 24px #6c5ce720; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    backface-visibility: hidden;
+    border-radius: 14px;
+  }
+  .fc-front { font-size: 16px; font-weight: 600; color: var(--text); }
+  .fc-back {
+    transform: rotateY(180deg);
+    font-size: 15px;
+    color: var(--green);
+    background: var(--surface);
+    line-height: 1.6;
+  }
+  .fc-nav {
+    display: flex; gap: 10px; justify-content: center; align-items: center;
+  }
+  .fc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .fc-counter { font-size: 13px; color: var(--text-dim); font-weight: 600; min-width: 60px; text-align: center; }
+  .fc-hint { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 10px; }
+
+  /* MATCHING */
+  .match-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .match-col-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .match-item {
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-dim);
+  }
+  .match-item:hover { border-color: var(--accent); color: var(--text); }
+  .match-item.selected { border-color: var(--accent); background: #6c5ce715; color: var(--accent-light); }
+  .match-item.matched { border-color: var(--green); background: var(--green-dim); color: var(--green); pointer-events: none; opacity: 0.7; }
+  .match-item.wrong-match { border-color: var(--red); background: var(--red-dim); color: var(--red); }
+
+  @media (max-width: 600px) {
+    .nav-brand { display: none; }
+    main { padding: 76px 14px 40px; }
+    .card { padding: 20px; }
+    .hero-card { padding: 32px 20px; }
+    .hero-card h1 { font-size: 22px; }
+    .match-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">NeuroStudy</span>
+    <button class="nav-btn active" onclick="showSection('home')">Home</button>
+    <button class="nav-btn" onclick="showSection('learn')">Learn</button>
+    <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showSection('quiz')">Quiz</button>
+    <button class="nav-btn" onclick="showSection('matching')">Matching</button>
+    <button class="nav-btn" onclick="showSection('hard')">Hard Quiz</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+  <div class="card hero-card">
+    <h1>The Cholinergic System &<br>Alzheimer's Disease</h1>
+    <p>Interactive study guide covering synaptic transmission, receptors, pharmacology, and AD pathophysiology</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">40</div><div class="stat-label">Flashcards</div></div>
+      <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Quiz Qs</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>How to Use</h2>
+    <ul>
+      <li><span class="highlight">Learn</span> - Read through all the material organized by topic</li>
+      <li><span class="highlight">Flashcards</span> - Click to flip, test your recall of key terms</li>
+      <li><span class="highlight">Quiz</span> - Multiple choice questions with explanations</li>
+      <li><span class="highlight">Matching</span> - Match drugs to their functions</li>
+      <li><span class="highlight">Hard Quiz</span> - Tougher application-based questions</li>
+    </ul>
+  </div>
+</div>
+
+<!-- LEARN -->
+<div class="section" id="sec-learn">
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showTab('learn',0)">Synapse</button>
+    <button class="tab-btn" onclick="showTab('learn',1)">Receptors</button>
+    <button class="tab-btn" onclick="showTab('learn',2)">CNS Sites</button>
+    <button class="tab-btn" onclick="showTab('learn',3)">Pharmacology</button>
+    <button class="tab-btn" onclick="showTab('learn',4)">AD Basics</button>
+    <button class="tab-btn" onclick="showTab('learn',5)">AD Pathology</button>
+    <button class="tab-btn" onclick="showTab('learn',6)">AD Treatment</button>
+  </div>
+
+  <!-- Synapse -->
+  <div class="tab-content active" id="learn-0">
+    <div class="card">
+      <h2>Cholinergic Transmission at the Synapse</h2>
+      <h3>ACh Synthesis & Release</h3>
+      <ul>
+        <li><span class="highlight">Choline + Acetyl CoA</span> are combined by the enzyme <span class="highlight">choline acetyltransferase (ChAT)</span> in the presynaptic terminal</li>
+        <li>ACh is loaded into vesicles by the <span class="highlight">vesicular ACh transporter (VAChT)</span></li>
+        <li>Upon depolarization, Ca2+ influx triggers vesicle fusion and ACh release</li>
+      </ul>
+      <h3>ACh Breakdown</h3>
+      <ul>
+        <li><span class="highlight">Acetylcholinesterase (AChE)</span> breaks down ACh into choline and acetate in the synaptic cleft</li>
+        <li>Choline is recycled back into the presynaptic terminal via the <span class="highlight">choline transporter</span></li>
+      </ul>
+      <h3>Toxins at the Synapse</h3>
+      <ul>
+        <li><span class="warn">Botulinum toxin & tetanus toxin</span> - prevent ACh vesicle release</li>
+        <li><span class="warn">Black widow spider toxin (alpha-latrotoxin)</span> - stimulates ACh release (uncouples Ca2+ from the release process)</li>
+      </ul>
+      <h3>Transport Inhibitors</h3>
+      <ul>
+        <li><span class="drug">Vesamicol</span> - blocks the vesicular ACh transporter (VAChT)</li>
+        <li><span class="drug">Hemicholinium</span> - blocks the choline uptake transporter</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Receptors -->
+  <div class="tab-content" id="learn-1">
+    <div class="card">
+      <h2>Nicotinic Receptors (nAChRs)</h2>
+      <ul>
+        <li><span class="highlight">Ligand-gated ion channels</span> (ionotropic)</li>
+        <li>Allow Na+ and Ca2+ influx when activated</li>
+        <li>Found at: neuromuscular junction, autonomic ganglia, CNS</li>
+        <li><span class="drug">Curare & mecamylamine</span> - nicotinic antagonists</li>
+        <li><span class="drug">Varenicline</span> - partial agonist at nicotinic receptors (used for smoking cessation)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Muscarinic Receptors (mAChRs)</h2>
+      <ul>
+        <li><span class="highlight">G-protein coupled receptors (GPCRs)</span> - 5 subtypes (M1-M5)</li>
+        <li><span class="key">M1, M3, M5</span> couple to <span class="highlight">Gq/11</span> (excitatory, second messengers: IP3, DAG, Ca2+)</li>
+        <li><span class="key">M2, M4</span> couple to <span class="highlight">Gi/o</span> (inhibitory, decrease cAMP)</li>
+        <li>CNS locations: cortex, hippocampus, striatum, thalamus, basal forebrain, substantia nigra</li>
+      </ul>
+      <h3>M2 in the Heart</h3>
+      <ul>
+        <li>Activated by ACh from the <span class="highlight">vagus nerve</span></li>
+        <li>Leads to beta-gamma-dependent opening of <span class="highlight">GIRKs</span> (G-protein inwardly rectifying K+ channels)</li>
+        <li>Effect: <span class="highlight">slows heart rate</span></li>
+      </ul>
+      <h3>Agonists & Antagonists</h3>
+      <ul>
+        <li><span class="drug">Agonists:</span> carbachol, arecoline, oxotremorine, pilocarpine</li>
+        <li><span class="drug">Antagonists:</span> atropine, scopolamine, benztropine</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Anticholinergic Drugs (Muscarinic Antagonists)</h2>
+      <ul>
+        <li>Impact parasympathetic nervous system (outflow is cholinergic)</li>
+        <li><span class="drug">Overactive bladder:</span> oxybutynin (Ditropan), tolterodine (Detrol), solifenacin (Vesicare)</li>
+        <li><span class="drug">Bronchodilators:</span> ipratropium (Atrovent), tiotropium (Spiriva)</li>
+        <li><span class="drug">Pupillary dilation:</span> cyclopentolate</li>
+        <li><span class="drug">Cholinesterase inhibitor overdose:</span> atropine</li>
+        <li>Drugs with anticholinergic properties: first-gen antihistamines, tricyclic antidepressants, low-potency antipsychotics</li>
+      </ul>
+      <h3>Anticholinergic Side Effects (memorize!)</h3>
+      <ul>
+        <li>Dry mouth, dilated pupils, blurred vision</li>
+        <li>Decreased perspiration, elevated heart rate</li>
+        <li>Urinary retention, constipation</li>
+        <li>Dizziness, confusion, delirium</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CNS Sites -->
+  <div class="tab-content" id="learn-2">
+    <div class="card">
+      <h2>Sites of Cholinergic Neurotransmission: CNS</h2>
+      <h3>Basal Forebrain</h3>
+      <ul>
+        <li><span class="highlight">Nucleus Basalis of Meynert</span> - innervates sensory and limbic cortices</li>
+        <li>Involved in: arousal, emotion, cortical responses to sensory input</li>
+        <li>Also innervates learning/memory regions of cortex and hippocampus</li>
+        <li><span class="warn">Key for Alzheimer's</span> - these neurons degenerate significantly in AD</li>
+      </ul>
+      <h3>Brainstem</h3>
+      <ul>
+        <li><span class="highlight">Pedunculopontine nucleus</span> and <span class="highlight">laterodorsal tegmental nucleus</span></li>
+        <li>Innervate: VTA, thalamus, cortex, basal ganglia, nucleus raphe magnus</li>
+        <li>Involved in: reward, sensory perception, movement</li>
+      </ul>
+      <h3>Striatum</h3>
+      <ul>
+        <li><span class="highlight">Cholinergic interneurons</span> - participate in motor learning and motor control</li>
+      </ul>
+      <h3>Other Cholinergic Neurons</h3>
+      <ul>
+        <li>Medial septum, cranial nerve nuclei, vestibular nuclei</li>
+        <li>Preganglionic and motor neurons</li>
+        <li>Habenula-interpeduncular pathway, thalamocortical/striatal pathways</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Pharmacology -->
+  <div class="tab-content" id="learn-3">
+    <div class="card">
+      <h2>Cholinesterase Inhibitors</h2>
+      <h3>Reversible</h3>
+      <ul>
+        <li><span class="drug">Physostigmine, neostigmine</span></li>
+        <li>Used for: glaucoma, myasthenia gravis, bladder dysfunction</li>
+        <li>Also includes carbamate insecticides</li>
+      </ul>
+      <h3>Irreversible</h3>
+      <ul>
+        <li><span class="drug">Organophosphates:</span> parathion, malathion (pesticides)</li>
+        <li><span class="warn">Nerve gases:</span> sarin, soman, tabun</li>
+      </ul>
+      <h3>Centrally Acting (for AD)</h3>
+      <ul>
+        <li><span class="drug">Tacrine</span> (Cognex), <span class="drug">donepezil</span> (Aricept)</li>
+        <li>These cross the blood-brain barrier to act in the CNS</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Myasthenia Gravis</h2>
+      <ul>
+        <li><span class="highlight">Autoimmune channelopathy disorder</span></li>
+        <li>Immune system attacks <span class="highlight">nicotinic receptors</span> at the neuromuscular junction</li>
+        <li>Auto-antibodies block AChRs, preventing muscle activation</li>
+        <li>Treated with: <span class="drug">cholinesterase inhibitors</span> or immunosuppressants</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- AD Basics -->
+  <div class="tab-content" id="learn-4">
+    <div class="card">
+      <h2>Alzheimer's Disease - Overview</h2>
+      <ul>
+        <li>Most common form of dementia (>50% of all dementias)</li>
+        <li>Affects <span class="highlight">6-8% over age 65</span> and <span class="highlight">~30% over age 85</span></li>
+        <li>Earliest symptoms: <span class="highlight">memory impairment</span></li>
+        <li>Progression: severe impairment in learning new information</li>
+        <li>Early stages: distant memories intact; Advanced stages: distant memories also lost</li>
+        <li>Behavioral changes: depression, irritability, aggression, delusions, hallucinations</li>
+        <li>Ultimately: complete loss of independence</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- AD Pathology -->
+  <div class="tab-content" id="learn-5">
+    <div class="card">
+      <h2>APP and Amyloid Beta (A-beta)</h2>
+      <ul>
+        <li>Discovered via duplications of chromosome 21 region in affected families</li>
+        <li>This region codes for <span class="highlight">amyloid precursor protein (APP)</span></li>
+        <li>APP increased in these families and also in <span class="highlight">Down syndrome</span></li>
+        <li>APP normally: regulates synaptic transmission, axonal transport, gene expression, neuronal growth</li>
+      </ul>
+      <h3>APP Processing - Two Pathways</h3>
+      <ul>
+        <li><span class="warn">Beta pathway:</span> APP cleaved by <span class="highlight">beta-secretase</span> and <span class="highlight">gamma-secretase</span> to form A-beta peptides</li>
+        <li>Gamma-secretase components: <span class="highlight">presenilin, Pen-2, nicastrin, aph-1</span></li>
+        <li>Gamma-secretase determines: A-beta-40 vs A-beta-42 form</li>
+        <li><span class="warn">A-beta-42 is MORE TOXIC and prone to aggregate</span></li>
+        <li><span class="highlight">Alpha pathway:</span> produces p3 peptide (function unknown), <span class="highlight">prevents</span> A-beta production</li>
+      </ul>
+      <h3>A-beta Aggregates</h3>
+      <ul>
+        <li>A-beta-42 forms: small soluble oligomers + large insoluble filaments (plaques). Both toxic.</li>
+        <li>Small oligomers: can <span class="highlight">block LTP</span> and disrupt learning/memory</li>
+        <li>Large plaques: damage neurites and interfere with signaling</li>
+        <li>Microglia try to clear aggregates but release <span class="warn">inflammatory cytokines and free radicals</span> causing neuronal death</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Tau Pathology</h2>
+      <ul>
+        <li><span class="highlight">Tau</span> = microtubule (MT)-associated protein, normally aids axonal transport by stabilizing MTs</li>
+        <li>Normally phosphorylated by kinases causing release from MT (allows transport to proceed)</li>
+        <li>Key kinases: <span class="highlight">Cdk5</span> (cyclin-dependent kinase 5) and <span class="highlight">GSK3-beta</span> (glycogen synthase kinase 3-beta)</li>
+        <li><span class="warn">Hyperphosphorylation</span> of tau leads to <span class="warn">neurofibrillary tangles (NFTs)</span></li>
+        <li>A-beta can: stimulate tau aggregation AND activate kinases that phosphorylate tau</li>
+        <li>NFTs are <span class="highlight">highly correlated</span> with degree of neuronal loss and cognitive impairment</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>ApoE</h2>
+      <ul>
+        <li><span class="highlight">Apolipoprotein E (ApoE)</span> - normally involved in cholesterol transport, uptake, redistribution</li>
+        <li><span class="warn">ApoE4</span> = risk factor for AD (increases A-beta fibrils, A-beta production, can phosphorylate tau)</li>
+        <li><span class="highlight">ApoE2</span> = protective (helps clear A-beta aggregates)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- AD Treatment -->
+  <div class="tab-content" id="learn-6">
+    <div class="card">
+      <h2>Treatments: Cholinergic Approach</h2>
+      <ul>
+        <li>Hypothesis: cholinergic neurons in nucleus basalis (memory processing) are significantly affected</li>
+        <li>Early attempt: increase ACh via lecithin intake - <span class="warn">NOT effective</span></li>
+        <li>AChE inhibitors used clinically:</li>
+        <li><span class="drug">Tacrine</span> (Cognex), <span class="drug">donepezil</span> (Aricept), <span class="drug">galantamine</span> (Razadyne), <span class="drug">rivastigmine</span> (Exelon)</li>
+        <li>These are effective for <span class="highlight">symptoms only</span>, NOT disease modification</li>
+        <li>In clinical trials: M1 mAChR agonists, alpha-7 and alpha-4-beta-2 nAChR agonists, M2 mAChR autoreceptor antagonists</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Disease-Altering Strategies</h2>
+      <ul>
+        <li><span class="drug">Cyclohexanehexols & tramiprosate (Alzhemed)</span> - block A-beta aggregation</li>
+        <li><span class="drug">A-beta vaccine</span> - increase clearance; first trial had encephalitis but showed improvement</li>
+        <li><span class="drug">Beta-secretase (BACE) inhibitors</span> - promising but may affect myelin thickness</li>
+        <li><span class="warn">Gamma-secretase inhibitors</span> - problematic: also cleaves Notch (cell differentiation) causing side effects</li>
+        <li><span class="drug">R-flurbiprofen (NSAID)</span> - alters gamma-secretase cleavage site: more A-beta-40, less A-beta-42</li>
+        <li>Increase <span class="highlight">alpha-secretase activity</span> - produces more p3, less A-beta</li>
+        <li>Endogenous A-beta peptidases: <span class="highlight">neprilysin</span> and <span class="highlight">insulin-degrading enzyme</span></li>
+        <li><span class="drug">Kinase inhibitors</span> for Cdk5 and GSK3-beta - reduce tau hyperphosphorylation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div class="section" id="sec-flashcards">
+  <div class="card" style="text-align:center; padding: 16px 28px;">
+    <p style="font-size:13px; color: var(--text-dim);">Click the card to flip. Use arrows to navigate.</p>
+  </div>
+  <div class="fc-container">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-front" id="fc-front"></div>
+      <div class="fc-back" id="fc-back"></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-btn" onclick="prevCard()">&#8592;</button>
+    <span class="fc-counter" id="fc-counter">1 / 40</span>
+    <button class="fc-btn" onclick="nextCard()">&#8594;</button>
+    <button class="fc-btn" onclick="shuffleCards()" title="Shuffle" style="font-size:14px;">&#x1f500;</button>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="sec-quiz">
+  <div class="score-bar">
+    <div>
+      <div class="score-text">Score</div>
+      <div class="score-pct" id="quiz-score">0 / 0</div>
+    </div>
+    <button class="reset-btn" onclick="resetQuiz('quiz')">Reset Quiz</button>
+  </div>
+  <div id="quiz-container"></div>
+</div>
+
+<!-- MATCHING -->
+<div class="section" id="sec-matching">
+  <div class="card" style="padding: 16px 28px;">
+    <p style="font-size:14px; font-weight:600;">Match the drug/substance on the left with its action on the right. Click one from each side.</p>
+  </div>
+  <div class="score-bar">
+    <div>
+      <div class="score-text">Matched</div>
+      <div class="score-pct" id="match-score">0 / 10</div>
+    </div>
+    <button class="reset-btn" onclick="resetMatching()">Reset</button>
+  </div>
+  <div class="match-grid">
+    <div>
+      <div class="match-col-header">Drug / Substance</div>
+      <div id="match-left"></div>
+    </div>
+    <div>
+      <div class="match-col-header">Action</div>
+      <div id="match-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- HARD QUIZ -->
+<div class="section" id="sec-hard">
+  <div class="score-bar">
+    <div>
+      <div class="score-text">Score</div>
+      <div class="score-pct" id="hard-score">0 / 0</div>
+    </div>
+    <button class="reset-btn" onclick="resetQuiz('hard')">Reset Quiz</button>
+  </div>
+  <div id="hard-container"></div>
+</div>
+
+</main>
+
+<script>
+// === NAVIGATION ===
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// === TABS ===
+function showTab(section, idx) {
+  const parent = document.getElementById('sec-' + section);
+  parent.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(section + '-' + idx).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// === FLASHCARDS ===
+const flashcards = [
+  ["What enzyme synthesizes acetylcholine?", "Choline acetyltransferase (ChAT) combines choline + acetyl CoA"],
+  ["What breaks down ACh in the synaptic cleft?", "Acetylcholinesterase (AChE)"],
+  ["What does Vesamicol do?", "Blocks the vesicular ACh transporter (VAChT)"],
+  ["What does Hemicholinium do?", "Blocks the choline uptake transporter"],
+  ["What do botulinum and tetanus toxins do?", "Prevent release of ACh vesicles"],
+  ["What does black widow spider toxin (alpha-latrotoxin) do?", "Stimulates ACh vesicle release by uncoupling Ca2+ from the release process"],
+  ["What type of receptors are nicotinic receptors?", "Ligand-gated ion channels (ionotropic) that allow Na+ and Ca2+ influx"],
+  ["What type of receptors are muscarinic receptors?", "G-protein coupled receptors (GPCRs), 5 subtypes M1-M5"],
+  ["Which muscarinic subtypes couple to Gq/11?", "M1, M3, and M5"],
+  ["Which muscarinic subtypes couple to Gi/o?", "M2 and M4"],
+  ["How do M2 receptors slow the heart?", "Activated by vagus nerve ACh, leading to beta-gamma-dependent opening of GIRKs (K+ channels)"],
+  ["Name muscarinic agonists", "Carbachol, arecoline, oxotremorine, pilocarpine"],
+  ["Name muscarinic antagonists", "Atropine, scopolamine, benztropine"],
+  ["Name nicotinic antagonists", "Curare and mecamylamine"],
+  ["What is Varenicline?", "A partial agonist at nicotinic receptors (used for smoking cessation)"],
+  ["What is the Nucleus Basalis of Meynert?", "Basal forebrain structure that innervates sensory/limbic cortices; involved in arousal, emotion, and memory. Degenerates in AD."],
+  ["What do pedunculopontine and laterodorsal tegmental nuclei do?", "Innervate VTA, thalamus, cortex, basal ganglia. Involved in reward, sensory perception, movement."],
+  ["What are reversible AChE inhibitors?", "Physostigmine, neostigmine. Used for glaucoma, myasthenia gravis, bladder dysfunction."],
+  ["What are irreversible AChE inhibitors?", "Organophosphates: parathion, malathion (pesticides); sarin, soman, tabun (nerve gases)"],
+  ["What is Myasthenia Gravis?", "Autoimmune channelopathy: immune system attacks nicotinic receptors at the neuromuscular junction"],
+  ["How is Myasthenia Gravis treated?", "Cholinesterase inhibitors or immunosuppressants"],
+  ["List anticholinergic side effects", "Dry mouth, dilated pupils, blurred vision, decreased perspiration, elevated HR, urinary retention, constipation, dizziness, confusion, delirium"],
+  ["What percentage of dementias is Alzheimer's?", "Greater than 50% of all dementias"],
+  ["What are the earliest symptoms of AD?", "Memory impairment"],
+  ["What is APP?", "Amyloid precursor protein, coded on chromosome 21. Regulates synaptic transmission, axonal transport, gene expression, neuronal growth."],
+  ["What are the two pathways of APP processing?", "Alpha pathway (produces p3, prevents A-beta) and Beta pathway (beta-secretase + gamma-secretase produce A-beta)"],
+  ["What makes up gamma-secretase?", "Presenilin, Pen-2, nicastrin, and aph-1"],
+  ["Why is A-beta-42 more dangerous than A-beta-40?", "A-beta-42 is more toxic and more prone to aggregate"],
+  ["What do small oligomers of A-beta-42 do?", "Block LTP and disrupt learning and memory"],
+  ["What role do microglia play in AD?", "Try to clear A-beta aggregates but release inflammatory cytokines and free radicals, leading to neuronal death"],
+  ["What is tau's normal function?", "Microtubule-associated protein that stabilizes microtubules to aid axonal transport"],
+  ["What kinases phosphorylate tau?", "Cdk5 (cyclin-dependent kinase 5) and GSK3-beta (glycogen synthase kinase 3-beta)"],
+  ["What are neurofibrillary tangles (NFTs)?", "Aggregates of hyperphosphorylated tau. Highly correlated with neuronal loss and cognitive impairment in AD."],
+  ["How does A-beta relate to tau?", "A-beta can stimulate tau aggregation AND activate kinases that phosphorylate tau"],
+  ["What is ApoE4 vs ApoE2?", "ApoE4 = risk factor (increases A-beta fibrils/production, phosphorylates tau). ApoE2 = protective (clears A-beta)."],
+  ["Name the 4 AChE inhibitors used for AD", "Tacrine (Cognex), donepezil (Aricept), galantamine (Razadyne), rivastigmine (Exelon)"],
+  ["Are AChE inhibitors disease-modifying for AD?", "No, they are effective for symptoms only, not disease modification"],
+  ["Why is gamma-secretase inhibition problematic?", "Gamma-secretase also cleaves Notch (cell differentiation), causing side effects on rapidly dividing cells"],
+  ["What does R-flurbiprofen do?", "An NSAID that alters gamma-secretase cleavage to produce more A-beta-40 and less A-beta-42"],
+  ["What endogenous enzymes degrade A-beta?", "Neprilysin and insulin-degrading enzyme"],
+];
+
+let fcIndex = 0;
+function renderCard() {
+  document.getElementById('fc-front').textContent = flashcards[fcIndex][0];
+  document.getElementById('fc-back').textContent = flashcards[fcIndex][1];
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fc-counter').textContent = (fcIndex + 1) + ' / ' + flashcards.length;
+}
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIndex = (fcIndex + 1) % flashcards.length; renderCard(); }
+function prevCard() { fcIndex = (fcIndex - 1 + flashcards.length) % flashcards.length; renderCard(); }
+function shuffleCards() {
+  for (let i = flashcards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+  }
+  fcIndex = 0; renderCard();
+}
+renderCard();
+
+// === QUIZ ENGINE ===
+const quizQuestions = [
+  { q: "What enzyme synthesizes acetylcholine from choline and acetyl CoA?", opts: ["Acetylcholinesterase", "Choline acetyltransferase", "Monoamine oxidase", "COMT"], ans: 1, exp: "Choline acetyltransferase (ChAT) combines choline and acetyl CoA to form ACh in the presynaptic terminal." },
+  { q: "Vesamicol inhibits which transporter?", opts: ["Choline uptake transporter", "Dopamine transporter", "Vesicular ACh transporter (VAChT)", "Serotonin transporter"], ans: 2, exp: "Vesamicol specifically blocks VAChT, preventing ACh from being loaded into vesicles." },
+  { q: "Which toxin STIMULATES ACh release?", opts: ["Botulinum toxin", "Tetanus toxin", "Alpha-latrotoxin (black widow)", "Tetrodotoxin"], ans: 2, exp: "Alpha-latrotoxin stimulates massive ACh release by uncoupling Ca2+ from the release process." },
+  { q: "Nicotinic receptors are what type of receptor?", opts: ["GPCRs", "Ligand-gated ion channels", "Tyrosine kinase receptors", "Nuclear receptors"], ans: 1, exp: "nAChRs are ionotropic receptors that allow Na+ and Ca2+ influx when ACh binds." },
+  { q: "M1, M3, and M5 muscarinic receptors couple to which G-protein?", opts: ["Gi/o", "Gs", "Gq/11", "G12/13"], ans: 2, exp: "M1, M3, M5 couple to Gq/11, activating PLC and producing IP3 and DAG." },
+  { q: "M2 receptors in the heart slow heart rate via opening of:", opts: ["Na+ channels", "Ca2+ channels", "GIRKs (K+ channels)", "Cl- channels"], ans: 2, exp: "M2 activation leads to beta-gamma subunit-dependent opening of GIRKs, hyperpolarizing the cell." },
+  { q: "Which drug is a partial agonist at nicotinic receptors?", opts: ["Atropine", "Curare", "Varenicline", "Physostigmine"], ans: 2, exp: "Varenicline is a partial agonist at nicotinic receptors, used for smoking cessation." },
+  { q: "Myasthenia gravis involves autoimmune attack on:", opts: ["Muscarinic receptors", "Nicotinic receptors at NMJ", "Dopamine receptors", "GABA receptors"], ans: 1, exp: "Autoantibodies attack nicotinic ACh receptors at the neuromuscular junction." },
+  { q: "The Nucleus Basalis of Meynert is located in the:", opts: ["Brainstem", "Cerebellum", "Basal forebrain", "Spinal cord"], ans: 2, exp: "The nucleus basalis is in the basal forebrain and innervates cortex and hippocampus." },
+  { q: "Organophosphates like sarin are what type of AChE inhibitor?", opts: ["Reversible", "Irreversible", "Competitive", "Uncompetitive"], ans: 1, exp: "Organophosphates (nerve gases and pesticides) are irreversible AChE inhibitors." },
+  { q: "Which is NOT an anticholinergic side effect?", opts: ["Dry mouth", "Constricted pupils", "Urinary retention", "Elevated heart rate"], ans: 1, exp: "Anticholinergics cause DILATED pupils (mydriasis), not constricted." },
+  { q: "Alzheimer's disease accounts for what percentage of all dementias?", opts: ["About 20%", "Greater than 50%", "About 10%", "About 75%"], ans: 1, exp: "AD is the most common form of dementia, accounting for >50% of all dementias." },
+  { q: "The amyloid precursor protein (APP) gene is on which chromosome?", opts: ["Chromosome 14", "Chromosome 19", "Chromosome 21", "Chromosome 1"], ans: 2, exp: "APP is on chromosome 21, which is why Down syndrome (trisomy 21) patients have increased APP." },
+  { q: "Which form of A-beta is more toxic and prone to aggregate?", opts: ["A-beta-38", "A-beta-40", "A-beta-42", "A-beta-44"], ans: 2, exp: "A-beta-42 is more toxic and more prone to aggregate than A-beta-40." },
+  { q: "The alpha pathway of APP processing produces:", opts: ["A-beta peptides", "p3 peptide", "Tau tangles", "Presenilin"], ans: 1, exp: "The alpha pathway produces p3 peptide and PREVENTS A-beta production." },
+  { q: "Gamma-secretase is composed of all EXCEPT:", opts: ["Presenilin", "Nicastrin", "Neprilysin", "Pen-2"], ans: 2, exp: "Gamma-secretase = presenilin + Pen-2 + nicastrin + aph-1. Neprilysin is an A-beta-degrading enzyme." },
+  { q: "Tau normally functions by:", opts: ["Degrading A-beta", "Stabilizing microtubules for axonal transport", "Synthesizing acetylcholine", "Activating gamma-secretase"], ans: 1, exp: "Tau is a microtubule-associated protein that stabilizes MTs to facilitate axonal transport." },
+  { q: "Which kinases phosphorylate tau?", opts: ["PKA and PKC", "Cdk5 and GSK3-beta", "MAPK and ERK", "CaMKII and Fyn"], ans: 1, exp: "Cdk5 (cyclin-dependent kinase 5) and GSK3-beta (glycogen synthase kinase 3-beta) phosphorylate tau." },
+  { q: "ApoE4 is a _____ for Alzheimer's disease.", opts: ["Treatment", "Protective factor", "Risk factor", "Diagnostic marker only"], ans: 2, exp: "ApoE4 increases A-beta fibril formation, A-beta production, and can phosphorylate tau." },
+  { q: "Which AChE inhibitor for AD is also known as Aricept?", opts: ["Tacrine", "Donepezil", "Galantamine", "Rivastigmine"], ans: 1, exp: "Donepezil = Aricept, one of the four AChE inhibitors used clinically for AD." },
+];
+
+const hardQuestions = [
+  { q: "A patient on oxybutynin for overactive bladder develops confusion, dry mouth, and blurred vision. These side effects are due to blockade of which receptor type?", opts: ["Nicotinic", "Muscarinic", "Dopamine D2", "Alpha-1 adrenergic"], ans: 1, exp: "Oxybutynin is a muscarinic antagonist. Anticholinergic side effects include dry mouth, blurred vision, and confusion." },
+  { q: "Why would inhibiting gamma-secretase potentially cause GI side effects?", opts: ["It increases A-beta production", "Gamma-secretase also cleaves Notch, which is needed for cell differentiation in rapidly dividing cells", "It blocks the choline transporter", "It activates GSK3-beta"], ans: 1, exp: "Gamma-secretase cleaves many transmembrane proteins including Notch, which is critical for cell differentiation in rapidly dividing tissues like the GI tract." },
+  { q: "A patient with myasthenia gravis is given neostigmine. This works because:", opts: ["It directly activates nicotinic receptors", "It inhibits AChE, increasing ACh levels at the NMJ to outcompete autoantibodies", "It blocks muscarinic autoreceptors", "It stimulates ACh vesicle release"], ans: 1, exp: "By inhibiting AChE, more ACh accumulates at the NMJ, helping to overcome the reduced number of functional nAChRs." },
+  { q: "Why do Down syndrome patients have increased risk for Alzheimer's?", opts: ["They have three copies of the ApoE gene", "They have trisomy 21, giving extra copies of the APP gene on chromosome 21", "They lack gamma-secretase", "They have reduced tau expression"], ans: 1, exp: "Trisomy 21 means an extra copy of chromosome 21, which carries the APP gene, leading to increased APP and A-beta production." },
+  { q: "Blocking M2 autoreceptors on cholinergic terminals would:", opts: ["Decrease ACh release", "Increase ACh release", "Block nicotinic receptors", "Prevent vesicle loading"], ans: 1, exp: "M2 autoreceptors provide negative feedback. Blocking them removes the brake on ACh release, increasing it - a potential AD treatment strategy." },
+  { q: "R-flurbiprofen helps in AD by:", opts: ["Blocking beta-secretase completely", "Shifting gamma-secretase cleavage to produce more A-beta-40 and less toxic A-beta-42", "Inhibiting tau phosphorylation", "Activating microglia"], ans: 1, exp: "R-flurbiprofen (an NSAID) modulates gamma-secretase cleavage site to favor less toxic A-beta-40 over A-beta-42." },
+  { q: "Neurofibrillary tangles are composed of:", opts: ["Aggregated A-beta peptides", "Hyperphosphorylated tau", "ApoE4 deposits", "Presenilin fragments"], ans: 1, exp: "NFTs are composed of hyperphosphorylated tau that has detached from microtubules and aggregated." },
+  { q: "A researcher wants to increase ACh availability in the brain for AD treatment. Which approach was tried first but found ineffective?", opts: ["AChE inhibitors", "Lecithin supplementation to increase choline", "M1 agonists", "Nicotinic agonists"], ans: 1, exp: "Early attempts to increase ACh via lecithin (choline source) were found to not be effective. AChE inhibitors were the successful follow-up." },
+  { q: "Which protein's clearance function may explain why ApoE2 is protective against AD?", opts: ["Tau", "APP", "A-beta aggregates", "Presenilin"], ans: 2, exp: "ApoE2 may be protective due to its ability to help clear A-beta aggregates from the brain." },
+  { q: "If A-beta oligomers block LTP in the hippocampus, the most directly affected function would be:", opts: ["Motor coordination", "Learning and memory formation", "Visual processing", "Heart rate regulation"], ans: 1, exp: "LTP (long-term potentiation) in the hippocampus is the cellular mechanism underlying learning and memory. Blocking it directly impairs memory formation." },
+  { q: "Hemicholinium would reduce cholinergic transmission by:", opts: ["Blocking ACh receptors", "Preventing choline reuptake into the presynaptic terminal", "Inhibiting AChE", "Blocking vesicle release"], ans: 1, exp: "Hemicholinium blocks the choline transporter, preventing choline recycling needed for new ACh synthesis." },
+  { q: "Which combination correctly pairs all components of gamma-secretase?", opts: ["Presenilin, Pen-2, nicastrin, aph-1", "Presenilin, neprilysin, nicastrin, Pen-2", "Beta-secretase, presenilin, Pen-2, nicastrin", "Presenilin, ApoE, nicastrin, aph-1"], ans: 0, exp: "Gamma-secretase is composed of presenilin, Pen-2, nicastrin, and aph-1." },
+];
+
+function buildQuiz(questions, containerId, scoreId) {
+  const container = document.getElementById(containerId);
+  let answered = 0, correct = 0;
+  container.innerHTML = '';
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    let optsHtml = q.opts.map((o, j) =>
+      `<button class="quiz-option" data-qi="${i}" data-oi="${j}" onclick="checkAnswer(this, ${i}, ${j}, '${containerId}', '${scoreId}')">${o}</button>`
+    ).join('');
+    div.innerHTML = `<p><span class="q-num">${i + 1}</span>${q.q}</p>${optsHtml}<div class="explanation" id="exp-${containerId}-${i}">${q.exp}</div>`;
+    container.appendChild(div);
+  });
+}
+
+function checkAnswer(btn, qi, oi, containerId, scoreId) {
+  const questions = containerId === 'quiz-container' ? quizQuestions : hardQuestions;
+  const q = questions[qi];
+  const parent = btn.parentElement;
+  const buttons = parent.querySelectorAll('.quiz-option');
+  buttons.forEach(b => { b.classList.add('disabled'); });
+  if (oi === q.ans) {
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('wrong');
+    buttons[q.ans].classList.add('correct');
+  }
+  document.getElementById(`exp-${containerId}-${qi}`).classList.add('show');
+  updateScore(containerId, scoreId);
+}
+
+function updateScore(containerId, scoreId) {
+  const container = document.getElementById(containerId);
+  const allQs = container.querySelectorAll('.quiz-q');
+  let answered = 0, correct = 0;
+  allQs.forEach(q => {
+    const c = q.querySelector('.quiz-option.correct');
+    const w = q.querySelector('.quiz-option.wrong');
+    if (c || w) answered++;
+    if (c && !w) correct++;
+  });
+  document.getElementById(scoreId).textContent = correct + ' / ' + answered;
+}
+
+function resetQuiz(type) {
+  if (type === 'quiz') buildQuiz(quizQuestions, 'quiz-container', 'quiz-score');
+  else buildQuiz(hardQuestions, 'hard-container', 'hard-score');
+  document.getElementById(type === 'quiz' ? 'quiz-score' : 'hard-score').textContent = '0 / 0';
+}
+
+buildQuiz(quizQuestions, 'quiz-container', 'quiz-score');
+buildQuiz(hardQuestions, 'hard-container', 'hard-score');
+
+// === MATCHING ===
+const matchPairs = [
+  ["Vesamicol", "Blocks vesicular ACh transporter"],
+  ["Hemicholinium", "Blocks choline uptake transporter"],
+  ["Botulinum toxin", "Prevents ACh vesicle release"],
+  ["Alpha-latrotoxin", "Stimulates ACh vesicle release"],
+  ["Atropine", "Muscarinic antagonist"],
+  ["Curare", "Nicotinic antagonist"],
+  ["Donepezil (Aricept)", "AChE inhibitor for Alzheimer's"],
+  ["Varenicline", "Partial agonist at nicotinic receptors"],
+  ["Physostigmine", "Reversible AChE inhibitor"],
+  ["Oxybutynin", "Anticholinergic for overactive bladder"],
+];
+
+let matchSelected = { left: null, right: null };
+let matchedCount = 0;
+
+function resetMatching() {
+  matchSelected = { left: null, right: null };
+  matchedCount = 0;
+  document.getElementById('match-score').textContent = '0 / ' + matchPairs.length;
+  renderMatching();
+}
+
+function renderMatching() {
+  const leftArr = matchPairs.map((p, i) => ({ text: p[0], idx: i }));
+  const rightArr = matchPairs.map((p, i) => ({ text: p[1], idx: i }));
+  // Shuffle right side
+  for (let i = rightArr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [rightArr[i], rightArr[j]] = [rightArr[j], rightArr[i]];
+  }
+  const leftDiv = document.getElementById('match-left');
+  const rightDiv = document.getElementById('match-right');
+  leftDiv.innerHTML = leftArr.map(item =>
+    `<div class="match-item" data-side="left" data-idx="${item.idx}" onclick="selectMatch(this)">${item.text}</div>`
+  ).join('');
+  rightDiv.innerHTML = rightArr.map(item =>
+    `<div class="match-item" data-side="right" data-idx="${item.idx}" onclick="selectMatch(this)">${item.text}</div>`
+  ).join('');
+}
+
+function selectMatch(el) {
+  const side = el.dataset.side;
+  const idx = parseInt(el.dataset.idx);
+  // Deselect same side
+  document.querySelectorAll(`.match-item[data-side="${side}"]`).forEach(e => {
+    if (!e.classList.contains('matched')) e.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  matchSelected[side] = { el, idx };
+  if (matchSelected.left && matchSelected.right) {
+    if (matchSelected.left.idx === matchSelected.right.idx) {
+      matchSelected.left.el.classList.remove('selected');
+      matchSelected.right.el.classList.remove('selected');
+      matchSelected.left.el.classList.add('matched');
+      matchSelected.right.el.classList.add('matched');
+      matchedCount++;
+      document.getElementById('match-score').textContent = matchedCount + ' / ' + matchPairs.length;
+    } else {
+      matchSelected.left.el.classList.add('wrong-match');
+      matchSelected.right.el.classList.add('wrong-match');
+      setTimeout(() => {
+        matchSelected.left.el.classList.remove('selected', 'wrong-match');
+        matchSelected.right.el.classList.remove('selected', 'wrong-match');
+        matchSelected = { left: null, right: null };
+      }, 600);
+      return;
+    }
+    matchSelected = { left: null, right: null };
+  }
+}
+
+renderMatching();
+</script>
+</body>
+</html>
